@@ -1,0 +1,91 @@
+﻿<Window x:Class="STM.StmModule.Simulator.SpisSubscribersDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:STM.StmModule.Simulator"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="Access control list" Height="500" Width="950" Background="{StaticResource WindowBackgroundBrush}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="1" 
+               Grid.Row="1"
+               Orientation="Horizontal">
+            <Label Content="Voyage id:"/>
+            <Label Margin="10,0,0,0"
+                Content="{Binding Id}" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" 
+               Grid.Row="1"
+               Orientation="Horizontal"
+               HorizontalAlignment="Right">
+            <Button Name="OkButton" Content="Stäng" Click="OkButton_Click" Width="60"/>
+        </StackPanel>
+
+        <ListView Grid.Column="1"
+                  Grid.Row="3" 
+                  ItemsSource="{Binding SubscriptionList}"
+                  SelectedItem="{Binding SelectedSubscription}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="250" Header="Name" DisplayMemberBinding="{Binding Path=IdentityName}" />
+                    <GridViewColumn Width="250" Header="Id" DisplayMemberBinding="{Binding Path=IdentityId}" />
+                    <GridViewColumn Width="250" Header="AMSS URL" DisplayMemberBinding="{Binding Path=AmssEndpointURL}" />
+                    <GridViewColumn Width="250" Header="MB URL" DisplayMemberBinding="{Binding Path=MbEndpointURL}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StackPanel Grid.Column="1" 
+                    Grid.Row="5"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="left" >
+            <Label Content="Select identity:" />
+            <ComboBox Margin="5,0,0,0" Width="300" 
+                      DisplayMemberPath="IdentityId"
+                      ItemsSource="{Binding AclList}"
+                      SelectedItem="{Binding SelectedAcl}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" 
+                    Grid.Row="7"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="left" >
+            <Label  Content="AMSS Endpoint URL:" />
+            <TextBox Margin="5,0,0,0" Text="{Binding AmssUrl, UpdateSourceTrigger=PropertyChanged}" Width="280" />
+            <Label Margin="5,0,0,0" Content="MB Endpoint URL:" />
+            <TextBox Margin="5,0,0,0" Text="{Binding MbUrl, UpdateSourceTrigger=PropertyChanged}" Width="280" />
+        </StackPanel>
+        
+        <StackPanel Grid.Column="1" 
+                    Grid.Row="7"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right" >
+            <Button Content="Add" Width="60" Command="{Binding AddSubscriptionCommand}" />
+            <Button Content="Delete" Margin="5,0,0,0" Width="60" Command="{Binding DeleteSubscriptionCommand}" />
+        </StackPanel>
+
+        <xctk:BusyIndicator IsBusy="{Binding Busy}" x:Name="busyBox"
+                            Grid.ColumnSpan="3" Grid.RowSpan="9"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center" BusyContent="{Binding BusyContent}" >
+        </xctk:BusyIndicator>
+    </Grid>
+</Window>

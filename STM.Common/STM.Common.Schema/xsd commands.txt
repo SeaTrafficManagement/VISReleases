@@ -1,0 +1,21 @@
+﻿
+xsd textMessageSchema.xsd s100gmlbase.xsd S100_gmlProfile.xsd S100_gmlProfileLevels.xsd /c
+
+Ta bort public partial class GM_Point, krockar med samma klass i rtz
+
+Kända problem mellan GML standard och .NET:
+http://webservices20.blogspot.se/2009/04/opengis-with-net-20-and-wcf.html
+
+Ändra attributet på denna (från autogenerade XmlTextAttribute till nedan):
+
+    [System.Xml.Serialization.XmlAttributeAttribute(DataType="double")]
+    public double[] Text {
+        get {
+            return this.textField;
+        }
+        set {
+            this.textField = value;
+        }
+    }
+
+xsd Schema\S124.xsd Schema\s100gmlbase.xsd Schema\S100_gmlProfile.xsd /c

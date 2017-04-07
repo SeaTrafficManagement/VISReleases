@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>STM.Common.Services.Internal</name>
+    </assembly>
+    <members>
+        <member name="T:STM.Common.Services.Internal.DeliveryAck">
+            <summary>
+            Acknowledgement message that incoming (uploaded) message has been delivered to consumer
+            </summary>
+        </member>
+        <member name="M:STM.Common.Services.Internal.DeliveryAck.#ctor">
+            <summary>
+            Acknowledgement message that incoming (uploaded) message has been delivered to consumer
+            </summary>
+        </member>
+        <member name="M:STM.Common.Services.Internal.DeliveryAck.#ctor(System.String,System.String,System.Nullable{System.DateTime},System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:STM.Common.Services.Internal.DeliveryAck" /> class.
+            </summary>
+            <param name="Id">Id for the ACK (required).</param>
+            <param name="ReferenceId">Reference to delivered message (URN) (required).</param>
+            <param name="TimeOfDelivery">Time of delivery (required).</param>
+            <param name="FromId">Identity of source (sender) of message that have been delivered (URN) (required).</param>
+            <param name="FromName">Friendly name of sender (required).</param>
+            <param name="ToId">Identity of target (recipient) of message delivery (URN) (required).</param>
+            <param name="ToName">Friendly name of recipient (required).</param>
+            <param name="AckResult">AckResult (required).</param>
+        </member>
+        <member name="P:STM.Common.Services.Internal.DeliveryAck.Id">
+            <summary>
+            Acknowledgement ID
+            </summary>
+        </member>
+        <member name="P:STM.Common.Services.Internal.DeliveryAck.ReferenceId">
+            <summary>
+            Reference ID such as a UVID, TXT id or area message id
+            </summary>
+        </member>
+        <member name="P:STM.Common.Services.Internal.DeliveryAck.TimeOfDelivery">
+            <summary>
+            Time of Delivery of message to consumer
+            </summary>
+        </member>
+        <member name="P:STM.Common.Services.Internal.DeliveryAck.FromId">
+            <summary>
+            Identity O (organisation) of the message sender in MRN format
+            </summary>
+        </member>
+        <member name="P:STM.Common.Services.Internal.DeliveryAck.FromName">
+            <summary>
+            "Identity O (organisation) of the message sender in full name
+            </summary>
+        </member>
+        <member name="P:STM.Common.Services.Internal.DeliveryAck.ToId">
+            <summary>
+            Identity O (organisation) of the message receiver in MRN format
+            </summary>
+        </member>
+        <member name="P:STM.Common.Services.Internal.DeliveryAck.ToName">
+            <summary>
+            IIdentity O (organisation) of the message receiver in full name
+            </summary>
+        </member>
+        <member name="P:STM.Common.Services.Internal.DeliveryAck.AckResult">
+            <summary>
+            Descriptive acknowledgement message
+            </summary>
+        </member>
+        <member name="M:STM.Common.Services.Internal.DeliveryAck.ToString">
+            <summary>
+            Returns the string presentation of the object
+            </summary>
+            <returns>String presentation of the object</returns>
+        </member>
+        <member name="M:STM.Common.Services.Internal.DeliveryAck.ToJson">
+            <summary>
+            Returns the JSON string presentation of the object
+            </summary>
+            <returns>JSON string presentation of the object</returns>
+        </member>
+        <member name="M:STM.Common.Services.Internal.DeliveryAck.Equals(System.Object)">
+            <summary>
+            Returns true if objects are equal
+            </summary>
+            <param name="obj">Object to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:STM.Common.Services.Internal.DeliveryAck.Equals(STM.Common.Services.Internal.DeliveryAck)">
+            <summary>
+            Returns true if DeliveryAck instances are equal
+            </summary>
+            <param name="other">Instance of DeliveryAck to be compared</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:STM.Common.Services.Internal.DeliveryAck.GetHashCode">
+            <summary>
+            Gets the hash code
+            </summary>
+            <returns>Hash code</returns>
+        </member>
+        <member name="M:STM.Common.Services.Internal.DeliveryAck.op_Equality(STM.Common.Services.Internal.DeliveryAck,STM.Common.Services.Internal.DeliveryAck)">
+            <summary>
+            
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:STM.Common.Services.Internal.DeliveryAck.op_Inequality(STM.Common.Services.Internal.DeliveryAck,STM.Common.Services.Internal.DeliveryAck)">
+            <summary>
+            
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

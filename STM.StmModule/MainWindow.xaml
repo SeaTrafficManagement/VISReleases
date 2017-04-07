@@ -1,0 +1,67 @@
+﻿<Window x:Class="STM.StmModule.Simulator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:STM.StmModule.Simulator"
+        xmlns:views="clr-namespace:STM.StmModule.Simulator.Views"
+        mc:Ignorable="d"
+        Title="STM Module Simulator" Height="700" Width="1200" Background="{StaticResource WindowBackgroundBrush}" Icon="ship.ico">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+
+        <TabControl Grid.Column="1" Grid.Row="1">
+            <TabItem Header="Voyageplans">
+                <views:RtzMessagesView/>
+            </TabItem>
+            <TabItem Header="PCM">
+                <views:PCMMessagesView />
+            </TabItem>
+            <TabItem Header="Find services">
+                <views:FindServicesView/>
+            </TabItem>
+            <TabItem Header="Call service">
+                <views:CallServiceView/>
+            </TabItem>
+            <TabItem Header="Get message">
+                <views:GetMessagesView />
+            </TabItem>
+            <TabItem Header="Map">
+                <views:MapView />
+            </TabItem>
+        </TabControl>
+
+        <DockPanel Grid.Column="3" 
+                    Grid.Row="1" >
+            <Label Content="Notifications" DockPanel.Dock="Top" />
+            <views:NotificationView DockPanel.Dock="Bottom" Height="200" DataContext="{Binding SelectedNotification}" />
+            <ListView Margin="0,5,0,0" 
+                      ItemsSource="{Binding Notifications}"
+                      SelectedItem="{Binding SelectedNotification}">
+                <ListView.Resources>
+                    <Style TargetType="GridViewColumnHeader">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                    </Style>
+                </ListView.Resources>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="120" Header="Time" DisplayMemberBinding="{Binding Path=ReceivedAt, StringFormat='yyyy-MM-dd HH:mm'}" />
+                        <GridViewColumn Width="300" Header="Subject" DisplayMemberBinding="{Binding Path=Subject}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </DockPanel>
+    </Grid>
+</Window>

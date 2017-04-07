@@ -1,0 +1,123 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <LinearGradientBrush x:Key="HeaderBrush" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Color="#008DC8" Offset="0.1" />
+        <GradientStop Color="#0082B9" Offset="0.9" />
+    </LinearGradientBrush>
+    
+    <Style TargetType="{x:Type Expander}"
+           BasedOn="{StaticResource {x:Type Expander}}"
+           x:Key="Expander_Normal">
+        <Setter Property="FontSize"
+                Value="12" />
+        <Setter Property="FontWeight"
+                Value="Normal" />
+        <Setter Property="BorderBrush"
+                Value="{x:Null}" />
+    </Style>
+    
+    <Style TargetType="{x:Type TextBlock}"
+           x:Key="TextBlock_Base">
+        <Setter Property="Foreground"
+                Value="{DynamicResource TextBrush}" />
+    </Style>
+    
+    <Style TargetType="{x:Type TextBlock}"
+           x:Key="TextBlock_Expander"
+           BasedOn="{StaticResource TextBlock_Base}">
+        <Setter Property="FontSize"
+                Value="10" />
+        <Setter Property="Margin"
+                Value="1,1,1,2" />
+        <Setter Property="Foreground"
+                Value="#202020" />
+        <Setter Property="FontWeight"
+                Value="Bold" />
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}"
+           x:Key="TextBlock_Normal"
+           BasedOn="{StaticResource TextBlock_Base}">
+        <Setter Property="FontSize"
+                Value="12" />
+        <Setter Property="FontWeight"
+                Value="Normal" />
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}"
+           x:Key="TextBlock_Header1"
+           BasedOn="{StaticResource TextBlock_Base}">
+        <Setter Property="FontSize"
+                Value="18" />
+        <Setter Property="FontWeight"
+                Value="Bold" />
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}"
+           x:Key="TextBlock_Header4"
+           BasedOn="{StaticResource TextBlock_Base}">
+        <Setter Property="FontSize"
+                Value="12" />
+        <Setter Property="FontWeight"
+                Value="Bold" />
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}"
+           x:Key="TextBlock_Footer"
+           BasedOn="{StaticResource TextBlock_Base}">
+        <Setter Property="FontSize"
+                Value="10" />
+    </Style>
+
+    <Style TargetType="{x:Type Label}"
+           x:Key="Label_Base">
+        <Setter Property="Foreground"
+                Value="{DynamicResource TextBrush}" />
+        <Setter Property="Padding"
+                Value="0" />
+        <Setter Property="Opacity"
+                Value="0.6" />
+        <Setter Property="HorizontalAlignment"
+                Value="Right" />
+    </Style>
+
+    <Style TargetType="{x:Type Label}"
+           x:Key="Label_Normal"
+           BasedOn="{StaticResource Label_Base}">
+        <Setter Property="FontSize"
+                Value="12" />
+        <Setter Property="FontWeight"
+                Value="Normal" />
+    </Style>
+
+    <Style TargetType="{x:Type Label}"
+           x:Key="Label_LeftAligned"
+           BasedOn="{StaticResource Label_Base}">
+        <Setter Property="FontSize"
+                Value="12" />
+        <Setter Property="FontWeight"
+                Value="Normal" />
+        <Setter Property="HorizontalAlignment"
+                Value="Left" />
+    </Style>
+
+    <Style TargetType="{x:Type Label}"
+           x:Key="Label_Bold"
+           BasedOn="{StaticResource Label_Base}">
+        <Setter Property="FontSize"
+                Value="12" />
+        <Setter Property="FontWeight"
+                Value="Bold" />
+    </Style>
+
+    <Style TargetType="{x:Type TextBox}"
+           BasedOn="{StaticResource {x:Type TextBox}}"
+           x:Key="TextBox_Normal">
+        <Setter Property="FontSize"
+                Value="12" />
+        <Setter Property="FontWeight"
+                Value="Normal" />
+
+    </Style>
+</ResourceDictionary>

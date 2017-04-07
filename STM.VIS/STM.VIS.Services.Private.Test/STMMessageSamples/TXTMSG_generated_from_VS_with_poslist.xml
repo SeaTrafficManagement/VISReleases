@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<textMessage xmlns='http://tempuri.org/TextFormat.xsd'>
+  <textMessageId>urn:mrn:stm:voyage:id:sma:0007</textMessageId>
+  <informationObjectReferenceId>urn:mrn:stm:voyage:id:sma:0007</informationObjectReferenceId>
+  <author>author1</author>
+  <from>from1</from>
+  <serviceType>serviceType1</serviceType>
+  <createdAt>2000-01-01T01:01:01+01:00</createdAt>
+  <subject>subject1</subject>
+  <body>body1</body>
+  <position lat='-90.0' lon='-180.0' />
+  <area>
+    <surfaceProperty p3:type='simple' p3:href='http://uri1' p3:role='http://uri1' p3:arcrole='http://uri1' p3:title='title1' p3:show='new' p3:actuate='onLoad' nilReason='inapplicable' xmlns:p3='http://www.w3.org/1999/xlink' xmlns='http://www.iho.int/s100gml/1.0'>
+      <Polygon srsName='http://uri1' srsDimension='1' p5:id='ID1' xmlns:p5='http://www.opengis.net/gml/3.2' xmlns='http://www.opengis.net/gml/3.2'>
+        <p5:exterior>
+          <p5:LinearRing>
+            <p5:posList>
+                  59.803001 23.836666 59.873917 23.833745 59.902731 24.095344 59.902560 24.370768
+            </p5:posList>
+          </p5:LinearRing>
+        </p5:exterior>
+      </Polygon>
+    </surfaceProperty>
+  </area>
+</textMessage>

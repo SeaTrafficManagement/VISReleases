@@ -1,0 +1,53 @@
+POST 
+/InstanceURL/
+V1/callService
+{
+   "body":"
+	<?xml version=\"1.\" encoding=\"UTF-8\"?>
+	<route version="1.0" xmlns="http://www.cirm.org/RTZ/1/0">
+		<routeInfo routeName="Test-0001" vesselName="TEST-1" vesselMMSI="876983947" vesselVoyage="urn:mrn:voyage:id:wallenius:0001" routeStatus=2/>
+		<waypoints>
+			<defaultWaypoint radius="0.30">
+				<leg portsideXTD="0.10" starboardXTD="0.10" safetyContour="30.00" safetyDepth="30.00" geometryType="Loxodrome"/>
+			</defaultWaypoint>
+			<waypoint id="60" name="Trubaduren">
+				<position lat="57.58508878" lon="11.64864817"/>
+			</waypoint>
+			<waypoint id="61" name="Vangards Gr." radius="0.50">
+				<position lat="57.53328043" lon="11.56485475"/>
+			</waypoint>
+		</waypoints>
+		<schedules>
+			<schedule id="0" name="Base Calculation"/>
+			<schedule id="1" name="Schedule1">
+				<manual>
+					<sheduleElement waypointId="60" etd="2011-09-14T05:00:00Z"/>
+					<sheduleElement waypointId="61" speed="14.00"/>
+				</manual>
+				<calculated>
+					<sheduleElement waypointId="60" etd="2011-09-14T05:00:00Z"/>
+					<sheduleElement waypointId="61" eta="2011-09-14T05:16:53Z" etd="2011-09-14T05:16:53Z" speed="14.00"/>
+				</calculated>
+			</schedule>
+		</schedules>
+	</route>
+	",
+	"headers":[
+		Host: stmservice1
+		Accept: application/json;charset=UTF-8 
+		Accept-Encoding: gzip,deflate,sdch
+		Accept-Language: en-US,en;q=0.8,fa;q=0.6,sv;q=0.4
+		Cache-Control: no-cache 
+		Connection: keep-alive
+		Origin: http://editor.swagger.io
+		Referer: http://editor.swagger.io/
+		User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64)
+		AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.79
+		Safari/537.36 Edge/14.14393 
+		Content-Length: 197 
+		Content-Type: application/json;charset=UTF-8
+],
+   
+	"endpointMethod":"https://vts_sound.eu/vis-ems/uploadVoyagePlans?uvid=urn:mrn:stm:voyage:id:wallenius:0001",
+	"requestType": "POST"
+}

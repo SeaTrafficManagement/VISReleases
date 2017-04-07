@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<route version="1.0" xmlns="http://www.cirm.org/RTZ/1/0">
+    <routeInfo routeName="Gbg - Great Baelt - Bornholm 10-13 m draft RC_MOD" vesselName="Transas" vesselMMSI="876983947" vesselVoyage="urn:mrn:stm:voyage:id:vis1:0001"/>
+    <waypoints>
+        <defaultWaypoint radius="0.30">
+            <leg portsideXTD="0.10" starboardXTD="0.10" safetyContour="30.00" safetyDepth="30.00" geometryType="Loxodrome"/>
+        </defaultWaypoint>
+        <waypoint id="60" name="Trubaduren">
+            <position lat="57.58508878" lon="11.64864817"/>
+        </waypoint>
+        <waypoint id="61" name="Vangards Gr." radius="0.50">
+            <position lat="57.53328043" lon="11.56485475"/>
+        </waypoint>
+        <waypoint id="62" name="W Fladen" radius="0.50">
+            <position lat="57.23453975" lon="11.56444058"/>
+        </waypoint>
+        <waypoint id="63" name="Buoy no 6 Anholt" radius="0.50">
+            <position lat="56.75254775" lon="11.86850618"/>
+        </waypoint>
+        <waypoint id="65" name="Buoy no 11" radius="0.50">
+            <position lat="56.17318945" lon="11.26514453"/>
+        </waypoint>
+        <waypoint id="66" name="Sjaellands Rev" radius="0.50">
+            <position lat="56.10103215" lon="11.13591678"/>
+        </waypoint>
+        <waypoint id="67" name="Buoy no 13" radius="0.50">
+            <position lat="56.02435880" lon="11.08054525"/>
+        </waypoint>
+        <waypoint id="68" name="Buoy no 15" radius="0.50">
+            <position lat="55.95512882" lon="10.99723658"/>
+        </waypoint>
+        <waypoint id="69" name="Samsoe Baelt" radius="0.50">
+            <position lat="55.92689557" lon="10.95932827"/>
+        </waypoint>
+        <waypoint id="70" name="Buoy no 20" radius="0.50">
+            <position lat="55.82478613" lon="10.80681280"/>
+        </waypoint>
+        <waypoint id="71" name="Buoy no 21" radius="0.50">
+            <position lat="55.75767460" lon="10.80265313"/>
+        </waypoint>
+        <waypoint id="72" name="Buoy no 23 Pilot" radius="0.50">
+            <position lat="55.64617212" lon="10.76767718"/>
+        </waypoint>
+        <waypoint id="73" name="Buoy no 25" radius="0.50">
+            <position lat="55.50941448" lon="10.86521175"/>
+        </waypoint>
+        <waypoint id="74" name="N Bridge" radius="0.50">
+            <position lat="55.36953053" lon="11.03102337"/>
+        </waypoint>
+        <waypoint id="31" name="S Bridge" radius="0.50">
+            <position lat="55.31617072" lon="11.03109545"/>
+        </waypoint>
+        <waypoint id="32" name="Buoy no 32" radius="0.50">
+            <position lat="55.22900355" lon="11.09908997"/>
+        </waypoint>
+        <waypoint id="33" name="Buoy no 33" radius="0.50">
+            <position lat="55.20573672" lon="11.09624418"/>
+        </waypoint>
+        <waypoint id="34" name="Buoy no DW 39" radius="0.50">
+            <position lat="55.16384637" lon="11.00253822"/>
+        </waypoint>
+        <waypoint id="47" name="Buoy no DW 41" radius="0.50">
+            <position lat="55.14526188" lon="10.98942247"/>
+        </waypoint>
+        <waypoint id="46" name="Buoy no DW 43" radius="0.50">
+            <position lat="55.07721303" lon="10.98941622"/>
+        </waypoint>
+        <waypoint id="57" name="Buoy no DW 45" radius="0.50">
+            <position lat="55.06450177" lon="10.99836750"/>
+        </waypoint>
+        <waypoint id="49" name="Buoy no DW 46" radius="0.50">
+            <position lat="55.03448777" lon="10.99650052"/>
+        </waypoint>
+        <waypoint id="50" name="Buoy no DW 51" radius="0.50">
+            <position lat="54.97267033" lon="10.96566202"/>
+        </waypoint>
+        <waypoint id="51" name="Buoy no DW 53" radius="0.50">
+            <position lat="54.94136975" lon="10.88502307"/>
+        </waypoint>
+        <waypoint id="43" name="Buoy no DW 52" radius="0.50">
+            <position lat="54.87657710" lon="10.83844205"/>
+        </waypoint>
+        <waypoint id="53" name="Buoy no DW 57 Spodsbjerg Pilot" radius="0.50">
+            <position lat="54.80353763" lon="10.83284135"/>
+        </waypoint>
+        <waypoint id="54" name="Buoy no DW 59" radius="0.50">
+            <position lat="54.73653713" lon="10.77880230"/>
+        </waypoint>
+        <waypoint id="55" name="Buoy no DW 58" radius="0.50">
+            <position lat="54.67982733" lon="10.76677708"/>
+        </waypoint>
+        <waypoint id="56" name="Buoy no KO 5" radius="0.50">
+            <position lat="54.58632685" lon="11.01496515"/>
+        </waypoint>
+        <waypoint id="22" name="Buoy no KO 6" radius="0.50">
+            <position lat="54.59335730" lon="11.15255063"/>
+        </waypoint>
+        <waypoint id="23" name="Buoy no KO 10" radius="0.50">
+            <position lat="54.41517695" lon="11.78029747"/>
+        </waypoint>
+        <waypoint id="24" name="Buoy no 70" radius="0.50">
+            <position lat="54.41517695" lon="12.16198542"/>
+        </waypoint>
+        <waypoint id="25" name="Buoy no 71" radius="0.50">
+            <position lat="54.45898558" lon="12.21074958"/>
+        </waypoint>
+        <waypoint id="40" name="Buoy no E 72" radius="0.50">
+            <position lat="54.51819560" lon="12.24576872"/>
+        </waypoint>
+        <waypoint id="26" name="Buoy no DW 73" radius="0.50">
+            <position lat="54.59261530" lon="12.27769228"/>
+        </waypoint>
+        <waypoint id="41" name="Buoy no DW 79" radius="0.50">
+            <position lat="54.77221703" lon="12.72870723"/>
+        </waypoint>
+        <waypoint id="42" name="TSS" radius="0.50">
+            <position lat="54.82416113" lon="13.08545860"/>
+            <leg portsideXTD="0.50" starboardXTD="0.50"/>
+        </waypoint>
+        <waypoint id="28" name="TSS W Bornholm" radius="0.50">
+            <position lat="55.02110903" lon="14.13786440"/>
+            <leg portsideXTD="0.50" starboardXTD="0.50"/>
+        </waypoint>
+        <waypoint id="29" name="Davids Banke Bornholm Pilot St." radius="0.50">
+            <position lat="55.39227907" lon="14.64519445"/>
+            <leg portsideXTD="0.50" starboardXTD="0.50"/>
+        </waypoint>
+    </waypoints>
+    <schedules>
+        <blaj id="0" name="Base Calculation"/>
+      <hej id="12" name="jaha" />
+        <schedule id="1" name="Schedule1">
+            <manual>
+                <sheduleElement waypointId="60" etd="2011-09-14T05:00:00Z"/>
+                <sheduleElement waypointId="61" speed="14.00"/>
+                <sheduleElement waypointId="62" speed="14.00"/>
+                <sheduleElement waypointId="63" speed="14.00"/>
+                <sheduleElement waypointId="65" speed="14.00"/>
+                <sheduleElement waypointId="66" speed="14.00"/>
+                <sheduleElement waypointId="67" speed="14.00"/>
+                <sheduleElement waypointId="68" speed="14.00"/>
+                <sheduleElement waypointId="69" speed="14.00"/>
+                <sheduleElement waypointId="70" speed="14.00"/>
+                <sheduleElement waypointId="71" speed="14.00"/>
+                <sheduleElement waypointId="72" speed="14.00"/>
+                <sheduleElement waypointId="73" speed="14.00"/>
+                <sheduleElement waypointId="74" speed="14.00"/>
+                <sheduleElement waypointId="31" speed="14.00"/>
+                <sheduleElement waypointId="32" speed="14.00"/>
+                <sheduleElement waypointId="33" speed="14.00"/>
+                <sheduleElement waypointId="34" speed="14.00"/>
+                <sheduleElement waypointId="47" speed="14.00"/>
+                <sheduleElement waypointId="46" speed="14.00"/>
+                <sheduleElement waypointId="57" speed="14.00"/>
+                <sheduleElement waypointId="49" speed="14.00"/>
+                <sheduleElement waypointId="50" speed="14.00"/>
+                <sheduleElement waypointId="51" speed="14.00"/>
+                <sheduleElement waypointId="43" speed="14.00"/>
+                <sheduleElement waypointId="53" speed="14.00"/>
+                <sheduleElement waypointId="54" speed="14.00"/>
+                <sheduleElement waypointId="55" speed="14.00"/>
+                <sheduleElement waypointId="56" speed="14.00"/>
+                <sheduleElement waypointId="22" speed="14.00"/>
+                <sheduleElement waypointId="23" speed="14.00"/>
+                <sheduleElement waypointId="24" speed="14.00"/>
+                <sheduleElement waypointId="25" speed="14.00"/>
+                <sheduleElement waypointId="40" speed="14.00"/>
+                <sheduleElement waypointId="26" speed="14.00"/>
+                <sheduleElement waypointId="41" speed="14.00"/>
+                <sheduleElement waypointId="42" speed="14.00"/>
+                <sheduleElement waypointId="28" speed="14.00"/>
+                <sheduleElement waypointId="29" speed="14.00"/>
+            </manual>
+            <calculated>
+                <sheduleElement waypointId="60" etd="2011-09-14T05:00:00Z"/>
+                <sheduleElement waypointId="61" eta="2011-09-14T05:16:53Z" etd="2011-09-14T05:16:53Z" speed="14.00"/>
+                <sheduleElement waypointId="62" eta="2011-09-14T06:34:15Z" etd="2011-09-14T06:34:15Z" speed="14.00"/>
+                <sheduleElement waypointId="63" eta="2011-09-14T08:45:00Z" etd="2011-09-14T08:45:00Z" speed="14.00"/>
+                <sheduleElement waypointId="65" eta="2011-09-14T11:37:53Z" etd="2011-09-14T11:37:53Z" speed="14.00"/>
+                <sheduleElement waypointId="66" eta="2011-09-14T12:04:02Z" etd="2011-09-14T12:04:02Z" speed="14.00"/>
+                <sheduleElement waypointId="67" eta="2011-09-14T12:25:32Z" etd="2011-09-14T12:25:32Z" speed="14.00"/>
+                <sheduleElement waypointId="68" eta="2011-09-14T12:47:13Z" etd="2011-09-14T12:47:13Z" speed="14.00"/>
+                <sheduleElement waypointId="69" eta="2011-09-14T12:56:19Z" etd="2011-09-14T12:56:19Z" speed="14.00"/>
+                <sheduleElement waypointId="70" eta="2011-09-14T13:30:00Z" etd="2011-09-14T13:30:00Z" speed="14.00"/>
+                <sheduleElement waypointId="71" eta="2011-09-14T13:47:50Z" etd="2011-09-14T13:47:50Z" speed="14.00"/>
+                <sheduleElement waypointId="72" eta="2011-09-14T14:16:32Z" etd="2011-09-14T14:16:32Z" speed="14.00"/>
+                <sheduleElement waypointId="73" eta="2011-09-14T14:54:54Z" etd="2011-09-14T14:54:54Z" speed="14.00"/>
+                <sheduleElement waypointId="74" eta="2011-09-14T15:37:56Z" etd="2011-09-14T15:37:56Z" speed="14.00"/>
+                <sheduleElement waypointId="31" eta="2011-09-14T15:51:50Z" etd="2011-09-14T15:51:50Z" speed="14.00"/>
+                <sheduleElement waypointId="32" eta="2011-09-14T16:16:19Z" etd="2011-09-14T16:16:19Z" speed="14.00"/>
+                <sheduleElement waypointId="33" eta="2011-09-14T16:21:53Z" etd="2011-09-14T16:21:53Z" speed="14.00"/>
+                <sheduleElement waypointId="34" eta="2011-09-14T16:39:41Z" etd="2011-09-14T16:39:41Z" speed="14.00"/>
+                <sheduleElement waypointId="47" eta="2011-09-14T16:44:59Z" etd="2011-09-14T16:44:59Z" speed="14.00"/>
+                <sheduleElement waypointId="46" eta="2011-09-14T17:02:30Z" etd="2011-09-14T17:02:30Z" speed="14.00"/>
+                <sheduleElement waypointId="57" eta="2011-09-14T17:05:59Z" etd="2011-09-14T17:05:59Z" speed="14.00"/>
+                <sheduleElement waypointId="49" eta="2011-09-14T17:13:54Z" etd="2011-09-14T17:13:54Z" speed="14.00"/>
+                <sheduleElement waypointId="50" eta="2011-09-14T17:29:57Z" etd="2011-09-14T17:29:57Z" speed="14.00"/>
+                <sheduleElement waypointId="51" eta="2011-09-14T17:44:26Z" etd="2011-09-14T17:44:26Z" speed="14.00"/>
+                <sheduleElement waypointId="43" eta="2011-09-14T18:02:44Z" etd="2011-09-14T18:02:44Z" speed="14.00"/>
+                <sheduleElement waypointId="53" eta="2011-09-14T18:21:31Z" etd="2011-09-14T18:21:31Z" speed="14.00"/>
+                <sheduleElement waypointId="54" eta="2011-09-14T18:40:38Z" etd="2011-09-14T18:40:38Z" speed="14.00"/>
+                <sheduleElement waypointId="55" eta="2011-09-14T18:54:21Z" etd="2011-09-14T18:54:21Z" speed="14.00"/>
+                <sheduleElement waypointId="56" eta="2011-09-14T19:38:53Z" etd="2011-09-14T19:38:53Z" speed="14.00"/>
+                <sheduleElement waypointId="22" eta="2011-09-14T19:59:38Z" etd="2011-09-14T19:59:38Z" speed="14.00"/>
+                <sheduleElement waypointId="23" eta="2011-09-14T21:44:24Z" etd="2011-09-14T21:44:24Z" speed="14.00"/>
+                <sheduleElement waypointId="24" eta="2011-09-14T22:41:04Z" etd="2011-09-14T22:41:04Z" speed="14.00"/>
+                <sheduleElement waypointId="25" eta="2011-09-14T22:55:13Z" etd="2011-09-14T22:55:13Z" speed="14.00"/>
+                <sheduleElement waypointId="40" eta="2011-09-14T23:11:31Z" etd="2011-09-14T23:11:31Z" speed="14.00"/>
+                <sheduleElement waypointId="26" eta="2011-09-14T23:30:33Z" etd="2011-09-14T23:30:33Z" speed="14.00"/>
+                <sheduleElement waypointId="41" eta="2011-09-15T00:52:36Z" etd="2011-09-15T00:52:36Z" speed="14.00"/>
+                <sheduleElement waypointId="42" eta="2011-09-15T01:47:39Z" etd="2011-09-15T01:47:39Z" speed="14.00"/>
+                <sheduleElement waypointId="28" eta="2011-09-15T04:31:16Z" etd="2011-09-15T04:31:16Z" speed="14.00"/>
+                <sheduleElement waypointId="29" eta="2011-09-15T06:33:14Z" speed="14.00"/>
+            </calculated>
+        </schedule>
+    </schedules>
+    <extensions>
+        <extension name="ActivePath" manufacturer="Transas">
+            <path>
+                <wp_ids>
+                    <wp_id value="60"/>
+                    <wp_id value="61"/>
+                    <wp_id value="62"/>
+                    <wp_id value="63"/>
+                    <wp_id value="65"/>
+                    <wp_id value="66"/>
+                    <wp_id value="67"/>
+                    <wp_id value="68"/>
+                    <wp_id value="69"/>
+                    <wp_id value="70"/>
+                    <wp_id value="71"/>
+                    <wp_id value="72"/>
+                    <wp_id value="73"/>
+                    <wp_id value="74"/>
+                    <wp_id value="31"/>
+                    <wp_id value="32"/>
+                    <wp_id value="33"/>
+                    <wp_id value="34"/>
+                    <wp_id value="47"/>
+                    <wp_id value="46"/>
+                    <wp_id value="57"/>
+                    <wp_id value="49"/>
+                    <wp_id value="50"/>
+                    <wp_id value="51"/>
+                    <wp_id value="43"/>
+                    <wp_id value="53"/>
+                    <wp_id value="54"/>
+                    <wp_id value="55"/>
+                    <wp_id value="56"/>
+                    <wp_id value="22"/>
+                    <wp_id value="23"/>
+                    <wp_id value="24"/>
+                    <wp_id value="25"/>
+                    <wp_id value="40"/>
+                    <wp_id value="26"/>
+                    <wp_id value="41"/>
+                    <wp_id value="42"/>
+                    <wp_id value="28"/>
+                    <wp_id value="29"/>
+                </wp_ids>
+            </path>
+        </extension>
+        <extension name="ukccalc" manufacturer="Transas">
+            <ukc ref_id="61" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="62" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="63" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="65" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="66" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="67" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="68" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="69" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="70" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="71" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="72" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="73" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="74" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="31" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="32" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="33" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="34" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="47" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="46" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="57" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="49" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="50" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="51" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="43" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="53" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="54" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="55" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="56" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="22" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="23" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="24" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="25" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="40" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="26" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="41" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="42" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="28" draught="9.5" depth="0" ukc="0"/>
+            <ukc ref_id="29" draught="9.5" depth="0" ukc="0"/>
+        </extension>
+    </extensions>
+</route>

@@ -1,0 +1,1020 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"version": "v2",
+		"title": "STM Voyage Information Service STM Onboard API"
+	},
+	"host": "stmvistest.cloudapp.net:444",
+	"schemes": [
+		"http",
+		"https"
+	],
+	"paths": {
+		"/{instance}/V2/authorizeIdentities": {
+			"get": {
+				"tags": [
+					"AuthorizeIdentities"
+				],
+				"summary": "",
+				"description": "Find list of authorized identities to Voyage Plans",
+				"operationId": "FindAuthorizedIdentities",
+				"consumes": [],
+				"produces": [
+					"application/json",
+					"text/json",
+					"application/xml",
+					"text/xml"
+				],
+				"parameters": [{
+						"name": "dataId",
+						"in": "query",
+						"description": "Data id usually an uvid",
+						"required": true,
+						"type": "string"
+					}, {
+						"name": "instance",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/IdentityDescriptionObject"
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"404": {
+						"description": "Not Found ( requested identities are not found)"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					},
+					"default": {
+						"description": "unexpected error"
+					}
+				}
+			},
+			"post": {
+				"tags": [
+					"AuthorizeIdentities"
+				],
+				"summary": "",
+				"description": "Authorize identities to Voyage Plan",
+				"operationId": "AuthorizeIdentities",
+				"consumes": [
+					"application/json",
+					"text/json",
+					"application/xml",
+					"text/xml",
+					"application/x-www-form-urlencoded"
+				],
+				"produces": [
+					"application/json",
+					"text/json",
+					"application/xml",
+					"text/xml"
+				],
+				"parameters": [{
+						"name": "dataId",
+						"in": "query",
+						"description": "Data id usually an UVID",
+						"required": true,
+						"type": "string"
+					}, {
+						"name": "identityDescriptionObjects",
+						"in": "body",
+						"description": "Attributes to describe an organization in STM",
+						"required": true,
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/IdentityDescriptionObject"
+							}
+						}
+					}, {
+						"name": "instance",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/ResponseObj"
+						}
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					},
+					"default": {
+						"description": "unexpected error"
+					}
+				}
+			},
+			"delete": {
+				"tags": [
+					"AuthorizeIdentities"
+				],
+				"summary": "Remove Authorize identities to Voyage Plan",
+				"operationId": "AuthorizeIdentities_RemoveAuthorizedIdentitites",
+				"consumes": [
+					"application/json",
+					"text/json",
+					"application/xml",
+					"text/xml",
+					"application/x-www-form-urlencoded"
+				],
+				"produces": [
+					"application/json",
+					"text/json",
+					"application/xml",
+					"text/xml"
+				],
+				"parameters": [{
+						"name": "dataId",
+						"in": "query",
+						"description": "Data id usually an uvid",
+						"required": true,
+						"type": "string"
+					}, {
+						"name": "identityDescriptionObjects",
+						"in": "body",
+						"description": "Attributes to describe an organization in STM",
+						"required": true,
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/IdentityDescriptionObject"
+							}
+						}
+					}, {
+						"name": "instance",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Success",
+						"schema": {
+							"$ref": "#/definitions/ResponseObj"
+						}
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"404": {
+						"description": "Not Found ( requested identities are not found)"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					},
+					"default": {
+						"description": "unexpected error"
+					}
+				}
+			}
+		},
+		"/{instance}/V2/callService": {
+			"post": {
+				"tags": [
+					"CallService"
+				],
+				"operationId": "CallService_CallService",
+				"consumes": [
+					"application/json",
+					"text/json",
+					"application/xml",
+					"text/xml",
+					"application/x-www-form-urlencoded"
+				],
+				"produces": [
+					"application/json",
+					"text/json",
+					"application/xml",
+					"text/xml"
+				],
+				"parameters": [{
+						"name": "callServiceObj",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/CallServiceRequestObj"
+						}
+					}, {
+						"name": "instance",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Success",
+						"schema": {
+							"$ref": "#/definitions/CallServiceResponseObj"
+						}
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"401": {
+						"description": "Unauthorized (the user cannot be auhtenticated in the Identity Registry)"
+					},
+					"403": {
+						"description": "Forbidden (the user is not authorized to requested service)"
+					},
+					"404": {
+						"description": "Not Found (the requested service endpoint is not found)"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					},
+					"default": {
+						"description": "unexpected error"
+					}
+				}
+			}
+		},
+		"/{instance}/V2/findIdentities": {
+			"get": {
+				"tags": [
+					"FindIdentities"
+				],
+				"summary": "",
+				"description": "Seacrh for identities in STM identity registry",
+				"operationId": "FindIdentities",
+				"consumes": [],
+				"produces": [
+					"application/json",
+					"text/json",
+					"application/xml",
+					"text/xml"
+				],
+				"parameters": [{
+						"name": "instance",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/FindIdentitiesResponseObj"
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"401": {
+						"description": "Unauthorized (the user cannot be auhtenticated in the Identity Registry)"
+					},
+					"403": {
+						"description": "Forbidden (the user is not authorized to requested organization)"
+					},
+					"404": {
+						"description": "Not Found (the requested identity is not found)"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					},
+					"default": {
+						"description": "unexpected error"
+					}
+				}
+			}
+		},
+		"/{instance}/V2/findServices": {
+			"post": {
+				"tags": [
+					"FindServices"
+				],
+				"summary": "Discover services in SeaSWIM service registry",
+				"operationId": "FindServices_FindServices",
+				"consumes": [
+					"application/json",
+					"text/json",
+					"application/xml",
+					"text/xml",
+					"application/x-www-form-urlencoded"
+				],
+				"produces": [
+					"application/json",
+					"text/json",
+					"application/xml",
+					"text/xml"
+				],
+				"parameters": [{
+						"name": "findServicesObj",
+						"in": "body",
+						"description": "Filter keywords and organizationId for service instances",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/FindServicesRequestObj"
+						}
+					}, {
+						"name": "instance",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Success",
+						"schema": {
+							"$ref": "#/definitions/FindServicesResponseObj"
+						}
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"401": {
+						"description": "Unauthorized (the user cannot be authenticated in the Service Registry)"
+					},
+					"403": {
+						"description": "Forbidden (the user is not authorized to requested service)"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					},
+					"default": {
+						"description": "unexpected error"
+					}
+				}
+			}
+		},
+		"/{instance}/V2/getMessage": {
+			"get": {
+				"tags": [
+					"GetMessage"
+				],
+				"summary": "Retrieve received messages from VIS database",
+				"operationId": "GetMessage_GetMessage",
+				"consumes": [],
+				"produces": [
+					"application/json",
+					"text/json",
+					"application/xml",
+					"text/xml"
+				],
+				"parameters": [{
+						"name": "limitQuery",
+						"in": "query",
+						"description": "Limit the number of messages to be received",
+						"required": false,
+						"type": "string"
+					}, {
+						"name": "dataId",
+						"in": "query",
+						"description": "Can be a unique voyage id or any other id for a datapoint",
+						"required": false,
+						"type": "string"
+					}, {
+						"name": "instance",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Success",
+						"schema": {
+							"$ref": "#/definitions/MessageEnvelope"
+						}
+					},
+					"default": {
+						"description": "Unexpected error"
+					}
+				}
+			}
+		},
+		"/{instance}/V2/getNotification": {
+			"get": {
+				"tags": [
+					"Notification"
+				],
+				"summary": "",
+				"description": "Get all awaiting notifications",
+				"operationId": "GetNotification",
+				"consumes": [],
+				"produces": [
+					"application/json",
+					"text/json",
+					"application/xml",
+					"text/xml"
+				],
+				"parameters": [{
+						"name": "instance",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/Notification"
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"401": {
+						"description": "Unauthorized (the user cannot be auhtenticated"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					},
+					"default": {
+						"description": "unexpected error"
+					}
+				}
+			}
+		},
+		"/{instance}/V2/getPublishedMessages": {
+			"get": {
+				"tags": [
+					"PublishMessage"
+				],
+				"summary": "Get all currently published messages",
+				"operationId": "PublishMessage_GetPublishedMessages",
+				"consumes": [],
+				"produces": [
+					"application/json",
+					"text/json",
+					"application/xml",
+					"text/xml"
+				],
+				"parameters": [{
+						"name": "instance",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Success",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/PublishedMessageContract"
+							}
+						}
+					},
+					"500": {
+						"description": "Internal Server Error"
+					},
+					"default": {
+						"description": "unexpected error"
+					}
+				}
+			}
+		},
+		"/{instance}/V2/publishMessage": {
+			"post": {
+				"tags": [
+					"PublishMessage"
+				],
+				"summary": "Publish message to VIS database for subsequent sending to subscribers",
+				"operationId": "PublishMessage_PublishMessage",
+				"consumes": [
+					"text/xml",
+					"text/plain",
+					"text/javascript",
+					"application/json",
+					"text/json",
+					"application/xml",
+					"application/x-www-form-urlencoded"
+				],
+				"produces": [
+					"application/json",
+					"text/json",
+					"application/xml",
+					"text/xml"
+				],
+				"parameters": [{
+						"name": "dataId",
+						"in": "query",
+						"description": "data Id for published message normally this is the UVID",
+						"required": true,
+						"type": "string"
+					}, {
+						"name": "messageType",
+						"in": "query",
+						"description": "Message type for published message (RTZ)",
+						"required": true,
+						"type": "string"
+					}, {
+						"name": "message",
+						"in": "body",
+						"description": "Typically STM payload data (RTZ)",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}, {
+						"name": "instance",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Success",
+						"schema": {
+							"$ref": "#/definitions/ResponseObj"
+						}
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					},
+					"default": {
+						"description": "unexpected error"
+					}
+				}
+			}
+		},
+		"/{instance}/V2/subscription": {
+			"get": {
+				"tags": [
+					"Subscription"
+				],
+				"summary": "",
+				"description": "Find list of subscriber identities to Voyage Plans",
+				"operationId": "GetSubscriptions",
+				"consumes": [],
+				"produces": [
+					"application/json",
+					"text/json",
+					"application/xml",
+					"text/xml"
+				],
+				"parameters": [{
+						"name": "dataId",
+						"in": "query",
+						"description": "Data id usually an uvid",
+						"required": false,
+						"type": "string"
+					}, {
+						"name": "instance",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/SubscriptionObject"
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"404": {
+						"description": "Not Found ( requested identities are not found)"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					},
+					"default": {
+						"description": "unexpected error"
+					}
+				}
+			},
+			"post": {
+				"tags": [
+					"Subscription"
+				],
+				"summary": "",
+				"operationId": "AddSubscription",
+				"consumes": [
+					"application/json",
+					"text/json",
+					"application/xml",
+					"text/xml",
+					"application/x-www-form-urlencoded"
+				],
+				"produces": [
+					"application/json",
+					"text/json",
+					"application/xml",
+					"text/xml"
+				],
+				"parameters": [{
+						"name": "subscriptions",
+						"in": "body",
+						"description": "Identities to add as subscribers on dataId",
+						"required": true,
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/SubscriptionObject"
+							}
+						}
+					}, {
+						"name": "dataId",
+						"in": "query",
+						"description": "",
+						"required": true,
+						"type": "string"
+					}, {
+						"name": "instance",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/ResponseObj"
+						}
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					},
+					"default": {
+						"description": "unexpected error"
+					}
+				}
+			},
+			"delete": {
+				"tags": [
+					"Subscription"
+				],
+				"summary": "",
+				"operationId": "RemoveSubscriptions",
+				"consumes": [
+					"application/json",
+					"text/json",
+					"application/xml",
+					"text/xml",
+					"application/x-www-form-urlencoded"
+				],
+				"produces": [
+					"application/json",
+					"text/json",
+					"application/xml",
+					"text/xml"
+				],
+				"parameters": [{
+						"name": "dataId",
+						"in": "query",
+						"description": "",
+						"required": true,
+						"type": "string"
+					}, {
+						"name": "subscriptionObjects",
+						"in": "body",
+						"description": "",
+						"required": true,
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/SubscriptionObject"
+							}
+						}
+					}, {
+						"name": "instance",
+						"in": "path",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/SubscriptionObject"
+							}
+						}
+					},
+					"400": {
+						"description": "Bad Request"
+					},
+					"404": {
+						"description": "Not Found ( requested identities are not found)"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					},
+					"default": {
+						"description": "unexpected error"
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"IdentityDescriptionObject": {
+			"type": "object",
+			"properties": {
+				"identityId": {
+					"type": "string"
+				},
+				"identityName": {
+					"type": "string"
+				}
+			}
+		},
+		"ResponseObj": {
+			"type": "object",
+			"properties": {
+				"dataId": {
+					"type": "string"
+				}
+			}
+		},
+		"CallServiceRequestObj": {
+			"type": "object",
+			"properties": {
+				"body": {
+					"type": "string"
+				},
+				"endpointMethod": {
+					"type": "string"
+				},
+				"contentType": {
+					"type": "string"
+				},
+				"headers": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Header"
+					}
+				},
+				"requestType": {
+					"type": "string"
+				}
+			}
+		},
+		"Header": {
+			"type": "object",
+			"properties": {
+				"key": {
+					"type": "string"
+				},
+				"value": {
+					"type": "string"
+				}
+			}
+		},
+		"CallServiceResponseObj": {
+			"type": "object",
+			"properties": {
+				"body": {
+					"type": "string"
+				},
+				"statusCode": {
+					"format": "int64",
+					"type": "integer"
+				}
+			}
+		},
+		"FindIdentitiesResponseObj": {
+			"type": "object",
+			"properties": {
+				"body": {
+					"type": "string"
+				},
+				"statusCode": {
+					"format": "int64",
+					"type": "integer"
+				}
+			}
+		},
+		"FindServicesRequestObj": {
+			"type": "object",
+			"properties": {
+    "filter":{
+        "coverageArea": 
+        {
+            "type":"string",
+            "value":"string"
+        },
+        "UnLoCode":"string", # es
+        "serviceProviderId": "[string OR string]",
+        "serviceDesignId": "string",
+        "serviceInstanceId":"string",  
+        "mmsi":"string",
+        "imo":"string",
+        "serviceType":"string",
+        "serviceStatus":"string", # if this field is omitted the default value is LIVE
+        "keyWords":"[string AND string]" ,
+        "freeText":"string"  # freetext ignore the other rules   
+    },
+    "page":"integer",
+    "pageSize":"integer" # default 20
+}
+		},
+		"FindServicesResponseObj": {
+			"type": "object",
+			"properties": {
+				"body": {
+					"type": "string"
+				},
+				"statusCode": {
+					"format": "int64",
+					"type": "integer"
+				}
+			}
+		},
+		"MessageEnvelope": {
+			"type": "object",
+			"properties": {
+				"numberOfMessages": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"remainingNumberOfMessages": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"message": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Message"
+					}
+				}
+			}
+		},
+		"Message": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"receivedAt": {
+					"format": "date-time",
+					"type": "string"
+				},
+				"from": {
+					"type": "string"
+				},
+				"messageType": {
+					"type": "string"
+				},
+				"stmMessage": {
+					"$ref": "#/definitions/StmMessage"
+				}
+			}
+		},
+		"StmMessage": {
+			"type": "object",
+			"properties": {
+				"message": {
+					"type": "string"
+				}
+			}
+		},
+		"Notification": {
+			"required": [
+				"Body",
+				"DataId",
+				"FromId",
+				"MessageWaiting",
+				"NotificationCreatedAt",
+				"NotificationType",
+				"ReceivedAt",
+				"Subject"
+			],
+			"type": "object",
+			"properties": {
+				"Body": {
+					"type": "string"
+				},
+				"DataId": {
+					"type": "string"
+				},
+				"FromId": {
+					"type": "string"
+				},
+				"FromName": {
+					"type": "string"
+				},
+				"MessageWaiting": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"NotificationCreatedAt": {
+					"format": "date-time",
+					"type": "string"
+				},
+				"NotificationType": {
+					"enum": [
+						"MESSAGE_WAITING",
+						"UNAUTHORIZED_REQUEST",
+						"ACKNOWLEDGEMENT_RECEIVED",
+						"ERROR_MESSAGE"
+					],
+					"type": "string"
+				},
+				"ReceivedAt": {
+					"format": "date-time",
+					"type": "string"
+				},
+				"Subject": {
+					"type": "string"
+				}
+			}
+		},
+		"PublishedMessageContract": {
+			"type": "object",
+			"properties": {
+				"Message": {
+					"type": "string"
+				},
+				"MessageID": {
+					"type": "string"
+				},
+				"MessageLastUpdateTime": {
+					"format": "date-time",
+					"type": "string"
+				},
+				"MessageStatus": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"MessageType": {
+					"type": "string"
+				},
+				"MessageValidFrom": {
+					"format": "date-time",
+					"type": "string"
+				},
+				"MessageValidTo": {
+					"format": "date-time",
+					"type": "string"
+				},
+				"PublishTime": {
+					"format": "date-time",
+					"type": "string"
+				}
+			}
+		},
+		"SubscriptionObject": {
+			"type": "object",
+			"properties": {
+				"IdentityId": {
+					"type": "string"
+				},
+				"IdentityName": {
+					"type": "string"
+				},
+				"EndpointURL": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}

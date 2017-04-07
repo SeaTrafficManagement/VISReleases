@@ -1,0 +1,1 @@
+http://konsultit-d18/STM.VIS.Services.Public/V1/voyagePlans?uvid=urn:mrn:voyage:id:wallenius:0001&deliveryAckEndPoint=44 

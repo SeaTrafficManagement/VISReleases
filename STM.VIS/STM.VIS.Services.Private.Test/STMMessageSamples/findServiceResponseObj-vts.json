@@ -1,0 +1,69 @@
+[ {
+  "id" : 35,
+  "name" : "VTS Sound Enhanced Monitoring Service",
+  "version" : "0.1",
+  "comment" : "Created",
+  "geometry" : null,
+  "geometryContentType" : null,
+  "instanceId" : "urn:mrn:stm:service:instance:vts_sound:ems:vis:rest",
+  "keywords" : "VTS, EMS, VIS",
+  "status" : "provisional",
+  "organizationId" : "urn:mrn:stm:org:vts_sound",
+  "unlocode" : null,
+  "endpointUri" : "http://vts_sound.org/ems/vis/",
+  "endpointType" : "REST",
+  "instanceAsXml" : {
+    "id" : 72,
+    "name" : "VTSSound EMS-VIS-REST Instance as XML.xml",
+    "comment" : "Created",
+    "content" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<ServiceInstanceSchema:serviceInstance xmlns:ServiceInstanceSchema=\"http://efficiensea2.org/maritime-cloud/service-registry/v1/ServiceInstanceSchema.xsd\" xmlns:ServiceSpecificationSchema=\"http://efficiensea2.org/maritime-cloud/service-registry/v1/ServiceSpecificationSchema.xsd\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://efficiensea2.org/maritime-cloud/service-registry/v1/ServiceInstanceSchema.xsd ServiceInstanceSchema.xsd \">
+<name>VTS Sound Enhanced Monitoring Service</name>
+<id>urn:mrn:stm:service:instance:vts_sound:ems:vis:rest</id>
+<version>0.1</version>
+<status>provisional</status>
+<description>Presents route to operator for enhanced monitoring</description>
+<keywords>VTS, EMS, Enhanced Monitoring Service, VIS</keywords>
+<URL>https://vts_sound.org/ems/</URL>
+<requiresAuthorization>false</requiresAuthorization>
+
+<implementsServiceDesign>
+	<id>urn:mrn:stm:service:design:sma:vis:rest</id>
+	<version>2.0</version>
+</implementsServiceDesign>
+
+<offersServiceLevel>
+	<availability>0</availability>
+	<name>Not set</name>
+	<description></description>
+</offersServiceLevel>
+<coversAreas>
+	<coversArea>
+		<name>VTS Sound area</name>
+		<description>VTS Sound area</description>
+		<geometryAsWKT></geometryAsWKT>
+	</coversArea>
+</coversAreas>
+<producedBy>
+	<id>urn:mrn:stm:org:transas</id>
+	<name>Transas</name>
+	<description></description>
+	<contactInfo></contactInfo>
+	<isCommercial>false</isCommercial>
+</producedBy>
+<providedBy>
+	<id>urn:mrn:stm:org:vts_sound</id>
+	<name>VTS Sound</name>
+	<description></description>
+	<contactInfo>mailto:</contactInfo>
+	<isCommercial>false</isCommercial>
+</providedBy>
+</ServiceInstanceSchema:serviceInstance>
+
+",
+    "contentContentType" : "text/xml"
+  },
+  "implementedSpecificationVersion" : null,
+  "designs" : null,
+  "docs" : null
+} ]

@@ -1,0 +1,16 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<textMessage xmlns='http://tempuri.org/textMessageSchema.xsd'>
+  <textMessageId>urn:mrn:stm:txt:sma:20161222104400-1</textMessageId>
+  <author>Mikael</author>
+  <from>urn:mrn:stm:org:sma</from>
+  <createdAt>2016-12-22T11:09:38</createdAt>
+  <subject>Subject</subject>
+  <body>Body</body>
+  <area>
+    <Polygon id='s.NW.I.001.16.1' count='4' srsDimension='333' srsName='EPSG:4326'>
+      <posList>
+        59.803000 23.836666 59.873917 23.833745 59.902731 24.095344 59.902560 24.370768
+      </posList>
+    </Polygon>
+  </area>
+</textMessage>

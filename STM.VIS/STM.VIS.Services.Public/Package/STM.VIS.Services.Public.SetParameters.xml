@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <setParameter name="IIS Web Application Name" value="STM_VIS_Public" />
+  <setParameter name="VisConnectionString-Web.config Connection String" value="Data Source=tcp:stm.database.windows.net,1433; Initial Catalog=VIS;Persist Security Info=False;User ID=stmadmin@stm;Password=StmVis123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" />
+</parameters>

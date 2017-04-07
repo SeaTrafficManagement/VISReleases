@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<route xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://www.cirm.org/RTZ/1/1" version="1.1"
+         xmlns:stm="http://stmvalidation.eu/STM/1/0/0">
+  <routeInfo routeName="AROUNDtheSKAGEN"
+    routeAuthor="Simon Ross"
+    routeStatus="7"
+    validityPeriodStart="2016-10-20T03:15:00Z"
+    validityPeriodStop="2016-10-22T10:15:00Z"
+    vesselName="Pegasus"
+    vesselMMSI="220348970"
+    vesselIMO="3798347"
+    vesselVoyage="urn:mrn:stm:voyage:acme:b6d7b492-ab3c-42f2-8afd-116c3d872f0c"
+    vesselDisplacement="157"
+    vesselCargo="14"
+    vesselGM="2.16"
+    vesselMaxRoll="17"
+    vesselMaxWave="9.4"
+    vesselMaxWind="55.3"
+    vesselSpeedMax="23.8"
+    vesselServiceMin="16.9"
+    vesselServiceMax="21.4">
+    <extensions>
+      <extension xsi:type="stm:RouteInfoExtension" manufacturer="STM" name="routeInfoEx" version="1.0.0"
+            routeStatusEnum="7" routeVersion="BCF8ABB2-4BE2-4082-8718-E3594734A5F6" personsOnBoard="67">
+        <stm:routeChanges>
+          <stm:historyItem dateTime="2016-10-20T11:14:41Z" author="Simon Ross"
+                    reason="initial creation"/>
+          <stm:historyItem dateTime="2016-10-21T09:12:29Z" author="William Brown"
+                    reason="corrections for reference points using"/>
+        </stm:routeChanges>
+      </extension>
+      <extension name="adfas" manufacturer="edf" value="100"/>
+    </extensions>
+  </routeInfo>
+  <waypoints>
+    <defaultWaypoint radius="0.20">
+      <leg starboardXTD="0.31"
+            portsideXTD="0.17"
+            safetyContour="9.1"
+            safetyDepth="9.1"
+            geometryType="Orthodrome"
+            speedMin="22.3"
+            speedMax="25.8"
+            draughtForward="8.9"
+            draughtAft="9.1"
+            staticUKC="0.9"
+            dynamicUKC="0.6"
+            masthead="21.3"/>
+    </defaultWaypoint>
+    <waypoint id="3">
+      <position lat="53.01323" lon="8.92837"/>
+    </waypoint>
+    <waypoint id="45">
+      <position lat="53.05134" lon="8.85097"/>
+      <leg starboardXTD="0.20"
+            portsideXTD="0.10"
+            legReport="Prevailing Currents: NE"
+            legInfo="Skagen port phone: +4598443787, fax: +4598450029,
+                email: saga@saga-shipping.dk, web: www.saga-shipping.dk"
+            legNote1="etd and eta should be during daylight"
+            legNote2="Cruise Season: April-September"/>
+    </waypoint>
+    <waypoint id="25">
+      <position lat="53.14133" lon="8.80325"/>
+      <leg starboardXTD="0.25" portsideXTD="0.40"/>
+    </waypoint>
+  </waypoints>
+  <schedules>
+    <schedule id="1" name="Schedule1">
+      <manual>
+        <scheduleElement waypointId="3"
+                    etd="2016-09-25T08:25:00Z"
+                    etdWindowBefore="PT5H37M"
+                    etdWindowAfter="PT2H54M"/>
+        <scheduleElement waypointId="25"
+                    eta="2002-11-17T08:25:00Z"
+                    />
+        <scheduleElement waypointId="45"
+                    eta="2016-09-25T16:07:00Z"
+                    etaWindowBefore="PT3H14M"
+                    etaWindowAfter="PT1H48M"
+                    stay="PT1H30M"
+                    Note="We should stay here exactly one and a half hour"/>
+      </manual>
+      <calculated>
+        <scheduleElement waypointId="3"
+                    etd="2016-09-25T08:25:00Z"
+                    etdWindowBefore="PT5H37M"
+                    etdWindowAfter="PT2H54M"/>
+        <scheduleElement waypointId="25"
+                    eta="2016-09-25T11:13:00Z"
+                    etaWindowBefore="PT2H27M"
+                    etaWindowAfter="PT4H12M"
+                    stay="PT1H30M"
+                    etd="2016-09-25T12:43:00Z"
+                    etdWindowBefore="PT4H6M"
+                    etdWindowAfter="PT3H11M"
+                    speed="18.9"
+                    speedWindow="3.6"
+                    windSpeed="6.7"
+                    windDirection="189.4"
+                    currentSpeed="0.2"
+                    currentDirection="218.9"
+                    windLoss="0.9"
+                    waveLoss="0.4"
+                    totalLoss="1.3"
+                    rpm="65"
+                    pitch="85"
+                    fuel="231.7"
+                    relFuelSave="2.2"
+                    absFuelSave="5.1"/>
+        <scheduleElement waypointId="45"
+                    eta="2016-09-25T16:07:00Z"
+                    etaWindowBefore="PT3H14M"
+                    etaWindowAfter="PT1H48M"
+                    speed="21.3"
+                    speedWindow="2.7"
+                    windSpeed="7.8"
+                    windDirection="135.2"
+                    currentSpeed="0.4"
+                    currentDirection="224.9"
+                    windLoss="1.2"
+                    waveLoss="0.6"
+                    totalLoss="1.8"
+                    rpm="70"
+                    pitch="87"
+                    fuel="243.2"
+                    relFuelSave="2.9"
+                    absFuelSave="7.1"
+                    Note="We should stay here exactly one and a half hour"/>
+      </calculated>
+    </schedule>
+    <schedule id="2" name="Schedule2">
+      <manual>
+        <scheduleElement waypointId="3"
+                    etd="2016-09-29T08:17:00Z"
+                    etdWindowBefore="PT1H58M"
+                    etdWindowAfter="PT3H9M">
+          <extensions>
+            <extension xsi:type="stm:ScheduleElementExtension" manufacturer="STM" version="1.0.0" name="ScheduleElementEx" waveHeight="3.4"/>
+          </extensions>
+        </scheduleElement>
+        <scheduleElement waypointId="25"
+                    speed="24.2"
+                    speedWindow="1.6"/>
+        <scheduleElement waypointId="45"
+                    speed="23.7"
+                    speedWindow="1.7"/>
+      </manual>
+      <calculated>
+        <scheduleElement waypointId="3"
+                    etd="2016-09-29T08:17:00Z"
+                    etdWindowBefore="PT1H58M"
+                    etdWindowAfter="PT3H9M"/>
+        <scheduleElement waypointId="25"
+                    eta="2016-09-29T11:26:00Z"
+                    etaWindowBefore="PT2H27M"
+                    etaWindowAfter="PT4H12M"
+                    stay="PT1H30M"
+                    etd="2016-09-25T19:43:00Z"
+                    etdWindowBefore="PT4H6M"
+                    etdWindowAfter="PT3H11M"
+                    speed="24.2"
+                    speedWindow="1.6"
+                    windSpeed="6.7"
+                    windDirection="189.4"
+                    currentSpeed="0.2"
+                    currentDirection="218.9"
+                    windLoss="0.9"
+                    waveLoss="0.4"
+                    totalLoss="1.3"
+                    rpm="65"
+                    pitch="85"
+                    fuel="231.7"
+                    relFuelSave="2.2"
+                    absFuelSave="5.1"/>
+        <scheduleElement waypointId="45"
+                    eta="2016-09-29T19:15:00Z"
+                    etaWindowBefore="PT3H14M"
+                    etaWindowAfter="PT1H48M"
+                    speed="23.7"
+                    speedWindow="1.7"
+                    windSpeed="7.8"
+                    windDirection="135.2"
+                    currentSpeed="0.4"
+                    currentDirection="224.9"
+                    windLoss="1.2"
+                    waveLoss="0.6"
+                    totalLoss="1.8"
+                    rpm="70"
+                    pitch="87"
+                    fuel="243.2"
+                    relFuelSave="2.9"
+                    absFuelSave="7.1"/>
+      </calculated>
+    </schedule>
+  </schedules>
+  <extensions/>
+</route>

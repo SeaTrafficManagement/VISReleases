@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<route xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.cirm.org/RTZ/1/0" version="1.0" xsi:schemaLocation="http://www.cirm.org/RTZ/1/0 rtz.xsd">
+    <routeInfo routeName="AROUNDtheSKAGEN" routeStatus="1" vesselVoyage="12345">
+        <extensions>
+			<extension manufacturer="STM" version="1.0" name="routeInfoEx" depPort=”RULED” arrPort=”SEGOT” lastUpdateTime="2016-11-28T08:55:00Z"/>
+        </extensions>
+    </routeInfo>
+	<waypoints>
+		<defaultWaypoint radius="0.1">
+			<leg portXTD ="0.1" starboardXTD ="0.1"/>
+		</defaultWaypoint>
+		<waypoint id="15" revision="1">
+			<position lat="53.0492" lon="8.87731"/>
+			<leg portXTD="0.1" starboardXTD="0.1"
+                safetyContour="11.20000000"
+                safetyDepth="22.20000000" geometryType="loxodrome"/>
+		</waypoint>
+		<waypoint id="52" revision="3">
+			<position lat="53.0513" lon="8.87509"/>
+			<leg portXTD="0.3" starboardXTD="0.3"
+                safetyContour="11.20000000"
+              safetyDepth="22.20000000" geometryType="orthodrome"/>
+		</waypoint>
+		<waypoint id="1" revision="1" name="To the pier">
+			<position lat="53.5123" lon="8.11998"/>
+			<leg portXTD ="0.1" starboardXTD ="0.1"/>
+		</waypoint>
+	</waypoints>
+	<schedules>
+		<schedule id="1" name="Schedule1">
+			<manual>
+				<scheduleElement waypointId="15" etd="2002-11-17T15:25:00Z"/>
+				<scheduleElement waypointId="1" eta="2002-11-17T15:25:00Z"/>
+			</manual>
+			<calculated/>
+		</schedule>
+		<schedule id="2" name="Schedule2">
+			<manual>
+				<scheduleElement waypointId="15" etd="2002-11-17T15:25:00Z"/>
+				<scheduleElement waypointId="15" eta="2002-12-17T15:25:00Z"/>
+			</manual>
+			<calculated>
+				<scheduleElement waypointId="15" etd="2002-11-17T15:25:00Z"
+                    speed="11.34520000"/>
+				<scheduleElement waypointId="15" eta="2002-12-17T15:25:00Z"
+                    speed="12.66635112">
+					<extensions>
+						<extension manufacturer="Acme" version="2.1"
+                            name="Int-681EA94E-C27A-4CCA-A405-98BDA20AA7C6">
+							<struct name="xxx">
+								<Param name="x" value="y" />
+							</struct>
+						</extension>
+					</extensions>
+				</scheduleElement>
+			</calculated>
+			<extensions/>
+		</schedule>
+	</schedules>
+	<extensions>
+		<extension manufacturer="Acme" version="1.0" name="Internal-C93B70B2-D733-4388-937C-639472E2C6CF">
+			<saypoint id="15" rev="1" link="rtz://symbols.png"/>
+		</extension>
+	</extensions>
+</route>

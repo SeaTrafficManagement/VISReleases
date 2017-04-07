@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<portCallMessage xmlns="urn:x-mrn:stm:schema:port-call-message:0.0.15">
+  <messageId>urn:mrn:stm:portcdm:message:20161222125000-1</messageId>
+  <vesselId>urn:mrn:stm:vessel:imo6938260</vesselId>
+   <reportedAt>2016-12-22T12:50:00Z</reportedAt>
+   <reportedBy>IMO6938260</reportedBy>
+   <locationState>
+	   <timeType>RECOMMENDED</timeType>
+	   <time>2016-12-22T16:00:00Z</time>
+       <referenceObject>VESSEL</referenceObject>
+       <arrivalLocation>
+           <from></from>
+           <to>            
+             <locationType>PILOT_BOARDING_AREA</locationType>
+               <name>TANGUDDE</name>
+           </to>
+       </arrivalLocation>
+   </locationState>
+</portCallMessage>

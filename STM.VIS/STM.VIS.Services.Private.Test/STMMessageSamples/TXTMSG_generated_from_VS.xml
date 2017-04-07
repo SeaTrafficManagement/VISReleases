@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='utf-8'?>
+<textMessage xmlns='http://tempuri.org/TextFormat.xsd'>
+  <textMessageId>urn:mrn:stm:voyage:id:sma:0007</textMessageId>
+  <informationObjectReferenceId>urn:mrn:stm:voyage:id:sma:0007</informationObjectReferenceId>
+  <author>author1</author>
+  <from>from1</from>
+  <serviceType>serviceType1</serviceType>
+  <createdAt>2000-01-01T01:01:01+01:00</createdAt>
+  <subject>subject1</subject>
+  <body>body1</body>
+  <position lat='-90.0' lon='-180.0' />
+  <area>
+    <surfaceProperty p3:type='simple' p3:href='http://uri1' p3:role='http://uri1' p3:arcrole='http://uri1' p3:title='title1' p3:show='new' p3:actuate='onLoad' nilReason='inapplicable' xmlns:p3='http://www.w3.org/1999/xlink' xmlns='http://www.iho.int/s100gml/1.0'>
+      <Polygon srsName='http://uri1' srsDimension='1' p5:id='ID1' xmlns:p5='http://www.opengis.net/gml/3.2' xmlns='http://www.opengis.net/gml/3.2'>
+        <p5:exterior>
+          <p5:LinearRing>
+            <p5:pos srsName='http://uri1' srsDimension='1'>1 -1.7976931348623157E+308 1.7976931348623157E+308 </p5:pos>
+            <p5:pointProperty p3:type='simple' p3:href='http://uri1' p3:role='http://uri1' p3:arcrole='http://uri1' p3:title='title1' p3:show='new' p3:actuate='onLoad' nilReason='inapplicable' owns='false'>
+              <p5:Point srsName='http://uri1' srsDimension='1' p5:id='ID2'>
+                <p5:pos srsName='http://uri2' srsDimension='79228162514264337593543950335'>-0.10000002384185791 2.1000000238418579 -1.7976931348623157E+308 </p5:pos>
+              </p5:Point>
+            </p5:pointProperty>
+            <p5:pos srsName='http://uri3' srsDimension='2'>1.7976931348623157E+308 -1.2000000476837158 3.2000000476837158 </p5:pos>
+            <p5:pointProperty p3:type='simple' p3:href='http://uri2' p3:role='http://uri2' p3:arcrole='http://uri2' p3:title='title2' p3:show='replace' p3:actuate='onRequest' nilReason='nilReason1' owns='true'>
+              <p5:Point srsName='http://uri2' srsDimension='79228162514264337593543950335' p5:id='ID3'>
+                <p5:pos srsName='http://uri4' srsDimension='79228162514264337593543950334'>-1.7976931348623157E+308 1.7976931348623157E+308 -2.3000000715255737 </p5:pos>
+              </p5:Point>
+            </p5:pointProperty>
+          </p5:LinearRing>
+        </p5:exterior>
+        <p5:interior>
+          <p5:LinearRing>
+            <p5:pos srsName='http://uri5' srsDimension='3'>4.3000000715255737 -1.7976931348623157E+308 1.7976931348623157E+308 </p5:pos>
+            <p5:pointProperty p3:type='simple' p3:href='http://uri3' p3:role='http://uri3' p3:arcrole='http://uri3' p3:title='title3' p3:show='embed' p3:actuate='other' nilReason='nilReason1' owns='false'>
+              <p5:Point srsName='http://uri3' srsDimension='2' p5:id='ID4'>
+                <p5:pos srsName='http://uri6' srsDimension='79228162514264337593543950333'>-3.4000000953674316 5.4000000953674316 -1.7976931348623157E+308 </p5:pos>
+              </p5:Point>
+            </p5:pointProperty>
+            <p5:pos srsName='http://uri7' srsDimension='4'>1.7976931348623157E+308 -4.5000001192092896 6.5000001192092896 </p5:pos>
+            <p5:pointProperty p3:type='simple' p3:href='http://uri4' p3:role='http://uri4' p3:arcrole='http://uri4' p3:title='title4' p3:show='other' p3:actuate='none' nilReason='missing' owns='true'>
+              <p5:Point srsName='http://uri4' srsDimension='79228162514264337593543950334' p5:id='ID5'>
+                <p5:pos srsName='http://uri8' srsDimension='79228162514264337593543950332'>-1.7976931348623157E+308 1.7976931348623157E+308 -5.6000001430511475 </p5:pos>
+              </p5:Point>
+            </p5:pointProperty>
+          </p5:LinearRing>
+        </p5:interior>
+        <p5:interior>
+          <p5:LinearRing>
+            <p5:pos srsName='http://uri9' srsDimension='5'>7.6000001430511475 -1.7976931348623157E+308 1.7976931348623157E+308 </p5:pos>
+            <p5:pointProperty p3:type='simple' p3:href='http://uri5' p3:role='http://uri5' p3:arcrole='http://uri5' p3:title='title5' p3:show='none' p3:actuate='onLoad' nilReason='nilReason2' owns='false'>
+              <p5:Point srsName='http://uri5' srsDimension='3' p5:id='ID6'>
+                <p5:pos srsName='http://uri10' srsDimension='79228162514264337593543950331'>-6.7000001668930054 8.7000001668930054 -1.7976931348623157E+308 </p5:pos>
+              </p5:Point>
+            </p5:pointProperty>
+            <p5:pos srsName='http://uri11' srsDimension='6'>1.7976931348623157E+308 -7.8000001907348633 9.8000001907348633 </p5:pos>
+            <p5:pointProperty p3:type='simple' p3:href='http://uri6' p3:role='http://uri6' p3:arcrole='http://uri6' p3:title='title6' p3:show='new' p3:actuate='onRequest' nilReason='nilReason2' owns='true'>
+              <p5:Point srsName='http://uri6' srsDimension='79228162514264337593543950333' p5:id='ID7'>
+                <p5:pos srsName='http://uri12' srsDimension='79228162514264337593543950330'>-1.7976931348623157E+308 1.7976931348623157E+308 -8.9000002145767212 </p5:pos>
+              </p5:Point>
+            </p5:pointProperty>
+          </p5:LinearRing>
+        </p5:interior>
+        <p5:interior>
+          <p5:LinearRing>
+            <p5:pos srsName='http://uri13' srsDimension='7'>10.900000214576721 -1.7976931348623157E+308 1.7976931348623157E+308 </p5:pos>
+            <p5:pointProperty p3:type='simple' p3:href='http://uri7' p3:role='http://uri7' p3:arcrole='http://uri7' p3:title='title7' p3:show='replace' p3:actuate='other' nilReason='template' owns='false'>
+              <p5:Point srsName='http://uri7' srsDimension='4' p5:id='ID8'>
+                <p5:pos srsName='http://uri14' srsDimension='79228162514264337593543950329'>-10.000000238418579 12.000000238418579 -1.7976931348623157E+308 </p5:pos>
+              </p5:Point>
+            </p5:pointProperty>
+            <p5:pos srsName='http://uri15' srsDimension='8'>1.7976931348623157E+308 -11.100000262260437 13.100000262260437 </p5:pos>
+            <p5:pointProperty p3:type='simple' p3:href='http://uri8' p3:role='http://uri8' p3:arcrole='http://uri8' p3:title='title8' p3:show='embed' p3:actuate='none' nilReason='nilReason3' owns='true'>
+              <p5:Point srsName='http://uri8' srsDimension='79228162514264337593543950332' p5:id='ID9'>
+                <p5:pos srsName='http://uri16' srsDimension='79228162514264337593543950328'>-1.7976931348623157E+308 1.7976931348623157E+308 -12.200000286102295 </p5:pos>
+              </p5:Point>
+            </p5:pointProperty>
+          </p5:LinearRing>
+        </p5:interior>
+      </Polygon>
+    </surfaceProperty>
+  </area>
+</textMessage>
