@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- changelog
+Version: 0.0.16
+Revision date: 2016-10-19
+ - new field: localPortCallId
+ - new type: LocalPortCallIdentifier, for the new field
+ - choice between portCallId and localJobId replaced with three optional elements, portCallId, localPortCallId and localJobId
+Version: 0.0.15
+Revision date: 2016-09-01
+ - new message type: MessageOperation. For handling operations on previously submitted Port Call Messages
+ - enumeration updates
+    + LocationReferenceObject
+        - AGENT
+        - MOORER
+    + ServiceObject
+        - ARRIVAL_MOORING_OPERATION
+        - DEPARTURE_MOORING_OPERATION
+    + ServiceTimeSequence
+        - CANCELLED removed (into TimeType)
+    + TimeType
+        - CANCELLED added
+    +LogicalLocation
+        - NEXT_PORT and PREVIOUS_PORT removed
+ - length of comment now set to 200 characters
+ - time moved into LocationState and ServiceState
+ - timeType moved into LocationState and ServiceState
+
+Version: 0.0.14
+Revision date: 2016-07-07
+ - enumeration updates
+    + ServiceObject
+        - GANGWAY
+        - EMBARKING
+        - PILOT_BOAT
+        - PONTOONS_AND_FENDERS
+        - SECURITY
+        - TOURS
+        - FORKLIFT
+    + LocationReferenceObject
+        - SKILLED_WORKER
+    + ServiceTimeSequence
+        - CANCELLED
+ - update MRN type to allow for upper case letters
+
+Version: 0.0.13
+Revision date: 2016-05-23
+ - made performingActor in ServiceState optional
+ - changed performingActor in ServiceState to a simple MRN, to allow for any type of MRN based identifier
+ - changed schema namespace to URN
+ - added schema location to appInfo
+ - fixed inconsistent formatting of changelog
+
+Version: 0.0.12
+Revision date: 2016-05-06
+ - changed regex for PortCallIdentifier to allow upper case characters in URN
+
+Version: 0.0.11
+Revision date: 2016-04-26
+ - enumeration updates
+    + ServiceTimeSequence
+        - REQUEST -> REQUESTED
+        - CONFIRM -> CONFIRMED
+        - new REQUEST_RECEIVED
+        - new DENIED
+
+    +ServiceObject
+        - ARRIVAL_ANCHORAGEAREA -> ARRIVAL_ANCHORING_OPERATION
+        - DEPARTURE_ANCHORAGEAREA -> DEPARTURE_ANCHORING_OPERATION
+        - new ANCHORING
+        - new ARRIVAL_VTSAREA
+        - new BERTH_SHIFTING
+        - new DEPARTURE_VTSAREA
+
+    + LocationReferenceObject
+        - ICE_BREAKER -> ICEBREAKER
+
+    +LogicalLocation
+        - ANCHORAGE_AREA -> ANCHORING_AREA
+        - PILOT_STATION -> PILOT_BOARDING_AREA
+        - TUG_STATION -> TUG_ZONE
+        - new ETUG_ZONE
+        - new LOC
+        - new NEXT_PORT
+        - new PREVIOUS_PORT
+        - new RENDEZV_AREA
+        - new VESSEL
+
+Version: 0.0.9
+Revision date: 2016-04-19
+ - renamed ServiceReferenceObject to follow concept standard
+ - updated ServiceObject with new list of constants
+
+Version: 0.0.8
+Revision date: 2016-04-15
+ - field length for PortCallMessageIdentifier changed from 67 to 66, to match the actual pattern
+
+Version: 0.0.7
+Revision date: 2016-04-06
+ - Made reportedBy and reportedAt optional, since they should be determined be the receiving service
+
+Version: 0.0.6
+Revision date: 2016-04-01
+ - Added  PORT to LogicalLocation
+
+Version: 0.0.5
+Revision date: 2016-03-31
+ - Moved REQUEST and CONFIRM from TimeType to ServiceTimeSequence
+
+Version: 0.0.4
+Revision date: 2016-03-16
+ - Renamed LatLong type Position
+ - Added coordinate system to documentation for Position
+ - Added type MRN
+ - Added MRN based identifiers for port call and message
+
+Version: 0.0.3
+Revision date:2016-02-19
+- Made groupWith optional
+
+Version: 0.0.2
+Revision date:2016-02-19
+- Added missing element portCallId to root node
+- Added performingActor to type ServiceState
+- Added messageId
+- Added groupWith
+-->
+<xs:schema attributeFormDefault="unqualified"
+           elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:pcm="urn:x-mrn:stm:schema:port-call-message:0.0.16"
+           targetNamespace="urn:x-mrn:stm:schema:port-call-message:0.0.16">
+    <xs:annotation>
+        <xs:appinfo>
+            version = 0.0.16
+            revisionDate = 2016-10-19
+            schemaLocation = http://specification.portcdm.eu/pcm/v0.0.16/port-call-message.xsd
+        </xs:appinfo>
+        <xs:documentation>
+            Schema for PortCDM PortCall Message Format
+            The root element is a Port Call Message, containing some metadata about when and by whom this message was
+            sent, followed by a time type and either a location state or a service state.
+            <dl>
+                <dt>messageId</dt>
+                <dd>URN formatted and UUID-based so that no central identity management is necessary</dd>
+                <dt>groupWith</dt>
+                <dd>messageId of another message that this message should be grouped with. This is to facilitate
+                repeated events like berth shifting by improving the ability to group data</dd>
+                <dt>portCallId/localJobId</dt>
+                <dd>portCallId is the global port call id allocated by PortCDM. localJobId is the job or port call id used in the connecting system. For connectors, one or zero
+                    of these can be used. Port Call Messages going into Message Brokering must have portCallId set appropriately</dd>
+            </dl>
+            There is also an optional comment element. All time values are in ISO-8601 format as per the dateTime type, in UTC, as denoted by the Z suffix
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:element name="portCallMessage">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:annotation>
+                    <xs:documentation>
+                        portCallId is the global port call identifier. The only situation where it is acceptable to have this empty is when sending a PortCallMessage to the state update proxy backed by the PortCallFinder
+                        localPortCallId is a local identifier representing a port. It is important that this actually represents a single port call that has a one to one relation with the portCallId
+                        localJobId is a local identifier representing a job that is part of a port call. If the external system doesn't have any concept of a port call, this field will still guarantee that all messages pertaining to the same job end up in the same port call
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:element name="portCallId" type="pcm:PortCallIdentifier" minOccurs="0"/>
+                <xs:element name="localPortCallId" type="pcm:LocalPortCallIdentifier" minOccurs="0"/>
+                <xs:element name="localJobId" type="pcm:LocalJobIdentifier" minOccurs="0"/>
+                <xs:element name="vesselId" type="pcm:VesselIdentifier" minOccurs="0"/>
+                <xs:element name="messageId" type="pcm:PortCallMessageIdentifier"/>
+                <xs:element name="groupWith" type="pcm:PortCallMessageIdentifier" minOccurs="0"/>
+                <xs:element name="reportedAt" type="xs:dateTime" minOccurs="0"/>
+                <xs:element name="reportedBy" type="xs:string" minOccurs="0"/>
+                <xs:element name="comment" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Comment is limited to a maximum of 200 characters.
+                            Please note that since the encoding is UTF-8, this means a maximum of 800 bytes in this
+                            field
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:maxLength value="200"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:choice>
+                    <xs:element name="messageOperation" type="pcm:MessageOperation"/>
+                    <xs:element name="locationState" type="pcm:LocationState" />
+                    <xs:element name="serviceState" type="pcm:ServiceState" />
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="LocationState">
+        <xs:annotation>
+            <xs:documentation>
+                LocationState is a representation for LOCATION STATE in the specification.
+                It describes a time related data point for an arrival to or departure from a specified location.
+                Time sequence is expressed implicitly by the choice of element arrivalLocation or departureLocation.
+                This is to avoid the redundancy of having to add a fixed element in each of the respective elements
+                (ARRIVAL for arrivalLocation and DEPARTURE for departureLocation. Using this design allows us to dictate
+                in the messaging format itself that "to" is mandatory, and "from" optional if time sequence is ARRIVAL
+                and the reversed for time sequence DEPARTURE
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="referenceObject" type="pcm:LocationReferenceObject"/>
+            <xs:element name="time" type="xs:dateTime"/>
+            <xs:element name="timeType" type="pcm:TimeType"/>
+            <xs:choice>
+                <xs:element name="arrivalLocation">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="pcm:Location" name="from" minOccurs="0"/>
+                            <xs:element type="pcm:Location" name="to"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="departureLocation">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="pcm:Location" name="from"/>
+                            <xs:element type="pcm:Location" name="to" minOccurs="0"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ServiceState">
+        <xs:annotation>
+            <xs:documentation>
+                ServiceState is a representation for SERVICE STATE in the specification.
+                It describes a time related data point for a service. The service can be either stationary
+                (sludge, bunkering, cargo operations ) in which case the "at" elements hold its location or navigational
+                (towage, escort towage or piloting) which requires to and from locations.
+
+                performingActor is a MRN, which allows for any type of identifier that can be expressed in that format.
+                This can be an indirect reference to an actor, like the IMO or MMSI based identifier for a tug boat, which
+                in itself is not an actor, but a resource associated with an actor.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="serviceObject" type="pcm:ServiceObject"/>
+            <xs:element name="performingActor" type="pcm:MRN" minOccurs="0"/>
+            <xs:element name="timeSequence" type="pcm:ServiceTimeSequence"/>
+            <xs:element name="time" type="xs:dateTime"/>
+            <xs:element name="timeType" type="pcm:TimeType"/>
+            <xs:choice>
+                <xs:element name="at" type="pcm:Location"/>
+                <xs:element name="between">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="to" type="pcm:Location"/>
+                            <xs:element name="from" type="pcm:Location"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="ServiceObject">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ANCHORING"/>
+            <xs:enumeration value="ARRIVAL_ANCHORING_OPERATION"/>
+            <xs:enumeration value="ARRIVAL_BERTH"/>
+            <xs:enumeration value="ARRIVAL_PORTAREA"/>
+            <xs:enumeration value="ARRIVAL_VTSAREA"/>
+            <xs:enumeration value="BERTH_SHIFTING"/>
+            <xs:enumeration value="BUNKERING_OPERATION"/>
+            <xs:enumeration value="CARGO_OPERATION"/>
+            <xs:enumeration value="DEPARTURE_ANCHORING_OPERATION"/>
+            <xs:enumeration value="DEPARTURE_BERTH"/>
+            <xs:enumeration value="DEPARTURE_PORTAREA"/>
+            <xs:enumeration value="DEPARTURE_VTSAREA"/>
+            <xs:enumeration value="ESCORT_TOWAGE"/>
+            <xs:enumeration value="GARBAGE_OPERATION"/>
+            <xs:enumeration value="ICEBREAKING_OPERATION"/>
+            <xs:enumeration value="LUBEOIL_OPERATION"/>
+            <xs:enumeration value="ARRIVAL_MOORING_OPERATION"/>
+            <xs:enumeration value="DEPARTURE_MOORING_OPERATION"/>
+            <xs:enumeration value="PILOTAGE"/>
+            <xs:enumeration value="POSTCARGOSURVEY"/>
+            <xs:enumeration value="PRECARGOSURVEY"/>
+            <xs:enumeration value="PROVISION_OPERATION"/>
+            <xs:enumeration value="SLOP_OPERATION"/>
+            <xs:enumeration value="SLUDGE_OPERATION"/>
+            <xs:enumeration value="TOWAGE"/>
+            <xs:enumeration value="WATER_OPERATION"/>
+            <xs:enumeration value="GANGWAY"/>
+            <xs:enumeration value="EMBARKING"/>
+            <xs:enumeration value="PILOT_BOAT"/>
+            <xs:enumeration value="PONTOONS_AND_FENDERS"/>
+            <xs:enumeration value="SECURITY"/>
+            <xs:enumeration value="TOURS"/>
+            <xs:enumeration value="FORKLIFT"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="TimeType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ESTIMATED"/>
+            <xs:enumeration value="ACTUAL"/>
+            <xs:enumeration value="TARGET"/>
+            <xs:enumeration value="RECOMMENDED"/>
+            <xs:enumeration value="CANCELLED"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="Location">
+        <xs:sequence>
+            <xs:element name="locationType" type="pcm:LogicalLocation"/>
+            <!-- Geographical position, for dynamically defined locations like TUG_STATION -->
+            <xs:element name="position" type="pcm:Position" minOccurs="0"/>
+            <!-- Location name such as specific quay number or anchoring area name -->
+            <xs:element name="name" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="ServiceTimeSequence">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="COMMENCED"/>
+            <xs:enumeration value="COMPLETED"/>
+            <xs:enumeration value="CONFIRMED"/>
+            <xs:enumeration value="DENIED"/>
+            <xs:enumeration value="REQUESTED"/>
+            <xs:enumeration value="REQUEST_RECEIVED"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="LocationReferenceObject">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="VESSEL"/>
+            <xs:enumeration value="TUG"/>
+            <xs:enumeration value="ESCORT_TUG"/>
+            <xs:enumeration value="PILOT"/>
+            <xs:enumeration value="PILOT_BOAT"/>
+            <xs:enumeration value="ICEBREAKER"/>
+            <xs:enumeration value="AGENT"/>
+            <xs:enumeration value="ARRIVAL_MOORER"/>
+            <xs:enumeration value="DEPARTURE_MOORER"/>
+            <xs:enumeration value="PASSENGER"/>
+            <xs:enumeration value="SECURITY"/>
+            <xs:enumeration value="PONTOONS_AND_FENDERS"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="LogicalLocation">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ANCHORING_AREA"/>
+            <xs:enumeration value="BERTH"/>
+            <xs:enumeration value="ETUG_ZONE"/>
+            <xs:enumeration value="LOC"/>
+            <xs:enumeration value="PILOT_BOARDING_AREA"/>
+            <xs:enumeration value="RENDEZV_AREA"/>
+            <xs:enumeration value="TRAFFIC_AREA"/>
+            <xs:enumeration value="TUG_ZONE"/>
+            <xs:enumeration value="VESSEL"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="Position">
+        <xs:annotation>
+            <xs:documentation>
+                To allow us to include physical, geographical position for locations that aren't predefined at a fixed
+                geographical position i.e. the rendezvous point for vessel and tug boat. Coordinate system is WGS84 Decimal Degrees. Format is decimal degrees notation as described in ISO 6709.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:all>
+            <xs:element name="latitude">
+                <xs:annotation>
+                    <xs:documentation>
+                        Latitude in decimal degrees notation as described in ISO 6709. Northern latitudes are denoted by
+                        positive numbers, southern latitudes by negative. 
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:double">
+                        <xs:minInclusive value="-90"/>
+                        <xs:maxInclusive value="90"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="longitude">
+                <xs:annotation>
+                    <xs:documentation>
+                        Longitude in decimal degrees notation as described in ISO 6709. Eastern longitudes are denoted
+                        by positive numbers, western longitudes by negative
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:double">
+                        <xs:minInclusive value="-180"/>
+                        <xs:maxInclusive value="180"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:all>
+    </xs:complexType>
+
+    <xs:complexType name="Actor">
+        <xs:sequence>
+            <xs:element name="id" type="xs:string"/>
+            <xs:element name="name" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="UUID">
+        <xs:restriction base="xs:string">
+            <xs:length value="36" fixed="true" />
+            <xs:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[8-9a-bA-B][0-9a-fA-F]{3}-[0-9a-fA-F]{12}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="MRN">
+        <xs:annotation>
+            <xs:documentation>Marine Resource Name identifier, based on URN. Note that the NID, including the mrn: prefix can be no more than 31 characters long</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="urn:mrn:[A-Za-z0-9][A-Za-z0-9-]{0,27}:[A-Za-z0-9()+,\-.:=@;$_!*'%/?#]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="PortCallIdentifier">
+        <xs:annotation>
+            <xs:documentation>Port call identifier, based on MRN. First element of the NSS should be the UN/Locode of the port</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="120"/>
+            <xs:pattern value="urn:x-mrn:stm:portcdm:port_call:[A-Za-z]{5}:[A-Za-z0-9()+,\-.:=@;$_!*'%/?#]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LocalJobIdentifier">
+        <xs:annotation>
+            <xs:documentation>Port call identifier, based on MRN. First element of the NSS should be the UN/Locode of
+                the port
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="120"/>
+            <xs:pattern value="urn:x-mrn:stm:portcdm:local_job:[A-Za-z0-9_]+:[A-Za-z0-9_]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="PortCallMessageIdentifier">
+        <xs:annotation>
+            <xs:documentation>Port call message identifier, based on MRN and UUID. </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:length value="66" fixed="true" />
+            <xs:pattern value="urn:x-mrn:stm:portcdm:message:[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[8-9a-bA-B][0-9a-fA-F]{3}-[0-9a-fA-F]{12}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="MessageOperation">
+        <xs:annotation>
+            <xs:documentation>Administrative operations on messages sent before</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="operation">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="WITHDRAW"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="messageId" type="pcm:PortCallMessageIdentifier"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="VesselIdentifier">
+        <xs:annotation>
+            <xs:documentation>Vessel identifier, based on MRN. Can be either IMO or MMSI based</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="urn:x-mrn:stm:vessel:(IMO|MMSI):[0-9]{7}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LocalPortCallIdentifier">
+        <xs:annotation>
+            <xs:documentation>Local Port call identifier, based on MRN. First element of the NSS should be the UN/Locode of the port, second element is a data source id and the third is the port call id of the data source external system</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="120"/>
+            <xs:pattern value="urn:x-mrn:stm:portcdm:local_port_call:[A-Za-z]{5}:[A-Za-z0-9]+:[A-Za-z0-9()+,\-.=@;$_!*'%/?#]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
