@@ -15,7 +15,7 @@ namespace STM.Common.DataAccess.Test
         public void PassingTest()
         {
             var input = "Hemligt!";
-            var password = "## Change tins to your private passphrase ##";
+            var password = "A_vErry secret paSsw0rd#that is not easy to Re2MeMbeR!";
             var encrypted = Encryption.EncryptString(input, password);
             var decrypted = Encryption.DecryptString(encrypted, password);
 

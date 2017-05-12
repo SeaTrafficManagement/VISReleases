@@ -194,7 +194,7 @@ namespace STM.VIS.Services.Private.Controllers
         [HttpPost]
         [Route("publishMessage")]
         [SwaggerResponseContentType(responseType: "application/json", Exclusive = true)]
-        [SwaggerRequestContentType(requestType: "application/json", Exclusive = true)]
+        [SwaggerRequestContentType(requestType: "text/xml", Exclusive = true)]
         public ResponseObj PublishMessage([FromUri]string dataId,
             [FromUri]string messageType,
             [FromBody]string message)
@@ -248,7 +248,8 @@ namespace STM.VIS.Services.Private.Controllers
                 else
                 {
                     messageToUpdate.Message = Serialization.StrToByteArray(message);
-                    messageToUpdate.MessageLastUpdateTime = DateTime.UtcNow;
+                    messageToUpdate.PublishTime = DateTime.UtcNow;
+
                     _publishedMessageService.Update(messageToUpdate);
                 }
 
@@ -310,7 +311,7 @@ namespace STM.VIS.Services.Private.Controllers
                 }
                 else
                 {
-                    throw CreateHttpResponseException(HttpStatusCode.BadRequest, "Failed to read routeStatus from message");
+                    throw CreateHttpResponseException(HttpStatusCode.BadRequest, "RouteStatusEnum in STM extension cannot be null or empty");
                 }
             }
             catch(HttpResponseException )

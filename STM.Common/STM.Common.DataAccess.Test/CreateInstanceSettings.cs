@@ -31,7 +31,7 @@ namespace STM.Common.DataAccess.Test
             var instanceId = "urn:mrn:stm:service:instance:sma:stm";
             var stmModuleUrl = "";
             var password = "StmVis123";
-            var encruptionPassphrase = "## Change tins to your private passphrase ##";
+            var encruptionPassphrase = "A_vErry secret paSsw0rd#that is not easy to Re2MeMbeR!";
             var encryptedPassword = Encryption.EncryptString(password, encruptionPassphrase);
 
             var dlg = new System.Windows.Forms.OpenFileDialog();
@@ -76,7 +76,7 @@ namespace STM.Common.DataAccess.Test
             var instanceId = "urn:mrn:stm:serviceinstance:sma:SMA002";
             var stmModuleUrl = "";
             var password = "StmVis123";
-            var encruptionPassphrase = "## Change tins to your private passphrase ##";
+            var encruptionPassphrase = "A_vErry secret paSsw0rd#that is not easy to Re2MeMbeR!";
             var encryptedPassword = Encryption.EncryptString(password, encruptionPassphrase);
 
             var dlg = new System.Windows.Forms.OpenFileDialog();

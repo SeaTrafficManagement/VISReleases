@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using STM.SSC.Internal.Models;
 using STM.Common;
-using STM.SSC.Internal.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -71,7 +70,7 @@ namespace STM.SSC.Internal
 
             try
             {
-                var url = "/orgs";
+                var url = "/orgs?page=0&size=1000";
 
                 var idRegService = new IdentityRegistryService();
                 var response = idRegService.MakeGenericCall(url, "GET");

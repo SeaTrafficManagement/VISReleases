@@ -13,11 +13,15 @@ namespace STM.VIS.Services.Public
     /// </summary>
     public class WebApiApplication : System.Web.HttpApplication
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         /// <summary>
         /// 
         /// </summary>
         protected void Application_Start()
         {
+            log.Info(string.Format("VIS Public is starting up at: {0} UTC", DateTime.UtcNow));
+
             GlobalConfiguration.Configure(WebApiConfig.Register);
             UnityConfig.RegisterComponents();
         }
@@ -25,11 +29,17 @@ namespace STM.VIS.Services.Public
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void Application_BeginRequest(object sender, EventArgs e)
+        protected void Application_End()
         {
-            var r =HttpContext.Current.Request;
+            log.Info(string.Format("VIS Public is stopping at: {0} UTC", DateTime.UtcNow));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected void Application_PostAuthorizeRequest()
+        {
+            HttpContext.Current.SetSessionStateBehavior(System.Web.SessionState.SessionStateBehavior.Required);
         }
     }
 }

@@ -119,7 +119,7 @@ namespace STM.Common
             }
             else
             {
-                throw new ArgumentNullException("routeInfo.routeStatus", "Mandatory element is null.");
+                throw new ArgumentNullException("RouteStatusEnum in STM extension can not be null or empty", "Mandatory element is null.");
             }
 
             if (valResult != "")

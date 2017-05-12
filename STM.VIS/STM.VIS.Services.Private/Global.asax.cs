@@ -20,7 +20,7 @@ namespace STM.VIS.Services.Private
         /// </summary>
         protected void Application_Start()
         {
-            log.Info(string.Format("VIS is starting up at: {0} UTC", DateTime.UtcNow));
+            log.Info(string.Format("VIS Private is starting up at: {0} UTC", DateTime.UtcNow));
 
             GlobalConfiguration.Configure(WebApiConfig.Register);
             UnityConfig.RegisterComponents(); 
@@ -31,7 +31,15 @@ namespace STM.VIS.Services.Private
         /// </summary>
         protected void Application_End()
         {
-            log.Info(string.Format("VIS is stopping at: {0} UTC", DateTime.UtcNow));
+            log.Info(string.Format("VIS Private is stopping at: {0} UTC", DateTime.UtcNow));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected void Application_PostAuthorizeRequest()
+        {
+            HttpContext.Current.SetSessionStateBehavior(System.Web.SessionState.SessionStateBehavior.Required);
         }
     }
 }

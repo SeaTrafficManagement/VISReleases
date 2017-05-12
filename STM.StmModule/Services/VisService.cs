@@ -40,8 +40,6 @@ namespace STM.StmModule.Simulator.Services
                     NullValueHandling = NullValueHandling.Include
                 };
                 var result = JsonConvert.DeserializeObject<MessageEnvelope>(response.Body, deserializeSetting);
-                MessageBox.Show(response.HttpStatusCode + " " + response.ErrorMessage);
-
                 return result;
             }
 
@@ -151,37 +149,46 @@ namespace STM.StmModule.Simulator.Services
 
             var response = WebRequestHelper.Post(url, request.ToJson(), headers);
 
-            if (JsonHelper.TryParseJson<FindServicesResponseObj>(response.Body))
+            try
             {
                 var responseObj = JsonConvert.DeserializeObject<FindServicesResponseObj>(response.Body);
-
-                if (response.HttpStatusCode == HttpStatusCode.OK)
+                if (responseObj != null)
                 {
-                    if (responseObj.StatusCode != 200)
+                    if (response.HttpStatusCode == HttpStatusCode.OK)
                     {
-                        MessageBox.Show(string.Format("The find service request returned status code {0}, {1}", responseObj.StatusCode, responseObj.StatusMessage));
-                    }
-                    try
-                    {
-                        if (responseObj.ServicesInstances != null)
+                        if (responseObj.StatusCode != 200)
                         {
-                            foreach (var service in responseObj.ServicesInstances)
+                            MessageBox.Show(string.Format("The find service request returned status code {0}, {1}", responseObj.StatusCode, responseObj.StatusMessage));
+                        }
+                        try
+                        {
+                            if (responseObj.ServicesInstances != null)
                             {
-                                result.Add(service);
+                                foreach (var service in responseObj.ServicesInstances)
+                                {
+                                    result.Add(service);
+                                }
                             }
                         }
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new Exception(responseObj.ServicesInstances.ToArray().ToString(), ex);
+                        catch (Exception ex)
+                        {
+                            throw new Exception(responseObj.ServicesInstances.ToArray().ToString(), ex);
+                        }
                     }
                 }
+                else
+                {
+                    MessageBox.Show(string.Format("The find service request returned status code {0}, {1}", response.HttpStatusCode, response.Body));
+                }
+                return result;
             }
-            else
+            catch(Exception ex)
             {
-                MessageBox.Show(string.Format("The find service request returned status code {0}, {1}", response.HttpStatusCode, response.Body));
+                string errMessage = string.Format("Failed to get valid response from Service Registry. The reponse body does not validate towards the underlying schema: {0}", ex.Message);
+                var err = new Exception(errMessage);
+                throw err;
             }
-            return result;
+            
         }
 
 

@@ -187,7 +187,7 @@ namespace STM.SPIS.Services.Private.Controllers
         /// <response code="default">unexpected error</response>
         [HttpPost]
         [SwaggerResponseContentType(responseType: "application/json", Exclusive = true)]
-        [SwaggerRequestContentType(requestType: "application/json", Exclusive = true)]
+        [SwaggerRequestContentType(requestType: "text/xml", Exclusive = true)]
         [Route("publishMessage")]
         public ResponseObj PublishMessage([FromUri]string dataId,
             [FromUri]string messageType,

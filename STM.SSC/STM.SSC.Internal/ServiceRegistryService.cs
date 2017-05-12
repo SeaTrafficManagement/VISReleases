@@ -96,7 +96,7 @@ namespace STM.SSC.Internal
             {
                 if (!string.IsNullOrEmpty(data.Filter.UnLoCode))
                 {
-                    query = AddToQuery(query, "UnLoCode", data.Filter.UnLoCode, "AND");
+                    query = AddToQuery(query, "unlocode", data.Filter.UnLoCode, "AND");
                 }
 
                 if (!string.IsNullOrEmpty(data.Filter.ServiceDesignId))

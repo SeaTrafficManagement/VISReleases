@@ -78,22 +78,7 @@
     <Compile Include="Schema.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="rtz.xsd">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="s100gmlbase.xsd">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="S100_gmlProfile.xsd">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="S100_gmlProfileLevels.xsd">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="textMessageSchema.xsd">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="S124.xsd">
+    <EmbeddedResource Include="Rtz_1_0\rtz.xsd">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
@@ -102,13 +87,28 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <EmbeddedResource Include="port-call-message_v0.16.xsd">
+    <EmbeddedResource Include="Pcm\port-call-message_v0.16.xsd">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="rtz_format_1_1_29032017.xsd">
+    <EmbeddedResource Include="Rtz_1_1\rtz_format_1_1_29032017.xsd">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="stm_extensions_29032017.xsd">
+    <EmbeddedResource Include="Rtz_1_1\stm_extensions_29032017.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TextMessage\textMessageSchema_1_3.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="S124\s100gmlbase.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="S124\S100_gmlProfile.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="S124\S100_gmlProfileLevels.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="S124\S124.xsd">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

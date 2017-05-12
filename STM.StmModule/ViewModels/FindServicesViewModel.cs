@@ -428,14 +428,14 @@ namespace STM.StmModule.Simulator.ViewModels
                         }
                         else
                         {
-                            endpointUri += string.Format("?deliveryAckEndPoint={0}", myAck);
+                            endpointUri += string.Format("/voyagePlans?deliveryAckEndPoint={0}", myAck);
                         }
                         var result = visService.CallService(vpbody, endpointUri, "POST", "text/xml; charset=UTF8");
                         MessageBox.Show(result);
                     }
                     else
                     {
-                        string endpointUri = SelectedService.EndpointUri + string.Format("/Voyageplans?callbackEndpoint={0}", callbackEndpoint);
+                        string endpointUri = SelectedService.EndpointUri + string.Format("/voyagePlans?callbackEndpoint={0}", callbackEndpoint);
                         var result = visService.CallService(vpbody, endpointUri, "POST", "text/xml; charset=UTF8");
                         MessageBox.Show(result);
                     }

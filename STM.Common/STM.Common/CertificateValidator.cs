@@ -20,7 +20,7 @@ namespace STM.Common
             {
                 RevocationMode = X509RevocationMode.Online,
                 RevocationFlag = X509RevocationFlag.EndCertificateOnly,
-                UrlRetrievalTimeout = new TimeSpan(1000),
+                UrlRetrievalTimeout = new TimeSpan(0,0,0,10),
                 VerificationTime = DateTime.UtcNow
             };
 

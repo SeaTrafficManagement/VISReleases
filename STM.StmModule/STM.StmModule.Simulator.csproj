@@ -86,6 +86,10 @@
     <ApplicationIcon>ship.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Maps.MapControl.WPF, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Maps.MapControl.WPF.1.0.0.3\lib\net40-Client\Microsoft.Maps.MapControl.WPF.dll</HintPath>
       <Private>True</Private>
@@ -96,10 +100,6 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json.Schema, Version=2.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.Schema.2.0.8\lib\net45\Newtonsoft.Json.Schema.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -183,9 +183,9 @@
     <Compile Include="Contract\ServiceInstance.cs" />
     <Compile Include="Contract\StmMessage.cs" />
     <Compile Include="Contract\SpisSubscriptionObject.cs" />
+    <Compile Include="Contract\TextMessage\textMessageSchema_1_3.cs" />
     <Compile Include="Contract\VisSubscriptionObject.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
-    <Compile Include="Converters\JsonHelper.cs" />
     <Compile Include="Converters\RadioButtonCheckedConverter.cs" />
     <Compile Include="DeleteSubscriptionDialog.xaml.cs">
       <DependentUpon>DeleteSubscriptionDialog.xaml</DependentUpon>
@@ -203,6 +203,7 @@
     <Compile Include="SpisSubscribersDialog.xaml.cs">
       <DependentUpon>SpisSubscribersDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utils\XmlUtil.cs" />
     <Compile Include="ViewModels\BackgroundMapEnum.cs" />
     <Compile Include="ViewModels\MapRoutes.cs" />
     <Compile Include="ViewModels\MapViewModel.cs" />
@@ -381,7 +382,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

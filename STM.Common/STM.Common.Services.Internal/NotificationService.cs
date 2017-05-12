@@ -25,7 +25,7 @@ namespace STM.Common.Services.Internal
         public NotificationService(StmDbContext dbContext, LogDbContext logContext) : base(dbContext)
         {
             _logEventService = new LogEventService(logContext);
-            _stmModuleService = new StmModuleService(this);
+            _stmModuleService = new StmModuleService(dbContext, this);
         }
 
         /// <summary>

@@ -22,6 +22,7 @@ namespace STM.StmModule.Simulator
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            log4net.Config.XmlConfigurator.Configure();
             if (e.Args.Length == 1 || e.Args.Length == 3)
             {
                 VisService.DbName = e.Args[0];

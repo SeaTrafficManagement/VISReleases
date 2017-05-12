@@ -1,9 +1,9 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<textMessage xmlns='http://tempuri.org/textMessageSchema.xsd'>
+<textMessage xmlns='http://stmvalidation.eu/schemas/textMessageSchema_1_3.xsd'>
   <textMessageId>urn:mrn:stm:txt:sma:20161222104400-1</textMessageId>
   <author>Mikael</author>
   <from>urn:mrn:stm:org:sma</from>
-  <createdAt>2016-12-22T11:09:38</createdAt>
+  <createdAt>2017-05-22T11:09:38Z</createdAt>
   <subject>Subject</subject>
   <body>Body</body>
   <area>

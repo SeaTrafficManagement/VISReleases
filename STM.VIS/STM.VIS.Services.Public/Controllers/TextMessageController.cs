@@ -143,6 +143,8 @@ namespace STM.VIS.Services.Public.Controllers
                 result.ReceiveTime = DateTime.UtcNow;
                 result.MessageID = dataId;
 
+                _uploadedMessageService.InsertTXT(result);
+
                 //Notify STM module
                 var notification = new Common.Services.Internal.Interfaces.Notification();
                 notification.FromOrgName = identity.Name;
@@ -152,9 +154,14 @@ namespace STM.VIS.Services.Public.Controllers
                 notification.Subject = "New Text message uploaded.";
                 notification.NotificationSource = EnumNotificationSource.VIS;
 
-                result.Notified = _notificationService.Notify(notification);
+                var notified = _notificationService.Notify(notification);
 
-                _uploadedMessageService.InsertTXT(result);
+                if (notified)
+                {
+                    result.Notified = true;
+                    _uploadedMessageService.Update(result);
+                }
+
                 var responsObj = new ResponseObj("Success store message");
 
                 //Save to DB

@@ -2,7 +2,7 @@
 using STM.StmModule.Simulator.Contract;
 using STM.StmModule.Simulator.Infrastructure;
 using STM.StmModule.Simulator.Services;
-
+using STM.StmModule.Simulator.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -161,12 +161,13 @@ namespace STM.StmModule.Simulator.ViewModels
             {
                 foreach (var message in result.Messages)
                 {
+                    if (message != null && message.StmMessage != null && message.StmMessage.Message != null)
+                        message.StmMessage.Message = XmlUtil.FormatXml(message.StmMessage.Message);
+
                     Messages.Add(message);
-                    if (message.MessageType == "RTZ")
-                    {
-                        MapRoutes.AddRoute(message.StmMessage.Message, System.Windows.Media.Colors.Red);
-                    }
                 }
+
+                Messages = new ObservableCollection<Message>(Messages.OrderBy(x => x.ReceivedAt));
             }
         }
 
@@ -197,7 +198,7 @@ namespace STM.StmModule.Simulator.ViewModels
             {
                 try
                 {
-                    service.GetMessages(Id, LimitQuery);
+                    result = service.GetMessages(Id, LimitQuery);
                 }
                 catch (Exception ex)
                 {
@@ -218,6 +219,9 @@ namespace STM.StmModule.Simulator.ViewModels
             {
                 foreach (var message in result.Messages)
                 {
+                    if (message != null && message.StmMessage != null && message.StmMessage.Message != null)
+                        message.StmMessage.Message = XmlUtil.FormatXml(message.StmMessage.Message);
+
                     Messages.Add(message);
                 }
             }
@@ -236,12 +240,17 @@ namespace STM.StmModule.Simulator.ViewModels
 
         public bool CanExecuteShowOnMapCommand(object parameter)
         {
-            return SelectedMessage != null && SelectedMessage.MessageType == "RTZ";
+            return SelectedMessage != null 
+                && (SelectedMessage.MessageType == "RTZ" || SelectedMessage.MessageType == "TXT");
         }
 
         public void ExecuteShowOnMapCommand(object parameter)
         {
-            MapRoutes.AddRoute(SelectedMessage.StmMessage.Message, System.Windows.Media.Colors.Red);
+            if (SelectedMessage.MessageType == "RTZ")
+                MapRoutes.AddRoute(SelectedMessage.StmMessage.Message, System.Windows.Media.Colors.Red);
+
+            if (SelectedMessage.MessageType == "TXT")
+                MapRoutes.AddTextMessage(SelectedMessage.StmMessage.Message, System.Windows.Media.Colors.Green);
         }
     }
 }

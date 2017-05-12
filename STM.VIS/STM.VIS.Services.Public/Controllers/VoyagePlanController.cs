@@ -698,6 +698,8 @@ namespace STM.VIS.Services.Public.Controllers
                 result.MessageID = uvid;
                 result.CallbackEndpoint = string.IsNullOrEmpty(callbackEndpoint) ? string.Empty : callbackEndpoint;
 
+                _uploadedMessageService.InsertRTZ(result);
+
                 //Notify STM module
                 var notification = new Common.Services.Internal.Interfaces.Notification();
                 notification.FromOrgName = identity.Name;
@@ -707,9 +709,14 @@ namespace STM.VIS.Services.Public.Controllers
                 notification.Subject = "New voyageplan uploaded.";
                 notification.NotificationSource = EnumNotificationSource.VIS;
 
-                result.Notified = _notificationService.Notify(notification);
+                var notified = _notificationService.Notify(notification);
 
-                _uploadedMessageService.InsertRTZ(result);
+                if (notified)
+                {
+                    result.Notified = true;
+                    _uploadedMessageService.Update(result);
+                }
+
                 var responsObj = new ResponseObj("Success store message");
 
                 //Save to DB

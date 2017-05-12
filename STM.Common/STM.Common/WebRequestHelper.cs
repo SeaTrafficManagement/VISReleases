@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -56,6 +57,7 @@ namespace STM.Common
             {
                 foreach (string key in headers.AllKeys)
                 {
+                    log.Debug(string.Format("Header: {0}, value: {1}", key, headers[key]));
                     if (key.ToLower() == "content-type")
                     {
                         request.ContentType = headers[key];
@@ -82,6 +84,7 @@ namespace STM.Common
 
             if (UseHMACAuthentication)
             {
+                log.Debug(string.Format("Using HMAC authentication. AppId: {0}, API Key: {1}", APPId, APIKey));
                 // Add HMAC authentication hader to the request
                 request = AddHAMCAuthentication(request, body);
             }
@@ -99,7 +102,10 @@ namespace STM.Common
             var result = new WebResponse();
             try
             {
+                var sw = new Stopwatch();
+                sw.Start();
                 var response = (HttpWebResponse)request.GetResponse();
+                sw.Stop();
 
                 result.HttpStatusCode = response.StatusCode;
 
@@ -108,7 +114,8 @@ namespace STM.Common
                     result.Body = sr.ReadToEnd();
                 }
 
-                log.Debug("Response: " + response.StatusCode + ", " + result.Body);
+                log.Debug(string.Format("Web request returned status: {0}, Response time: {1}", response.StatusCode, sw.Elapsed.ToString(@"hh\:mm\:ss")));
+                log.Debug(string.Format("Response body: {0}", result.Body));
             }
             catch (WebException wex)
             {

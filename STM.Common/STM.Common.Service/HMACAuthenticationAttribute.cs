@@ -18,30 +18,32 @@ namespace STM.Common.Services
 {
     public class HMACAuthenticationAttribute : Attribute, IAuthenticationFilter
     {
-        private static Dictionary<string, string> allowedApps = new Dictionary<string, string>();
-        private readonly ulong requestMaxAgeInSeconds = 300;  //5 mins
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        private Dictionary<string, string> allowedApps = new Dictionary<string, string>();
+        private static int requestMaxAgeInSeconds = 300;  //5 mins
         private readonly string authenticationScheme = "amx";
-        private object _lock = new object();
 
         public HMACAuthenticationAttribute()
         {
-            lock (_lock)
-            {
-                if (allowedApps.Count == 0 && InstanceContext.ApplicationId != null && InstanceContext.ApiKey != null)
-                {
-                    allowedApps.Add(InstanceContext.ApplicationId, InstanceContext.ApiKey);
-                }
-            }
         }
 
         public Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken)
         {
+            if (allowedApps.Count == 0 && InstanceContext.ApplicationId != null && InstanceContext.ApiKey != null)
+            {
+                allowedApps = new Dictionary<string, string>();
+                allowedApps.Add(InstanceContext.ApplicationId, InstanceContext.ApiKey);
+            }
+
             if (InstanceContext.UseHMACAuthentication == false)
             {
                 return Task.FromResult(0);
             }
 
             var req = context.Request;
+
+            log.Debug("Checking HMAC authentication. ");
 
             if (req.Headers.Authorization != null && authenticationScheme.Equals(req.Headers.Authorization.Scheme, StringComparison.OrdinalIgnoreCase))
             {
@@ -56,15 +58,22 @@ namespace STM.Common.Services
                     var nonce = autherizationHeaderArray[2];
                     var requestTimeStamp = autherizationHeaderArray[3];
 
+                    log.Debug("AppId: " + APPId);
+                    log.Debug("incomingBase64Signature: " + incomingBase64Signature);
+                    log.Debug("nonce: " + nonce);
+                    log.Debug("requestTimeStamp: " + requestTimeStamp);
+
                     var isValid = isValidRequest(req, APPId, incomingBase64Signature, nonce, requestTimeStamp);
 
                     if (isValid.Result)
                     {
                         var currentPrincipal = new GenericPrincipal(new GenericIdentity(APPId), null);
                         context.Principal = currentPrincipal;
+                        log.Debug("Successfully authenticated as " + APPId);
                     }
                     else
                     {
+                        log.Debug("Unauthorized");
                         context.ErrorResult = new UnauthorizedResult(new AuthenticationHeaderValue[0], context.Request);
                     }
                 }
@@ -75,6 +84,12 @@ namespace STM.Common.Services
             }
             else
             {
+                log.Debug("Missing or invalid authentication headers");
+                if (req.Headers.Authorization == null)
+                    log.Debug("Authentication header is null");
+                else
+                    log.Debug("Authentication header schema: " + req.Headers.Authorization.Scheme);
+
                 context.ErrorResult = new UnauthorizedResult(new AuthenticationHeaderValue[0], context.Request);
             }
 
@@ -114,8 +129,12 @@ namespace STM.Common.Services
             string requestUri = HttpUtility.UrlEncode(req.RequestUri.AbsoluteUri.ToLower());
             string requestHttpMethod = req.Method.Method;
 
+            foreach (var id in allowedApps)
+                log.Debug("Allowed id: " + id);
+
             if (!allowedApps.ContainsKey(APPId))
             {
+                log.Debug("AppId not allowed. " + APPId);
                 return false;
             }
 
@@ -123,6 +142,7 @@ namespace STM.Common.Services
 
             if (isReplayRequest(nonce, requestTimeStamp))
             {
+                log.Debug("Is replay request");
                 return false;
             }
 
@@ -134,6 +154,7 @@ namespace STM.Common.Services
             }
 
             string data = string.Format("{0}{1}{2}{3}{4}{5}", APPId, requestHttpMethod, requestUri, requestTimeStamp, nonce, requestContentBase64String);
+            log.Debug(data);
 
             var signature = string.Empty;
             using (var hmac = new HMACSHA256(Encoding.UTF8.GetBytes(sharedKey)))
@@ -154,11 +175,16 @@ namespace STM.Common.Services
             DateTime epochStart = new DateTime(1970, 01, 01, 0, 0, 0, 0, DateTimeKind.Utc);
             TimeSpan currentTs = DateTime.UtcNow - epochStart;
 
-            var serverTotalSeconds = Convert.ToUInt64(currentTs.TotalSeconds);
-            var requestTotalSeconds = Convert.ToUInt64(requestTimeStamp);
+            var serverTotalSeconds = Convert.ToInt64(currentTs.TotalSeconds);
+            var requestTotalSeconds = Convert.ToInt64(requestTimeStamp);
 
-            if ((serverTotalSeconds - requestTotalSeconds) > requestMaxAgeInSeconds)
+            log.Debug("serverTotalSeconds: " + serverTotalSeconds);
+            log.Debug("requestTotalSeconds: " + requestTotalSeconds);
+            log.Debug("requestMaxAgeInSeconds: " + requestMaxAgeInSeconds);
+
+            if ((requestTotalSeconds - serverTotalSeconds) > requestMaxAgeInSeconds)
             {
+                log.Debug("serverTotalSeconds - requestTotalSeconds = " + (serverTotalSeconds - requestTotalSeconds) + " > " + requestMaxAgeInSeconds);
                 return true;
             }
 

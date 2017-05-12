@@ -8,6 +8,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using STM.Common.Services.Internal.Interfaces;
+using STM.Common.DataAccess;
 
 namespace STM.Common.Services.Internal
 {
@@ -18,16 +19,18 @@ namespace STM.Common.Services.Internal
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        private readonly string _stmModuleUrl;
+        private readonly StmDbContext _context;
         private readonly INotificationService _notificationService;
 
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="context"></param>
         /// <param name="notificationService"></param>
-        public StmModuleService(INotificationService notificationService)
+        public StmModuleService(StmDbContext context,
+            INotificationService notificationService)
         {
-            _stmModuleUrl = ConfigurationManager.AppSettings["StmModuleUrl"];
+            _context = context;
             _notificationService = notificationService;
         }
 
@@ -38,6 +41,10 @@ namespace STM.Common.Services.Internal
         /// <returns></returns>
         public bool Notify(Notification notification)
         {
+
+            notification.ReceivedAt = DateTime.UtcNow;
+            notification.NotificationCreatedAt = DateTime.UtcNow;
+
             var dbNotification = new DataAccess.Entities.Notification
             {
                 Body = notification.Body ?? "Empty",
@@ -46,33 +53,41 @@ namespace STM.Common.Services.Internal
                 FromOrgId = notification.FromOrgId,
                 FromOrgName = notification.FromOrgName,
                 FromServiceId = notification.FromServiceId,
-                NotificationCreatedAt = DateTime.UtcNow,
+                NotificationCreatedAt = notification.NotificationCreatedAt,
                 NotificationType = (DataAccess.Entities.NotificationType)notification.NotificationType,
                 NotificationSource = (DataAccess.Entities.NotificationSource)notification.NotificationSource,
-                ReceivedAt = DateTime.UtcNow,
+                ReceivedAt = notification.ReceivedAt,
                 Subject = notification.Subject
             };
 
-            var nrOfNotifications = _notificationService.Get().Count();
+            var nrOfNotifications = _notificationService.Get(XmlParsers => XmlParsers.FetchedByShip == false).Count();
 
             // Write notification to database
             _notificationService.Insert(dbNotification);
+            _context.SaveChanges();
 
             try
             {
                 // Try to push notification to client
-                if (!string.IsNullOrEmpty(_stmModuleUrl))
+                if (!string.IsNullOrEmpty(InstanceContext.StmModuleUrl))
                 {
-                    var url = _stmModuleUrl + "/api/StmModulePublic/Notify";
+                    log.Debug("Trying to send notification to STM module on url: " + InstanceContext.StmModuleUrl);
 
                     notification.MessageWaiting = nrOfNotifications;
-                    var response = WebRequestHelper.Post(url, notification.ToJson());
+                    var response = WebRequestHelper.Post(InstanceContext.StmModuleUrl, notification.ToJson());
                     if (response.HttpStatusCode == HttpStatusCode.OK)
                     {
                         dbNotification.FetchedByShip = true;
                         dbNotification.FetchTime = DateTime.UtcNow;
                         _notificationService.Update(dbNotification);
                     }
+                    else
+                        return false;
+                }
+                else
+                {
+                    log.Debug("No push to STM Module becouse no url is configured for the instance");
+                    return false;
                 }
             }
             catch (Exception ex)
