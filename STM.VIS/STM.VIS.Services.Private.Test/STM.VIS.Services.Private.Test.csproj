@@ -124,18 +124,15 @@
     <None Include="app.Release.config">
       <DependentUpon>app.config</DependentUpon>
     </None>
-    <None Include="app.Test.config">
-      <DependentUpon>app.config</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="STMMessageSamples\msg1_invalidUVID.rtz" />
     <None Include="STMMessageSamples\msg1_missingRouteStatus.rtz" />
     <None Include="STMMessageSamples\msg1_notValid.rtz" />
     <None Include="STMMessageSamples\msg1_RouteStatus_7.rtz" />
     <None Include="STMMessageSamples\rtz_route_stm_1_1_28032017.rtz" />
+    <None Include="STMMessageSamples\S124_01.gml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="STMMessageSamples\areaTest1.xml" />
     <Content Include="STMMessageSamples\textMessage with area-1.xml" />
     <None Include="STMMessageSamples\RTZ v1.0 STM several extensions-1.rtz" />
   </ItemGroup>

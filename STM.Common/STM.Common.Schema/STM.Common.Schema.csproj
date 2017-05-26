@@ -96,9 +96,6 @@
     <EmbeddedResource Include="Rtz_1_1\stm_extensions_29032017.xsd">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="TextMessage\textMessageSchema_1_3.xsd">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="S124\s100gmlbase.xsd">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -109,6 +106,9 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="S124\S124.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TextMessage\textMessageSchema_1_3.xsd">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

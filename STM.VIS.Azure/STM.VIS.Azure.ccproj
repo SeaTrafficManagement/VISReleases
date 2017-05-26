@@ -34,9 +34,10 @@
   </PropertyGroup>
   <!-- Items for the project -->
   <ItemGroup>
-    <ServiceConfiguration Include="ServiceConfiguration.CLoud.cscfg" />
+    <ServiceConfiguration Include="ServiceConfiguration.Dev.cscfg" />
     <ServiceDefinition Include="ServiceDefinition.csdef" />
     <ServiceConfiguration Include="ServiceConfiguration.Local.cscfg" />
+    <ServiceConfiguration Include="ServiceConfiguration.Test.cscfg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Profiles" />

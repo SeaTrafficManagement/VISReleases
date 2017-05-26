@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -50,6 +51,7 @@ namespace STM.Common.Services.Internal.Interfaces
         /// Type of notification by enumeration
         /// </summary>
         [Required]
+        [JsonConverter(typeof(StringEnumConverter))]
         public EnumNotificationType NotificationType { get; set; }
         /// <summary>
         /// Date and time for the reception of the message.
@@ -63,12 +65,12 @@ namespace STM.Common.Services.Internal.Interfaces
         public string Subject { get; set; }
 
         [Required]
+        [JsonConverter(typeof(StringEnumConverter))]
         public EnumNotificationSource NotificationSource { get; set; }
 
         public string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
-
     }
 }

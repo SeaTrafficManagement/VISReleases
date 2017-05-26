@@ -12,7 +12,7 @@ namespace STM.Common.XmlParsers
         {
             SetNamespaces(new SortedList<string, string>
             {
-                {"txt", "http://tempuri.org/textMessageSchema.xsd" }
+                {"txt", "http://stmvalidation.eu/schemas/textMessageSchema_1_3.xsd" }
             });
         }
 

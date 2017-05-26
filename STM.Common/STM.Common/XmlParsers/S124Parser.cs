@@ -10,13 +10,17 @@ namespace STM.Common.XmlParsers
     {
         public S124Parser(string xml) : base(xml)
         {
+            SetNamespaces(new SortedList<string, string>
+            {
+                {"S124", "http://www.iho.int/S124/gml/1.0" }
+            });
         }
 
         public string AreaMessageId
         {
             get
             {
-                return GetValue("/referenceUVID");
+                return GetValue(@"//S124:DataSet/imember/S124:S124_NWPreamble/id");
             }
         }
     }

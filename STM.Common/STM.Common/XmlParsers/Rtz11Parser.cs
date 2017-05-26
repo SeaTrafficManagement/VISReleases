@@ -82,5 +82,19 @@ namespace STM.Common.XmlParsers
             }
         }
 
+        public string DeparturePort
+        {
+            get
+            {
+                return GetValue(@"//rtz:route/rtz:routeInfo/rtz:extensions/rtz:extension/@depPort");
+            }
+        }
+        public string ArrivalPort
+        {
+            get
+            {
+                return GetValue(@"//rtz:route/rtz:routeInfo/rtz:extensions/rtz:extension/@arrPort");
+            }
+        }
     }
 }

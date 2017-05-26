@@ -203,3 +203,38 @@ $RECYCLE.BIN/
 Debug
 Release
 obj
+/STM.Common/STM.Common.Service/app.config
+/STM.Common/STM.Common.Services.Internal.Interfaces/app.config
+/STM.Common/STM.Common.Services.Internal/app.config
+/STM.Common/STM.Common/app.config
+/STM.SPIS.Azure/Profiles/StmSpisDev.azurePubxml
+/STM.SPIS.Azure/Profiles/StmSpisTest.azurePubxml
+/STM.SPIS.Azure/ServiceConfiguration.Dev.cscfg
+/STM.SPIS.Azure/ServiceConfiguration.Test.cscfg
+/STM.SPIS/STM.SPIS.PollingQueueWorker/App.Dev.config
+/STM.SPIS/STM.SPIS.PollingQueueWorker/App.Prod.config
+/STM.SPIS/STM.SPIS.PollingQueueWorker/App.Test.config
+/STM.SPIS/STM.SPIS.Services.Private/Web.Dev.config
+/STM.SPIS/STM.SPIS.Services.Private/Web.Prod.config
+/STM.SPIS/STM.SPIS.Services.Private/Web.Test.config
+/STM.SPIS/STM.SPIS.Services.Public/Web.Dev.config
+/STM.SPIS/STM.SPIS.Services.Public/Web.Prod.config
+/STM.SPIS/STM.SPIS.Services.Public/Web.Test.config
+/STM.SSC/STM.SSC.Internal/app.config
+/STM.VIS.Azure/ServiceConfiguration.Dev.cscfg
+/STM.VIS.Azure/ServiceConfiguration.Test.cscfg
+/STM.VIS/STM.VIS.Services.Private.Test/STMMessageSamples/pilotRoutes/DR2-LANDSORT-STAVSNÄS-HÖGUDD.rtz
+/STM.VIS/STM.VIS.Services.Private.Test/STMMessageSamples/pilotRoutes/DR2-LANDSORT-TORSKLEDEN-HÖGUDD.rtz
+/STM.VIS/STM.VIS.Services.Private.Test/STMMessageSamples/pilotRoutes/In 1  1 via N.Ch to Frihamnen.rtz
+/STM.VIS/STM.VIS.Services.Private.Test/STMMessageSamples/pilotRoutes/In 3  2  N.Trub via N.Ch to Frihamnen.rtz
+/STM.VIS/STM.VIS.Services.Private.Test/STMMessageSamples/pilotRoutes/In 4  2  N.Trub via S.Ch to Frihamnen.rtz
+/STM.VIS/STM.VIS.Services.Private.Test/STMMessageSamples/pilotRoutes/In 5  2 S.Trub via N.Ch to Frihamnen.rtz
+/STM.VIS/STM.VIS.Services.Private.Test/STMMessageSamples/pilotRoutes/In 6  2  S.Trub via S.Ch to Frihamnen.rtz
+/STM.VIS/STM.VIS.Services.Private.Test/STMMessageSamples/S124_01.gml
+/STM.VIS/STM.VIS.Services.Private.Test/STMMessageSamples/Stockholm - Göteborg.xml
+/STM.VIS/STM.VIS.Services.Private/Web.Dev.config
+/STM.VIS/STM.VIS.Services.Private/Web.Prod.config
+/STM.VIS/STM.VIS.Services.Private/Web.Test.config
+/STM.VIS/STM.VIS.Services.Public/Web.Dev.config
+/STM.VIS/STM.VIS.Services.Public/Web.Prod.config
+/STM.VIS/STM.VIS.Services.Public/Web.Test.config

@@ -235,7 +235,7 @@ namespace STM.SPIS.PollingQueueWorker
                 var queueResult = client.CallService(new CallServiceRequestObj
                 {
                     Body = filter,
-                    EndpointMethod = queueEndpoint,
+                    EndpointMethod = WebRequestHelper.CombineUrl(queueEndpoint, "/mb/mqs"),
                     Headers = headers,
                     RequestType = "POST",
                 });

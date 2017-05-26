@@ -262,20 +262,20 @@ namespace STM.VIS.Services.Private.Tests
             validator.ValidateTextMessageXML(msgString);
 
             var parser = new TxtParser(msgString);
-            var status = parser.TextMessageId;
+            var id = parser.TextMessageId;
         }
 
         [TestMethod]
         public void S124Parser()
         {
-            byte[] msg = GetMessageRaw(@"STMMessageSamples\areaTest1.xml");
+            byte[] msg = GetMessageRaw(@"STMMessageSamples\S124_01.gml");
             var msgString = Serialization.ByteArrayToString(msg);
 
             var validator = new StmSchemaValidator();
             validator.ValidateAreaMessageXML(msgString);
 
             var parser = new S124Parser(msgString);
-            var status = parser.AreaMessageId;
+            var id = parser.AreaMessageId;
         }
     }
 }

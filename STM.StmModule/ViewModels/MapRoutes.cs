@@ -51,6 +51,21 @@ namespace STM.StmModule.Simulator.ViewModels
                     lable.FontSize = 12;
                     lable.FontWeight = System.Windows.FontWeights.Bold;
                     Map.AddChild(lable, polyline.Locations[0]);
+
+                    //Add pushpin for first waypoint
+                    var pos = rtz.waypoints.waypoint.FirstOrDefault().position;
+                    Pushpin pin = new Pushpin();
+                    pin.Location = new Location((double)pos.lat, (double)pos.lon);
+                    pin.ToolTip = pos.lat + " " + pos.lon + " " + rtz.waypoints.waypoint.FirstOrDefault().name; 
+                    Map.Children.Add(pin);
+
+                    //Add pushpin for last waypoint
+                    pos = rtz.waypoints.waypoint.LastOrDefault().position;
+                    pin = new Pushpin();
+                    pin.Location = new Location((double)pos.lat, (double)pos.lon);
+                    pin.ToolTip = pos.lat + " " + pos.lon + " " + rtz.waypoints.waypoint.LastOrDefault().name;
+                    Map.Children.Add(pin);
+
                 }
             });
         }
