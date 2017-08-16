@@ -20,7 +20,6 @@ namespace STM.Common.Services
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        private Dictionary<string, string> allowedApps = new Dictionary<string, string>();
         private static int requestMaxAgeInSeconds = 300;  //5 mins
         private readonly string authenticationScheme = "amx";
 
@@ -30,12 +29,6 @@ namespace STM.Common.Services
 
         public Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken)
         {
-            if (allowedApps.Count == 0 && InstanceContext.ApplicationId != null && InstanceContext.ApiKey != null)
-            {
-                allowedApps = new Dictionary<string, string>();
-                allowedApps.Add(InstanceContext.ApplicationId, InstanceContext.ApiKey);
-            }
-
             if (InstanceContext.UseHMACAuthentication == false)
             {
                 return Task.FromResult(0);
@@ -129,16 +122,13 @@ namespace STM.Common.Services
             string requestUri = HttpUtility.UrlEncode(req.RequestUri.AbsoluteUri.ToLower());
             string requestHttpMethod = req.Method.Method;
 
-            foreach (var id in allowedApps)
-                log.Debug("Allowed id: " + id);
+            log.Debug("Allowed id: " + InstanceContext.ApplicationId);
 
-            if (!allowedApps.ContainsKey(APPId))
+            if (APPId != InstanceContext.ApplicationId)
             {
                 log.Debug("AppId not allowed. " + APPId);
                 return false;
             }
-
-            var sharedKey = allowedApps[APPId];
 
             if (isReplayRequest(nonce, requestTimeStamp))
             {
@@ -157,7 +147,7 @@ namespace STM.Common.Services
             log.Debug(data);
 
             var signature = string.Empty;
-            using (var hmac = new HMACSHA256(Encoding.UTF8.GetBytes(sharedKey)))
+            using (var hmac = new HMACSHA256(Encoding.UTF8.GetBytes(InstanceContext.ApiKey)))
             {
                 var signatureBytes = hmac.ComputeHash(Encoding.UTF8.GetBytes(data));
                 signature = Convert.ToBase64String(signatureBytes);

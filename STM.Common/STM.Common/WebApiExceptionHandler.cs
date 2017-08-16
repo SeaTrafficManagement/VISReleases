@@ -28,7 +28,7 @@ namespace STM.Common
                 .Register<FormatException>(HttpStatusCode.BadRequest)
                 .Register<HttpRequestException>(HttpStatusCode.BadRequest)
                 .Register<InvalidOperationException>(HttpStatusCode.InternalServerError)
-                .Register<NotImplementedException>(HttpStatusCode.InternalServerError)
+                .Register<NotImplementedException>(HttpStatusCode.NotImplemented)
                 .Register<NotSupportedException>(HttpStatusCode.MethodNotAllowed)
                 .Register<NullReferenceException>(HttpStatusCode.InternalServerError)
                 .Register<ProtocolViolationException>(HttpStatusCode.InternalServerError)

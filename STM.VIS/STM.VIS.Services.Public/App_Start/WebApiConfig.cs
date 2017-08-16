@@ -21,7 +21,8 @@ namespace STM.VIS.Services.Public
             log4net.Config.XmlConfigurator.Configure();
 
             config.Filters.Add(new SeaSwimAuthenticationActionFilter());
-
+            config.Filters.Add(new ServiceTypeFilter());
+            
             // Web API routes
             config.MapHttpAttributeRoutes(new CustomDirectRouteProvider());
 

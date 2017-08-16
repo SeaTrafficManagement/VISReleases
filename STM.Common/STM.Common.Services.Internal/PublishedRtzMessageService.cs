@@ -15,6 +15,7 @@ using STM.Common.Services.Internal.Interfaces;
 using System.Web;
 using STM.SSC.Internal.Models;
 using STM.Common.XmlParsers;
+using Newtonsoft.Json;
 
 namespace STM.Common.Services.Internal
 {
@@ -190,16 +191,22 @@ namespace STM.Common.Services.Internal
         {
             var client = new SSC.Internal.SccPrivateService();
 
+            string msg = string.Format("Voyageplan with uvid {0} sent to subscriber {1}", dataId, identity.Name);
+
+            //Add event logging
+            var paramList = new List<KeyValuePair<string, string>>();
+            var param = new KeyValuePair<string, string>("Message", msg);
+            paramList.Add(param);
+
             try
             {
-
                 var result = client.CallService(new CallServiceRequestObj
                 {
                     Body = message,
                     EndpointMethod = WebRequestHelper.CombineUrl(endpoint, "voyagePlans?uvid=" + dataId),
                     Headers = new List<Header>
                     {
-                        new Header("content-type", "text/xml; charset=UTF8; encoding='utf-8'")
+                        new Header("content-type", "text/xml; charset=utf-8")
                     },
                     RequestType = "POST",
                 });
@@ -209,12 +216,16 @@ namespace STM.Common.Services.Internal
                     throw new Exception(result.Body);
                 }
 
-                string msg = string.Format("Voyageplan with uvid {0} sent to subscriber {1}", dataId, identity.Name);
                 log.Info(msg);
+
+                _logEventService.LogSuccess(EventNumber.VIS_publishMessage, EventDataType.RTZ, paramList, message);
             }
             catch (Exception ex)
             {
                 log.Error(ex.Message, ex);
+
+                //logg event
+                _logEventService.LogError(EventNumber.VIS_publishMessage, EventType.Error_internal, paramList, ex.Message);
 
                 // Send notification
                 var notification = new Interfaces.Notification();

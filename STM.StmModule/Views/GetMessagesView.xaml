@@ -16,6 +16,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="10" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="10" />
             <RowDefinition Height="*" />
             <RowDefinition Height="10" />
@@ -36,6 +38,17 @@
         </StackPanel>
 
         <StackPanel Grid.Column="1" 
+               Grid.Row="3"
+               Orientation="Horizontal">
+            <Label Content="From time:"/>
+            <TextBox Margin="10,0,0,0"
+                Text="{Binding FromTime}" Width="150" />
+            <Label  Margin="10,0,0,0" Content="To time:"/>
+            <TextBox Margin="10,0,0,0"
+                Text="{Binding ToTime}" Width="150" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" 
                Grid.Row="1"
                Orientation="Horizontal"
                HorizontalAlignment="Right">
@@ -46,7 +59,7 @@
         </StackPanel>
 
         <ListView Grid.Column="1"
-                  Grid.Row="3" 
+                  Grid.Row="5" 
                   ItemsSource="{Binding Messages}"
                   SelectedItem="{Binding SelectedMessage}">
             <ListView.View>
@@ -60,15 +73,15 @@
         </ListView>
 
         <StackPanel Grid.Column="1"
-                  Grid.Row="5" Orientation="Vertical">
+                  Grid.Row="7" Orientation="Vertical">
             <Label Content="Message content" Margin="0,0,0,5" />
-            <TextBox Height="150" AcceptsReturn="True"
+            <TextBox Height="150" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"
                  Text="{Binding Path=SelectedMessage.StmMessage.Message}">
             </TextBox>
         </StackPanel>
 
         <StackPanel Grid.Column="1"
-                    Grid.Row="7" 
+                    Grid.Row="9" 
                     Orientation="Horizontal">
             <Label Content="Remaining messages:"/>
             <TextBox Margin="10,0,0,0"
@@ -77,7 +90,7 @@
                     Command="{Binding ShowOnMapCommand}"/>
         </StackPanel>
         <StackPanel Grid.Column="1"
-                    Grid.Row="7"
+                    Grid.Row="9"
                     Orientation="Horizontal"
                     HorizontalAlignment="Right">
             <Label Content="Callback Endpoint:"/>
@@ -86,7 +99,7 @@
             </TextBox>
         </StackPanel>
         <xctk:BusyIndicator IsBusy="{Binding Busy}" x:Name="busyBox"
-                            Grid.ColumnSpan="3" Grid.RowSpan="9"
+                            Grid.ColumnSpan="3" Grid.RowSpan="11"
             HorizontalAlignment="Center"
             VerticalAlignment="Center" BusyContent="{Binding BusyContent}" >
         </xctk:BusyIndicator>

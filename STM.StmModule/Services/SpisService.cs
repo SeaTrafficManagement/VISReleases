@@ -26,9 +26,25 @@ namespace STM.StmModule.Simulator.Services
             _spisUrl = ConfigurationManager.AppSettings.Get("SpisPrivateUrl").Replace("{database}", DbName); ;
         }
 
-        public MessageEnvelope GetMessages(string dataId, int limitQuery)
+        public MessageEnvelope GetMessages(string dataId, int limitQuery, DateTime? fromTime, DateTime? toTime)
         {
-            var url = _spisUrl + string.Format("/getMessage?limitQuery={0}&dataId={1}", limitQuery, dataId);
+            string url = string.Empty;
+
+            if (fromTime == null)
+            {
+                url = _spisUrl + string.Format("/getMessage?limitQuery={0}&dataId={1}", limitQuery, Uri.EscapeDataString(dataId ?? string.Empty));
+            }
+            else
+            {
+                if (toTime == null)
+                    toTime = DateTime.MaxValue;
+
+                url = _spisUrl + string.Format("/getMessageInTimeIntervall?limitQuery={0}&dataId={1}&fromDate={2}&toDate={3}",
+                    limitQuery, Uri.EscapeDataString(dataId ?? string.Empty),
+                    Uri.EscapeDataString(fromTime.Value.ToString("yyyy-MM-dd HH:mm:ss")),
+                    Uri.EscapeDataString(toTime.Value.ToString("yyyy-MM-dd HH:mm:ss")));
+            }
+
             var response = WebRequestHelper.Get(url);
 
             if (response.HttpStatusCode == HttpStatusCode.OK)
@@ -63,10 +79,10 @@ namespace STM.StmModule.Simulator.Services
             string messageType,
             string message)
         {
-            var url = _spisUrl + string.Format("/publishMessage?dataId={0}&messageType={1}", dataId, messageType);
+            var url = _spisUrl + string.Format("/publishMessage?dataId={0}&messageType={1}", Uri.EscapeDataString(dataId ?? string.Empty), messageType);
 
             WebHeaderCollection headers = new WebHeaderCollection();
-            headers.Add(HttpRequestHeader.ContentType, "text/xml; charset=UTF8");
+            headers.Add(HttpRequestHeader.ContentType, "text/xml; charset=utf-8");
 
             //byte[] bytes = Encoding.Default.GetBytes(message);
             //message = Encoding.UTF8.GetString(bytes);
@@ -77,10 +93,10 @@ namespace STM.StmModule.Simulator.Services
 
         public string DeleteMessage(string dataId)
         {
-            var url = _spisUrl + string.Format("/publishedMessage?dataId={0}", dataId);
+            var url = _spisUrl + string.Format("/publishedMessage?dataId={0}", Uri.EscapeDataString(dataId ?? string.Empty));
 
             WebHeaderCollection headers = new WebHeaderCollection();
-            headers.Add(HttpRequestHeader.ContentType, "application/json; charset=UTF8");
+            headers.Add(HttpRequestHeader.ContentType, "application/json; charset=utf-8");
 
             var response = WebRequestHelper.Delete(url, string.Empty, headers);
             return response.HttpStatusCode.ToString() + " " + response.ErrorMessage + response.Body;
@@ -88,7 +104,7 @@ namespace STM.StmModule.Simulator.Services
 
         public List<IdentityDescriptionObject> GetAcl(string dataId)
         {
-            var url = _spisUrl + string.Format("/authorizeIdentities?dataId={0}", dataId);
+            var url = _spisUrl + string.Format("/authorizeIdentities?dataId={0}", Uri.EscapeDataString(dataId ?? string.Empty));
             var response = WebRequestHelper.Get(url);
             if (response.HttpStatusCode == HttpStatusCode.OK)
             {
@@ -100,7 +116,7 @@ namespace STM.StmModule.Simulator.Services
 
         public List<SpisSubscriptionObject> GetSubscriptions(string dataId)
         {
-            var url = _spisUrl + string.Format("/subscription?dataId={0}", dataId);
+            var url = _spisUrl + string.Format("/subscription?dataId={0}", Uri.EscapeDataString(dataId ?? string.Empty));
             var response = WebRequestHelper.Get(url);
             if (response.HttpStatusCode == HttpStatusCode.OK)
             {
@@ -145,7 +161,7 @@ namespace STM.StmModule.Simulator.Services
             var request = new FindServicesRequestObj(filter, page, pageSize);
 
             WebHeaderCollection headers = new WebHeaderCollection();
-            headers.Add(HttpRequestHeader.ContentType, "application/json; charset=UTF8");
+            headers.Add(HttpRequestHeader.ContentType, "application/json; charset=utf-8");
 
             var response = WebRequestHelper.Post(url, request.ToJson(), headers);
 
@@ -185,7 +201,7 @@ namespace STM.StmModule.Simulator.Services
             };
 
             WebHeaderCollection headers = new WebHeaderCollection();
-            headers.Add(HttpRequestHeader.ContentType, "application/json; charset=UTF8");
+            headers.Add(HttpRequestHeader.ContentType, "application/json; charset=utf-8");
 
             var response = WebRequestHelper.Post(Spisurl, request.ToJson(), headers);
             return response.Body;
@@ -193,11 +209,11 @@ namespace STM.StmModule.Simulator.Services
 
         public string AuthorizeIdentities(string messageId, List<IdentityDescriptionObject> identities)
         {
-            var url = _spisUrl + string.Format("/authorizeIdentities?dataId={0}", messageId);
+            var url = _spisUrl + string.Format("/authorizeIdentities?dataId={0}", Uri.EscapeDataString(messageId));
             var json = JsonConvert.SerializeObject(identities, Formatting.Indented);
 
             WebHeaderCollection headers = new WebHeaderCollection();
-            headers.Add(HttpRequestHeader.ContentType, "application/json; charset=UTF8; charset = UTF8");
+            headers.Add(HttpRequestHeader.ContentType, "application/json; charset=utf-8");
 
             var response = WebRequestHelper.Post(url, json, headers);
             return response.HttpStatusCode.ToString() + " " + response.ErrorMessage + response.Body;
@@ -205,11 +221,11 @@ namespace STM.StmModule.Simulator.Services
 
         public string RemoveAuthorization(string messageId, List<IdentityDescriptionObject> identities)
         {
-            var url = _spisUrl + string.Format("/authorizeIdentities?dataId={0}", HttpUtility.UrlEncode(messageId));
+            var url = _spisUrl + string.Format("/authorizeIdentities?dataId={0}", Uri.EscapeDataString(messageId));
             var json = JsonConvert.SerializeObject(identities, Formatting.Indented);
 
             WebHeaderCollection headers = new WebHeaderCollection();
-            headers.Add(HttpRequestHeader.ContentType, "application/json; charset=UTF8; charset = UTF8");
+            headers.Add(HttpRequestHeader.ContentType, "application/json; charset=utf-8");
 
             var response = WebRequestHelper.Delete(url, json, headers);
             return response.HttpStatusCode.ToString() + " " + response.ErrorMessage + response.Body;
@@ -217,11 +233,11 @@ namespace STM.StmModule.Simulator.Services
 
         public string AddSubscription(string messageId, List<SpisSubscriptionObject> subscriptions)
         {
-            var url = _spisUrl + string.Format("/subscription?dataId={0}", messageId);
+            var url = _spisUrl + string.Format("/subscription?dataId={0}", Uri.EscapeDataString(messageId));
             var json = JsonConvert.SerializeObject(subscriptions, Formatting.Indented);
 
             WebHeaderCollection headers = new WebHeaderCollection();
-            headers.Add(HttpRequestHeader.ContentType, "application/json; charset=UTF8; charset = UTF8");
+            headers.Add(HttpRequestHeader.ContentType, "application/json; charset=utf-8");
 
             var response = WebRequestHelper.Post(url, json, headers);
             return response.HttpStatusCode.ToString() + " " + response.ErrorMessage + response.Body;
@@ -229,11 +245,11 @@ namespace STM.StmModule.Simulator.Services
 
         public string RemoveSubscription(string messageId, List<SpisSubscriptionObject> subscriptions)
         {
-            var url = _spisUrl + string.Format("/subscription?dataId={0}", messageId);
+            var url = _spisUrl + string.Format("/subscription?dataId={0}", Uri.EscapeDataString(messageId));
             var json = JsonConvert.SerializeObject(subscriptions, Formatting.Indented);
 
             WebHeaderCollection headers = new WebHeaderCollection();
-            headers.Add(HttpRequestHeader.ContentType, "application/json; charset=UTF8; charset = UTF8");
+            headers.Add(HttpRequestHeader.ContentType, "application/json; charset=utf-8");
 
             var response = WebRequestHelper.Delete(url, json, headers);
             return response.HttpStatusCode.ToString() + " " + response.ErrorMessage + response.Body;

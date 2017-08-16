@@ -24,21 +24,6 @@ namespace STM.SSC.Internal.Test
         }
 
         [TestMethod]
-        public void GetAccessTokenTest()
-        {
-            // THis is needed to get the fake web api on port 9991 up an running
-            var sscService = new SccPrivateService();
-
-            var idService = new IdentityRegistryService();
-            var token = idService.GetAccessToken();
-            var token2 = idService.GetAccessToken();
-
-            Assert.IsNotNull(token);
-            Assert.IsNotNull(token2);
-            Assert.AreNotEqual(token, token2);
-        }
-
-        [TestMethod]
         public void FindIdentitiesTest()
         {
             var sscService = new SccPrivateService();
@@ -46,7 +31,6 @@ namespace STM.SSC.Internal.Test
             Assert.IsNotNull(result);
         }
 
-        [Ignore]
         [TestMethod]
         public void ValidateCertificate()
         {
@@ -55,7 +39,7 @@ namespace STM.SSC.Internal.Test
             byte[] certBytes = File.ReadAllBytes(certPath);
             var cert = new X509Certificate2(certBytes, "StmVis123");
 
-            idRegService.IsCertificateValid(cert);
+            Assert.IsTrue(idRegService.IsCertificateValid(cert));
         }
     }
 }

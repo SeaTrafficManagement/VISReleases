@@ -15,6 +15,8 @@ namespace STM.Common.DataAccess.Entities
 
         public string ServiceId { get; set; }
 
+        public string NotImplementetOperations { get; set; }
+
         public string StmModuleUrl { get; set; }
 
         public string Password { get; set; }

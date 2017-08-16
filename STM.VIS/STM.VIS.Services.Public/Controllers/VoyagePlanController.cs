@@ -699,6 +699,9 @@ namespace STM.VIS.Services.Public.Controllers
                 result.CallbackEndpoint = string.IsNullOrEmpty(callbackEndpoint) ? string.Empty : callbackEndpoint;
 
                 _uploadedMessageService.InsertRTZ(result);
+                
+                //Save to DB
+                _context.SaveChanges();
 
                 //Notify STM module
                 var notification = new Common.Services.Internal.Interfaces.Notification();
@@ -713,6 +716,7 @@ namespace STM.VIS.Services.Public.Controllers
 
                 if (notified)
                 {
+                    _context.Entry(result).Reload();
                     result.Notified = true;
                     _uploadedMessageService.Update(result);
                 }

@@ -154,7 +154,9 @@ namespace STM.Common.Services.Internal
             Identity identity)
         {
             var queueId = SetupQueue(message, dataId, mbEndpoint, identity);
-            SendToAmssService(message, dataId, amssEndpoint, identity);
+
+            if (message != null)
+                SendToAmssService(message, dataId, amssEndpoint, identity);
 
             return queueId;
         }
@@ -251,7 +253,7 @@ namespace STM.Common.Services.Internal
 
                 var headers = new List<Header>
                 {
-                    new Header("content-type", "application/json; charset=UTF8; encoding='utf-8'")
+                    new Header("content-type", "application/json; charset=utf-8")
                 };
 
                 var client = new SSC.Internal.SccPrivateService();
@@ -282,6 +284,7 @@ namespace STM.Common.Services.Internal
                 notification.FromOrgId = identity.UID;
                 notification.FromServiceId = InstanceContext.CallerServiceId;
                 notification.NotificationType = EnumNotificationType.ERROR_MESSAGE;
+                notification.NotificationSource = EnumNotificationSource.SPIS;
                 notification.Subject = "Unable to send set up message broker queue";
                 notification.Body = string.Format("Unable to create queue for message with id {0}, identity {1}, {2}", dataId, identity.Name, identity.UID);
                 _notificationService.Notify(notification);

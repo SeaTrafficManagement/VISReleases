@@ -137,7 +137,7 @@ namespace STM.SPIS.PollingQueueWorker
                                                             if (messages[i].OuterXml.Length > 0)
                                                             {
                                                                 WebHeaderCollection h = new WebHeaderCollection();
-                                                                h.Add("content-type", "text/xml; charset=UTF8");
+                                                                h.Add("content-type", "text/xml; charset=utf-8");
 
                                                                 var uploadResponse = WebRequestHelper.Post(spisUrl, messages[i].OuterXml, h, true);
                                                                 if (uploadResponse.HttpStatusCode != HttpStatusCode.OK)
@@ -229,7 +229,7 @@ namespace STM.SPIS.PollingQueueWorker
             {
                 var headers = new List<Header>
                 {
-                    new Header("content-type", "application/json; charset=UTF8; encoding='utf-8'")
+                    new Header("content-type", "application/json; charset=utf-8")
                 };
 
                 var queueResult = client.CallService(new CallServiceRequestObj

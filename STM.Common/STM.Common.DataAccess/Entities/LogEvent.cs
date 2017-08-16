@@ -57,7 +57,7 @@ namespace STM.Common.DataAccess.Entities
         public string ExternalEntityId { get; set; }
 
         /// <summary>
-        /// Attached parameters to the event in pair key:value or text/xml; charset=UTF8
+        /// Attached parameters to the event in pair key:value or text/xml; charset=utf-8
         /// </summary>
         public string EventParameters { get; set; }
 

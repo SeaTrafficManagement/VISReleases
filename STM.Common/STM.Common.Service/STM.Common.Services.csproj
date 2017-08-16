@@ -203,9 +203,11 @@
     <Compile Include="CustomDirectRouteProvider.cs" />
     <Compile Include="HMACAuthenticationAttribute.cs" />
     <Compile Include="LoggingControllerBase.cs" />
+    <Compile Include="PingControllerBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestContentTypeOperationFilter.cs" />
     <Compile Include="ResponseContentTypeOperationFilter.cs" />
+    <Compile Include="ServiceTypeFilter.cs" />
     <Compile Include="SwaggerRequestContentTypeAttribute.cs" />
     <Compile Include="SwaggerResponseContentTypeAttribute.cs" />
   </ItemGroup>

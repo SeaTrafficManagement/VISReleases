@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using STM.Common;
 using STM.StmModule.Simulator.Contract;
 using STM.StmModule.Simulator.Infrastructure;
 using STM.StmModule.Simulator.Services;
@@ -364,7 +365,7 @@ namespace STM.StmModule.Simulator.ViewModels
                     }
 
                     Services = visService.FindServices("WKT", Area, UnloCode, ServiceProviderIdsList, ServiceDesignId, ServiceInstanceId,
-                        Mmsi, Imo, ServiceType, ServiceStatus, KeywordsList, FreeText, null, null);
+                        Mmsi, Imo, ServiceType, ServiceStatus, KeywordsList, FreeText, 0, 1000);
                 }
                 catch (Exception ex)
                 {
@@ -409,7 +410,7 @@ namespace STM.StmModule.Simulator.ViewModels
                 };
                 sendAck = dlg.ViewModel.Acknowledgement;
                 vpbody = newMsg.Message;
-                callbackEndpoint = dlg.ViewModel.CallbackEndpoint;
+                callbackEndpoint = Uri.EscapeDataString(dlg.ViewModel.CallbackEndpoint ?? string.Empty);
             }
             if (!string.IsNullOrEmpty(vpbody))
             {
@@ -424,19 +425,24 @@ namespace STM.StmModule.Simulator.ViewModels
                         string endpointUri = SelectedService.EndpointUri;
                         if (!string.IsNullOrEmpty(callbackEndpoint))
                         {
-                            endpointUri += string.Format("/voyagePlans?callbackEndpoint={0}", callbackEndpoint) + string.Format("&deliveryAckEndPoint={0}", myAck);
+                            endpointUri = WebRequestHelper.CombineUrl(endpointUri, string.Format("/voyagePlans?callbackEndpoint={0}", Uri.EscapeDataString(callbackEndpoint)) + string.Format("&deliveryAckEndPoint={0}", Uri.EscapeDataString(myAck)));
                         }
                         else
                         {
-                            endpointUri += string.Format("/voyagePlans?deliveryAckEndPoint={0}", myAck);
+                            endpointUri = WebRequestHelper.CombineUrl(endpointUri, string.Format("/voyagePlans?deliveryAckEndPoint={0}", Uri.EscapeDataString(myAck ?? string.Empty)));
                         }
-                        var result = visService.CallService(vpbody, endpointUri, "POST", "text/xml; charset=UTF8");
+                        var result = visService.CallService(vpbody, endpointUri, "POST", "text/xml; charset=utf-8");
                         MessageBox.Show(result);
                     }
                     else
                     {
-                        string endpointUri = SelectedService.EndpointUri + string.Format("/voyagePlans?callbackEndpoint={0}", callbackEndpoint);
-                        var result = visService.CallService(vpbody, endpointUri, "POST", "text/xml; charset=UTF8");
+                        string endpointUri = WebRequestHelper.CombineUrl(SelectedService.EndpointUri, "/voyagePlans");
+                        if (!string.IsNullOrEmpty(callbackEndpoint))
+                        {
+                            endpointUri += string.Format("?callbackEndpoint={0}", Uri.EscapeDataString(callbackEndpoint));
+                        }
+
+                        var result = visService.CallService(vpbody, endpointUri, "POST", "text/xml; charset=utf-8");
                         MessageBox.Show(result);
                     }
                 });
@@ -488,13 +494,13 @@ namespace STM.StmModule.Simulator.ViewModels
                     if (sendAck)
                     {
                         string myAck = ConfigurationManager.AppSettings.Get("VisPublicUrl").Replace("{database}", VisService.DbName); ;
-                        string endpointUri = SelectedService.EndpointUri + string.Format("/textMessage?deliveryAckEndPoint={0}", myAck);
-                        var result = visService.CallService(txtbody, endpointUri, "POST", "text/xml; charset=UTF8");
+                        string endpointUri = WebRequestHelper.CombineUrl(SelectedService.EndpointUri, string.Format("/textMessage?deliveryAckEndPoint={0}", Uri.EscapeDataString(myAck ?? string.Empty)));
+                        var result = visService.CallService(txtbody, endpointUri, "POST", "text/xml; charset=utf-8");
                         MessageBox.Show(result);
                     }
                     else
                     {
-                        var result = visService.CallService(txtbody, SelectedService.EndpointUri + "/textMessage", "POST", "text/xml; charset=UTF8;charset=UTF8");
+                        var result = visService.CallService(txtbody, WebRequestHelper.CombineUrl(SelectedService.EndpointUri, "/textMessage"), "POST", "text/xml; charset=utf-8");
                         MessageBox.Show(result);
                     }
                 });
@@ -545,13 +551,13 @@ namespace STM.StmModule.Simulator.ViewModels
                     if (sendAck)
                     {
                         string myAck = ConfigurationManager.AppSettings.Get("VisPublicUrl").Replace("{database}", VisService.DbName); ;
-                        string endpointUri = SelectedService.EndpointUri + string.Format("/area?deliveryAckEndPoint={0}", myAck);
-                        var result = visService.CallService(areaBody, endpointUri, "POST", "text/xml; charset=UTF8");
+                        string endpointUri = WebRequestHelper.CombineUrl(SelectedService.EndpointUri, string.Format("/area?deliveryAckEndPoint={0}", Uri.EscapeDataString(myAck ?? string.Empty)));
+                        var result = visService.CallService(areaBody, endpointUri, "POST", "text/xml; charset=utf-8");
                         MessageBox.Show(result);
                     }
                     else
                     {
-                        var result = visService.CallService(areaBody, SelectedService.EndpointUri + "/area", "POST", "text/xml; charset=UTF8;charset=UTF8");
+                        var result = visService.CallService(areaBody, WebRequestHelper.CombineUrl(SelectedService.EndpointUri, "/area"), "POST", "text/xml; charset=utf-8");
                         MessageBox.Show(result);
                     }
                 });
@@ -595,7 +601,7 @@ namespace STM.StmModule.Simulator.ViewModels
                 {
                     if (!string.IsNullOrEmpty(uvid) && string.IsNullOrEmpty(routeStatus))
                     {
-                        endpoint += "?uvid=" + uvid;
+                        endpoint += "?uvid=" + Uri.EscapeDataString(uvid ?? string.Empty);
                     }
                     if (string.IsNullOrEmpty(uvid) && !string.IsNullOrEmpty(routeStatus))
                     {
@@ -603,12 +609,12 @@ namespace STM.StmModule.Simulator.ViewModels
                     }
                     if (!string.IsNullOrEmpty(uvid) && !string.IsNullOrEmpty(routeStatus))
                     {
-                        endpoint += "?uvid=" + uvid;
+                        endpoint += "?uvid=" + Uri.EscapeDataString(uvid ?? string.Empty);
                         endpoint += "&routeStatus=" + routeStatus;
                     }
 
                     var visService = new VisService();
-                    var result = visService.CallService(null, endpoint, "GET", "application/json; charset=UTF8");
+                    var result = visService.CallService(null, endpoint, "GET", "application/json; charset=utf-8");
 
                     if (!string.IsNullOrEmpty(result))
                     {
@@ -666,10 +672,10 @@ namespace STM.StmModule.Simulator.ViewModels
                     var visService = new VisService();
                     if (!string.IsNullOrEmpty(uvid))
                     {
-                        endpoint += "&uvid=" + uvid;
+                        endpoint += "&uvid=" + Uri.EscapeDataString(uvid ?? string.Empty);
                     }
 
-                    var result = visService.CallService(null, endpoint, "POST", "application/json; charset=UTF8");
+                    var result = visService.CallService(null, endpoint, "POST", "application/json; charset=utf-8");
                     MessageBox.Show(result);
                 }
                 catch(Exception ex)
@@ -719,8 +725,8 @@ namespace STM.StmModule.Simulator.ViewModels
                     var visService = new VisService();
                     if(!string.IsNullOrEmpty(uvid) && !string.IsNullOrEmpty(callbackEndpoint))
                     {
-                        var endpAddress = string.Format(endpoint + "?uvid={0}&callbackEndpoint={1}", uvid, callbackEndpoint);
-                        var result = visService.CallService(null, endpAddress, "DELETE", "application/json; charset=UTF8");
+                        var endpAddress = string.Format(endpoint + "?uvid={0}&callbackEndpoint={1}", Uri.EscapeDataString(uvid ?? string.Empty), callbackEndpoint);
+                        var result = visService.CallService(null, endpAddress, "DELETE", "application/json; charset=utf-8");
                         MessageBox.Show(result);
                     }
                     else

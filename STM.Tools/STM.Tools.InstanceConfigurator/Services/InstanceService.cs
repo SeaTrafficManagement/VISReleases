@@ -186,6 +186,7 @@ namespace STM.Tools.InstanceConfigurator.Services
                         current.ApiKey = settings.ApiKey;
                         current.ApplicationId = settings.ApplicationId;
                         current.UseHMACAuthentication = settings.UseHMACAuthentication;
+                        current.NotImplementetOperations = settings.NotImplementetOperations;
                     }
 
                     stmDbContext.SaveChanges();

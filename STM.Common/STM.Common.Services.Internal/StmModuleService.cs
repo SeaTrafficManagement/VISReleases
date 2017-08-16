@@ -74,7 +74,11 @@ namespace STM.Common.Services.Internal
                     log.Debug("Trying to send notification to STM module on url: " + InstanceContext.StmModuleUrl);
 
                     notification.MessageWaiting = nrOfNotifications;
-                    var response = WebRequestHelper.Post(InstanceContext.StmModuleUrl, notification.ToJson());
+
+                    WebHeaderCollection h = new WebHeaderCollection();
+                    h.Add("content-type", "application/json; charset=utf-8");
+
+                    var response = WebRequestHelper.Post(InstanceContext.StmModuleUrl, notification.ToJson(), h);
                     if (response.HttpStatusCode == HttpStatusCode.OK)
                     {
                         dbNotification.FetchedByShip = true;

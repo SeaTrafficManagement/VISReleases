@@ -35,6 +35,7 @@
   <!-- Items for the project -->
   <ItemGroup>
     <ServiceConfiguration Include="ServiceConfiguration.Dev.cscfg" />
+    <ServiceConfiguration Include="ServiceConfiguration.Prod.cscfg" />
     <ServiceDefinition Include="ServiceDefinition.csdef" />
     <ServiceConfiguration Include="ServiceConfiguration.Local.cscfg" />
     <ServiceConfiguration Include="ServiceConfiguration.Test.cscfg" />
@@ -49,12 +50,8 @@
       <Private>True</Private>
       <RoleType>Web</RoleType>
       <RoleName>STM.VIS.Services</RoleName>
-      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+      <UpdateDiagnosticsConnectionStringOnPublish>False</UpdateDiagnosticsConnectionStringOnPublish>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <PublishProfile Include="Profiles\StmVisTest.azurePubxml" />
-    <PublishProfile Include="Profiles\StmVisDev.azurePubxml" />
   </ItemGroup>
   <!-- Import the target files for this project template -->
   <PropertyGroup>

@@ -10,7 +10,6 @@ namespace STM.Common.DataAccess
 {
     public class StmDbContext : DbContext
     {
-
         public DbSet<ACLObject> ACLObject { get; set; }
         public DbSet<ConnectionInformation> ConnectionInformation { get; set; }
         public DbSet<Identity> Identity { get; set; }

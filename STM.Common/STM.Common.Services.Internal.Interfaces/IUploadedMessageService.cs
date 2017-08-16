@@ -14,6 +14,7 @@ namespace STM.Common.Services.Internal.Interfaces
         void InsertTXT(UploadedMessage message);
         List<UploadedMessage> GetMessagesByLimitNumber(int numberOfMessages, List<MessageType> mTypes);
         List<UploadedMessage> GetAllUnFetchedMessages(List<MessageType> mTypes);
+        List<UploadedMessage> GetMessagesInTimeIntervall(DateTime from, DateTime to, List<MessageType> mTypes);
         int GetNumberOfRemainingMessages(List<MessageType> mTypes);
         void InsertArea(UploadedMessage result);
         void SendAck(IList<UploadedMessage> messages);

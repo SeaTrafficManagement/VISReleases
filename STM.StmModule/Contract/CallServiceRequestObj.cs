@@ -23,7 +23,7 @@ namespace STM.StmModule.Simulator.Contract
         /// <param name="EndpointMethod">EndpointMethod.</param>
         /// <param name="Headers">Headers.</param>
         /// <param name="RequestType">RequestType.</param>
-        public CallServiceRequestObj(string Body = null, string EndpointMethod = null, List<Header> Headers = null, string RequestType = null, string ContentType = "application/json; charset=UTF8;charset=UTF8")
+        public CallServiceRequestObj(string Body = null, string EndpointMethod = null, List<Header> Headers = null, string RequestType = null, string ContentType = "application/json; charset=utf-8")
         {
             this.Body = Body;
             this.EndpointMethod = EndpointMethod;

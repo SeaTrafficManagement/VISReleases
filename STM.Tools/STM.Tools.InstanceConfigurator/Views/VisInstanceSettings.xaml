@@ -42,6 +42,8 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="5" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
 
@@ -198,7 +200,21 @@
                   VerticalAlignment="Center"
                   IsChecked="{Binding Path=VisInstanceSettings.UseHMACAuthentication}"/>
 
-        <StackPanel Grid.Row="17" 
+        <TextBlock Grid.Column="1"
+                   Grid.Row="17"
+                   Foreground="White" 
+                   FontWeight="SemiBold"
+                   HorizontalAlignment="Right"
+                   Text="Not implemented operations:" />
+
+        <TextBox Grid.Column="3"
+                 Grid.Row="17"
+                 HorizontalAlignment="Stretch"
+                 Height="60" TextWrapping="Wrap"
+                 VerticalScrollBarVisibility="Auto"
+                 Text="{Binding Path=VisInstanceSettings.NotImplementetOperations}" />
+
+        <StackPanel Grid.Row="19" 
                 Grid.Column="3" 
                 HorizontalAlignment="Right"
                 Orientation="Horizontal">

@@ -18,6 +18,12 @@ namespace STM.Common
             set { SetValue("ServiceName", value); }
         }
 
+        public static string NotImplementetOperations
+        {
+            get { return (string)GetValue("NotImplementetOperations"); }
+            set { SetValue("NotImplementetOperations", value); }
+        }
+
         public static string ServiceId
         {
             get { return (string)GetValue("ServiceId"); }

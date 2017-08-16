@@ -72,23 +72,24 @@ namespace STM.SPIS.Services.Private.Controllers
                 throw CreateHttpResponseException(HttpStatusCode.BadRequest, "Missing required parameter dataID.");
             }
 
+            var responseText = string.Empty;
+
             try
             {
                 foreach (var subscription in subscriptions)
                 {
-                    var entity = ConvertToEntity(subscription, dataId);
-
                     var mbUri = subscription.MbEndpointURL.ToString().ToLower();
                     var amssUri = subscription.AmssEndpointURL.ToString().ToLower();
 
-                    var sub = _SpisSubscriptionService.Get(s =>
+                    var entity = _SpisSubscriptionService.Get(s =>
                         s.SubscriberIdentity.UID == subscription.IdentityId
                         && s.MessageID == dataId
                         && s.MbEndpoint.ToLower() == mbUri
                         && s.AmssEndpoint.ToLower() == amssUri, includeProperties: "SubscriberIdentity, MessageType").FirstOrDefault();
 
-                    if (sub == null)
+                    if (entity == null)
                     {
+                        responseText += string.Format("Subscription for dataId:{0} mb endpoint: {1} amss endpoint {2} was created\r\n", dataId, mbUri, amssUri);
                         var acl = _aCLObjectService.Get(i => 
                             i.MessageID == dataId 
                             && i.Subscriber.UID == subscription.IdentityId).FirstOrDefault();
@@ -98,31 +99,55 @@ namespace STM.SPIS.Services.Private.Controllers
                             log.Debug(string.Format("No access for identity {0}", subscription.IdentityId));
                             throw CreateHttpResponseException(HttpStatusCode.Forbidden, string.Format("No access for identity {0}", subscription.IdentityId));
                         }
-                    }
-                    else if (entity.IsAuthorized == false)
-                    {
+
+                        entity = new SpisSubscription();
+                        entity.MessageID = dataId;
                         entity.IsAuthorized = true;
+                        entity.MbEndpoint = subscription.MbEndpointURL.ToString();
+                        entity.AmssEndpoint = subscription.AmssEndpointURL.ToString();
+                        entity.MessageType = _messageTypeService.Get(x => x.Name.ToLower() == "rtz").FirstOrDefault();
+                        entity.SubscriberIdentity = _identityService.Get(x => x.UID == subscription.IdentityId).FirstOrDefault();
+
+                        _SpisSubscriptionService.Insert(entity);
+                        _context.SaveChanges();
+                    }
+                    else
+                    {
+                        responseText += string.Format("Subscription for dataId:{0} mb endpoint: {1} amss endpoint {2} already exists\r\n", dataId, mbUri, amssUri);
+
+                        if (entity.IsAuthorized == false)
+                        {
+                            entity.IsAuthorized = true;
+                            _SpisSubscriptionService.Update(entity);
+                        }
                     }
 
                     // Send message to PortCDM 
                     var message = _publishedMessageService.Get(x => x.MessageID == dataId).FirstOrDefault();
+                    string messageString = null;
                     if (message != null)
                     {
-                        entity.QueueId = _publishedMessageService.SendMessage(System.Text.Encoding.Default.GetString(message.Message), 
-                            dataId, subscription.MbEndpointURL.ToString(), subscription.AmssEndpointURL.ToString(), new Identity {UID=subscription.IdentityId, Name=subscription.IdentityName });
+                        messageString = System.Text.Encoding.UTF8.GetString(message.Message);
                     }
 
-                    _SpisSubscriptionService.Insert(entity);
+                    entity.QueueId = _publishedMessageService.SendMessage(messageString, 
+                        dataId, subscription.MbEndpointURL.ToString(), 
+                        subscription.AmssEndpointURL.ToString(), 
+                        new Identity {UID=subscription.IdentityId,
+                            Name=subscription.IdentityName});
 
+                    responseText += string.Format("Port CDM queue was created with id: {0}\r\n", entity.QueueId);
+
+                    _SpisSubscriptionService.Update(entity);
+                    _context.SaveChanges();
                 }
-                _context.SaveChanges();
 
+                log.Debug(responseText);
                 return new ResponseObj(dataId);
             }
             catch (HttpResponseException ex)
             {
                 log.Error(ex.Message, ex);
-
                 throw;
             }
             catch (Exception ex)
@@ -130,7 +155,6 @@ namespace STM.SPIS.Services.Private.Controllers
                 log.Error(ex.Message, ex);
 
                 string msg = "SPIS internal server error. " + ex.Message;
-
                 throw CreateHttpResponseException(HttpStatusCode.InternalServerError, msg);
             }
         }
@@ -270,18 +294,6 @@ namespace STM.SPIS.Services.Private.Controllers
                 string msg = "SPIS internal server error. " + ex.Message;
                 throw CreateHttpResponseException(HttpStatusCode.InternalServerError, msg);
             }
-        }
-
-        private SpisSubscription ConvertToEntity(SubscriptionObject subscriptionObject, string dataId)
-        {
-            var to = new SpisSubscription();
-            to.MessageID = dataId;
-            to.IsAuthorized = true;
-            to.MbEndpoint = subscriptionObject.MbEndpointURL.ToString();
-            to.AmssEndpoint = subscriptionObject.AmssEndpointURL.ToString();
-            to.MessageType = _messageTypeService.Get(x => x.Name.ToLower() == "rtz").FirstOrDefault();
-            to.SubscriberIdentity = _identityService.Get(x => x.UID == subscriptionObject.IdentityId).FirstOrDefault();
-            return to;
         }
     }
 }

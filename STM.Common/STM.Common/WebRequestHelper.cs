@@ -21,6 +21,8 @@ namespace STM.Common
         public static string APIKey { get; set; }
         public static string APPId { get; set; }
 
+        public static bool IgnoreServerCertificateErrors { get; set; }
+
         public static WebResponse Get(string url, WebHeaderCollection headers = null, bool UseCertificate = false)
         {
             var result = ExecuteWebRequest(url, null, "GET", headers, UseCertificate);
@@ -52,6 +54,7 @@ namespace STM.Common
             HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
             request.Method = method;
             request.PreAuthenticate = true;
+            request.Accept = "";
 
             if (headers != null)
             {
@@ -97,6 +100,12 @@ namespace STM.Common
                 {
                     dataStream.Write(byteArray, 0, byteArray.Length);
                 }
+            }
+
+            if (IgnoreServerCertificateErrors)
+            {
+                ServicePointManager.ServerCertificateValidationCallback 
+                    = new System.Net.Security.RemoteCertificateValidationCallback(CheckServerCert);
             }
 
             var result = new WebResponse();
@@ -191,13 +200,14 @@ namespace STM.Common
 
         public static string CombineUrl (string baseUrl, string stringToAdd)
         {
-            if (!baseUrl.EndsWith("/"))
-            {
-                baseUrl += "/";
-            }
+            baseUrl = baseUrl.TrimEnd('/');
+            stringToAdd = stringToAdd.TrimStart('/');
+            return string.Format("{0}/{1}", baseUrl, stringToAdd);
+        }
 
-            var uri = new Uri(new Uri(baseUrl), stringToAdd);
-            return uri.ToString();
+        private static bool CheckServerCert(object sender, X509Certificate certification, X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
+        {
+            return true;
         }
 
         public class WebResponse

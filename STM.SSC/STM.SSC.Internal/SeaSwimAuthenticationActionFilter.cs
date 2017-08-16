@@ -26,7 +26,12 @@ namespace STM.SSC.Internal
 
             try
             {
-                if (bool.Parse(ConfigurationManager.AppSettings.Get("BypassClientCertificateValidation")) == true)
+                if (actionContext.ActionDescriptor.ActionName == "ping")
+                {
+                    serviceId = "Ping";
+                    orgId = "Ping";
+                }
+                else if (bool.Parse(ConfigurationManager.AppSettings.Get("BypassClientCertificateValidation")) == true)
                 {
                     log.Warn("BypassClientCertificateValidation is set to true");
                     serviceId = ConfigurationManager.AppSettings.Get("IncomingServiceId");

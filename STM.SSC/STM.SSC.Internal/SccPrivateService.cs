@@ -21,8 +21,8 @@ namespace STM.SSC.Internal
 
         public SccPrivateService()
         {
-            if (!InternalWebserver.Startup.IsStarted)
-                InternalWebserver.Startup.StartWebservice();
+            //if (!InternalWebserver.Startup.IsStarted)
+            //    InternalWebserver.Startup.StartWebservice();
         }
 
         public virtual CallServiceResponseObj CallService(CallServiceRequestObj data)

@@ -44,15 +44,9 @@ namespace STM.SSC.Internal.Models
             {
                 this.Country = Country;
             }
-            // to ensure "Email" is required (not null)
-            if (Email == null)
-            {
-                throw new InvalidDataException("Email is a required property for Organization and cannot be null");
-            }
-            else
-            {
-                this.Email = Email;
-            }
+
+            this.Email = Email;
+
             // to ensure "Mrn" is required (not null)
             if (Mrn == null)
             {

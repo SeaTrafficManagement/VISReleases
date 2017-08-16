@@ -9,6 +9,7 @@ using STM.Common.DataAccess.Entities;
 using System.Linq;
 using STM.Common.Exceptions;
 using STM.Common.XmlParsers;
+using System.Text;
 
 namespace STM.VIS.Services.Private.Tests
 {

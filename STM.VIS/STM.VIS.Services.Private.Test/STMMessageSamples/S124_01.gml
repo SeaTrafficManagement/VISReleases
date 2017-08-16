@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<S124:DataSet xmlns:S124="http://www.iho.int/S124/gml/1.0"
+	xsi:schemaLocation="http://www.iho.int/S124/gml/1.0 ../../schemas/0.5/S124.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:gml="http://www.opengis.net/gml/3.2"
+	xmlns:S100="http://www.iho.int/s100gml/1.0"
+	xmlns:xlink="http://www.w3.org/1999/xlink" gml:id="dataset.01">
+	<gml:boundedBy><gml:Envelope srsName="EPSG:4326">
+			<gml:lowerCorner>-6.0000 40.0000</gml:lowerCorner>
+			<gml:upperCorner>45.0000 65.0000</gml:upperCorner>
+		</gml:Envelope></gml:boundedBy>
+<imember>
+	<S124:S124_NWPreamble gml:id="PR.DK.034.17">
+	<id>urn:mrn:s124:NW.DK.034.17.P</id>
+		<messageSeriesIdentifier>
+				<NameOfSeries>Danish nav warn</NameOfSeries>
+				<typeOfWarning>coastal</typeOfWarning>
+				<warningNumber>34</warningNumber>
+				<year>17</year>
+				<productionAgency>
+					<language>eng</language>
+					<text>DANISH MARITIME AUTHORITY</text>
+				</productionAgency>
+				<country>DK</country>
+		</messageSeriesIdentifier>
+		<sourceDate>2017-02-27</sourceDate>
+		<generalArea>The Belts</generalArea>
+		<title><text>TSS "BETWEEN KORSOER AND SPROGOE". REDUCED DEPTHS OBSERVED</text></title>
+		<affectedCharts><internationalChartAffected>DK4STOBS</internationalChartAffected></affectedCharts>
+		<theWarningPart xlink:href="#NW.DK.034.17.1"/>
+		<theWarningPart xlink:href="#NW.DK.034.17.2"/>
+		<theWarningPart xlink:href="#NW.DK.034.17.3"/>
+		</S124:S124_NWPreamble>
+</imember>
+<member>
+	<S124:S124_NavigationalWarningPart gml:id="NW.DK.034.17.1">
+		<id>urn:mrn:s124:NW.DK.034.17.1</id>
+		<geometry>
+			<S100:pointProperty>
+				<S100:Point gml:id="PT.DK.034.17.1" srsName="EPSG:4326">
+					<gml:pos>55.32 11.042166666</gml:pos>
+				</S100:Point>
+			</S100:pointProperty>
+		</geometry>
+		<Subject><text>REDUCED DEPTHS OBSERVED - 16,58M AT THE COORDINATES 55-19.20N 11-02.53E</text></Subject>
+		<header xlink:href="#PR.DK.034.17"/>
+	</S124:S124_NavigationalWarningPart>
+</member>
+<member>
+	<S124:S124_NavigationalWarningPart gml:id="NW.DK.034.17.2">
+		<id>urn:mrn:s124:NW.DK.034.17.2</id>
+		<geometry>
+			<S100:pointProperty>
+				<S100:Point gml:id="PT.DK.034.17.2" srsName="EPSG:4326">
+					<gml:pos>55.3256 11.044</gml:pos>
+				</S100:Point>
+			</S100:pointProperty>
+		</geometry>
+		<Subject><text>REDUCED DEPTHS OBSERVED - 16,76M AT THE COORDINATES 55-19.54N 11-02.64E </text></Subject>
+		<header xlink:href="#PR.DK.034.17"/>
+	</S124:S124_NavigationalWarningPart>
+</member>
+<member>
+	<S124:S124_NavigationalWarningPart gml:id="NW.DK.034.17.3">
+		<id>urn:mrn:s124:NW.DK.034.17.3</id>
+		<geometry>
+			<S100:pointProperty>
+				<S100:Point gml:id="PT.DK.034.17.3" srsName="EPSG:4326">
+					<gml:pos>55.3241666 11.0446666</gml:pos>
+				</S100:Point>
+			</S100:pointProperty>
+		</geometry>
+		<Subject><text>REDUCED DEPTHS OBSERVED - 16,90M AT THE COORDINATES 55-19.45N 11-02.68E </text></Subject>
+		<header xlink:href="#PR.DK.034.17"/>
+	</S124:S124_NavigationalWarningPart>
+</member>
+<imember>
+	<S124:S124_NWPreamble gml:id="PR.RU.055.17">
+	<id>urn:mrn:s124:NW.RU.055.17.P</id>
+		<messageSeriesIdentifier>
+				<NameOfSeries>KALININGRAD NAV WARN</NameOfSeries>
+				<typeOfWarning>coastal</typeOfWarning>
+				<warningNumber>55</warningNumber>
+				<year>17</year>
+				<productionAgency>
+					<language>eng</language>
+					<text>KALININGRAD HYDROGRAPHY SERVICE</text>
+				</productionAgency>
+				<country>RU</country>
+		</messageSeriesIdentifier>
+		<sourceDate>2017-03-12</sourceDate>
+		<generalCategory>military exersices</generalCategory>
+		<generalArea>Central Baltic</generalArea>
+		<locality><text>SOUTHEASTERN BALTIC</text></locality>
+		<title><text>SHIPS EXERCISES 132100 THRU 172100 UTC MAR IN AREA TEMPORARILY DANGEROUS TO SHIPPING</text></title>
+		<fixedDateRange>
+			<timeOfDayStart>21:00:00Z</timeOfDayStart>
+				<timeOfDayEnd>21:00:00Z</timeOfDayEnd>
+			<dateStart>
+				<date>2017-03-13</date></dateStart>
+			<dateEnd>
+		<date>2017-03-17</date></dateEnd>
+	</fixedDateRange>
+	<theWarningPart xlink:href="#NW.RU.055.17.1"/>
+		</S124:S124_NWPreamble>
+ </imember>
+ <member>
+	<S124:S124_NavigationalWarningPart gml:id="NW.RU.055.17.1">
+	 <id>urn:mrn:s124:NW.RU.055.17.1</id>
+	 <extReferenceId>urn:mrn:Route:Uvid.34567.3846</extReferenceId>
+		<geometry>
+		<S100:surfaceProperty>
+			<gml:Polygon gml:id="s.NW.RU.055.17.1" srsName="EPSG:4326">
+				<gml:exterior>
+					<gml:LinearRing>
+						<gml:posList>
+							55.533333 19.026666
+							55.533333 19.833333
+							55.05 19.5833333
+							54.773333 19.5833333
+							54.838333 19.338333
+							55.191666 19.153333
+							55.333333 19.076666
+						</gml:posList>
+						</gml:LinearRing>
+					</gml:exterior>
+				</gml:Polygon>
+			</S100:surfaceProperty>
+		</geometry>
+		<Subject>
+			<text>Area bounded by 55-32.0N 019-01.6E 55-32.0N 019-50.0E 55-03.0N 019-35.0E 54-46.4N 019-35.0E 54-50.3N 019-20.3E 55-11.5N 019-09.2E 55-20.0N 019-04.6E</text>
+		</Subject>
+		<header xlink:href="#PR.RU.055.17"/>
+	</S124:S124_NavigationalWarningPart>
+</member>
+<imember>
+	<S124:S124_NWPreamble gml:id="PR.SE.059.17">
+	<id>urn:mrn:s124:NW.SE.059.17.P</id>
+		<messageSeriesIdentifier>
+				<NameOfSeries>Swedish nav warn</NameOfSeries>
+				<typeOfWarning>coastal</typeOfWarning>
+				<warningNumber>59</warningNumber>
+				<year>17</year>
+				<productionAgency>
+					<language>eng</language>
+					<text>SWEDISH MARITIME AUTHORITY</text>
+				</productionAgency>
+				<country>SE</country>
+		</messageSeriesIdentifier>
+		<sourceDate>2017-03-08</sourceDate>
+		<generalArea>The Sound</generalArea>
+		<locality><text>HÖLLVIKEN - FALSTERBOKANALEN</text></locality>
+		<title><text>THE BRIDGE OVER THE CANAL CAN NOT BE OPENED DUE TO TECHNICAL PROBLEMS</text></title>
+		<theWarningPart xlink:href="#NW.SE.059.17.1"/>
+		</S124:S124_NWPreamble>
+</imember>
+<member>
+	<S124:S124_NavigationalWarningPart gml:id="NW.SE.059.17.1">
+		<id>urn:mrn:s124:NW.SE.059.17.1</id>
+		<geometry>
+			<S100:pointProperty>
+				<S100:Point gml:id="PT.SE.059.17.1" srsName="EPSG:4326">
+					<gml:pos>55.41 12.935</gml:pos>
+				</S100:Point>
+			</S100:pointProperty>
+		</geometry>  
+		<header xlink:href="#PR.SE.059.17"/>
+	</S124:S124_NavigationalWarningPart>
+</member>
+<imember>
+	<S124:S124_NWPreamble gml:id="PR.III.030.17">
+	<id>urn:mrn:s124:NW.III.030.17.P</id>
+		<messageSeriesIdentifier>
+				<NameOfSeries>NAVAREA III</NameOfSeries>
+				<typeOfWarning>NAVAREA</typeOfWarning>
+				<warningNumber>30</warningNumber>
+				<year>17</year>
+				<productionAgency>
+					<language>eng</language>
+					<text>INSTITUTO HIDROGRÁFICO DE LA MARINA</text>
+				</productionAgency>
+				<country>ES</country>
+		</messageSeriesIdentifier>
+		<sourceDate>2017-02-25</sourceDate>
+		<generalCategory>military exersices</generalCategory>
+		<generalArea>Western Mediterranean Sea</generalArea>
+		<locality><text>Barcelona approaches</text></locality>
+		<title><text>Military exercises, from 01 trough 31 MAR17 Cancel this message 01 APR</text></title>
+		<fixedDateRange>
+			<dateStart>
+				<date>2017-03-01</date></dateStart>
+			<dateEnd>
+		<date>2017-03-31</date></dateEnd>
+	</fixedDateRange>
+	<theWarningPart xlink:href="#NW.III.030.17.1"/>
+	<theWarningPart xlink:href="#NW.III.030.17.2"/>
+	</S124:S124_NWPreamble>
+ </imember>
+ <member>
+	<S124:S124_NavigationalWarningPart gml:id="NW.III.030.17.1">
+	 <id>urn:mrn:s124:NW.III.030.17.1</id>
+		<geometry>
+		<S100:surfaceProperty>
+			<gml:Polygon gml:id="s.NW.III.030.17.1" srsName="EPSG:4326">
+				<gml:exterior>
+					<gml:LinearRing>
+						<gml:posList>
+							41.0 1.42
+							41.0 1.85
+							40.7 1.85
+							40.7 1.42
+						</gml:posList>
+					</gml:LinearRing>
+				</gml:exterior>
+			</gml:Polygon>
+		</S100:surfaceProperty>
+		</geometry>
+		<Subject>
+			<text>Area bounded by 041.0N 0 001-25.2E, 041.0N 001-51.0E, 40-42.0N, 001-51.0E, 40-42.0N 001-25.2E</text>
+		</Subject>
+			<header xlink:href="#PR.III.030.17"/>
+	</S124:S124_NavigationalWarningPart>
+</member>
+<imember>
+	<S124:S124_References gml:id="NW.III.030.17.2">
+			<id>urn:mrn:s124:NW.III.030.17.2</id>
+				<referenceType>in-force</referenceType>
+			<messageReference>
+				<NameOfSeries>NAVAREA III</NameOfSeries>
+				<typeOfWarning>NAVAREA</typeOfWarning>
+				<warningNumber>30</warningNumber>
+				<year>17</year>
+				<productionAgency>
+					<language>eng</language>
+					<text>INSTITUTO HIDROGRÁFICO DE LA MARINA</text>
+				</productionAgency>
+				<country>ES</country>
+			</messageReference>
+			<cancellationTime>
+				<timeOfDayEnd>01:00:00Z</timeOfDayEnd>
+				<dateEnd>
+					<date>2017-04-01</date>
+				</dateEnd>
+			</cancellationTime>
+		<header xlink:href="NW.III.030.17"/>
+	</S124:S124_References>
+</imember>
+</S124:DataSet>

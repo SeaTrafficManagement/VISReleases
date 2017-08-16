@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<route xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://www.cirm.org/RTZ/1/1" version="1.1"
+         xmlns:stm="http://www.cirm.org/STM/1/0/0">    
+ <routeInfo routeStatus="1" vesselVoyage="urn:mrn:stm:voyage:id:landsort:0002" routeName="DR2-LANDSORT-STAVSNÄS-HÖGUDD">
+     <extensions>
+      <extension xsi:type="stm:RouteInfoExtension" manufacturer="STM" name="routeInfoEx" version="1.0.0"
+            routeStatusEnum="1" routeVersion="BCF8ABB2-4BE2-4082-8718-E3594734A500">
+        <stm:routeChanges>
+          <stm:historyItem dateTime="2016-10-20T11:14:41Z" author="Simon Ross"
+                    reason="initial creation"/>
+          <stm:historyItem dateTime="2016-10-21T09:12:29Z" author="William Brown"
+                    reason="corrections for reference points using"/>
+        </stm:routeChanges>
+      </extension>
+    </extensions>
+ </routeInfo>
+    <waypoints>
+        <defaultWaypoint radius="0.30">
+            <leg portsideXTD="0.10" starboardXTD="0.10" safetyContour="30.00" safetyDepth="30.00" geometryType="Loxodrome"/>
+        </defaultWaypoint>
+        <waypoint id="1" name="Bordningspunkten">
+            <position lat="58.67646948" lon="17.87776800"/>
+        </waypoint>
+        <waypoint id="2" name="Bredgrund" radius="0.50">
+            <position lat="58.72605223" lon="17.87902692"/>
+        </waypoint>
+        <waypoint id="3" name="Ost Landsort" radius="0.50">
+            <position lat="58.73469225" lon="17.88728387"/>
+        </waypoint>
+        <waypoint id="4" name="Viksten" radius="0.50">
+            <position lat="58.78406575" lon="17.96218722"/>
+        </waypoint>
+        <waypoint id="5" name="Måsknuv" radius="0.50">
+            <position lat="58.85765000" lon="18.00720000"/>
+            <leg portsideXTD="0.15" starboardXTD="0.15"/>
+        </waypoint>
+        <waypoint id="6" name="SAFETYCORRIDOR" radius="0.50">
+            <position lat="58.86655758" lon="18.01898755"/>
+            <leg portsideXTD="0.15" starboardXTD="0.15"/>
+        </waypoint>
+        <waypoint id="7" name="SAFETYCORRIDOR" radius="0.50">
+            <position lat="58.86979708" lon="18.02316478"/>
+            <leg starboardXTD="0.15"/>
+        </waypoint>
+        <waypoint id="8" name="Ö Röko" radius="0.50">
+            <position lat="58.90751573" lon="18.07331285"/>
+            <leg portsideXTD="0.15" starboardXTD="0.15"/>
+        </waypoint>
+        <waypoint id="9" name="Älvsnabben" radius="0.50">
+            <position lat="58.97281820" lon="18.19353350"/>
+            <leg portsideXTD="0.15" starboardXTD="0.15"/>
+        </waypoint>
+        <waypoint id="10" name="SAFETYCORRIDOR" radius="0.50">
+            <position lat="59.00361580" lon="18.24522003"/>
+            <leg portsideXTD="0.15" starboardXTD="0.15"/>
+        </waypoint>
+        <waypoint id="11" name="SAFETYCORRIDOR" radius="0.50">
+            <position lat="59.00827302" lon="18.25308440"/>
+            <leg portsideXTD="0.13" starboardXTD="0.15"/>
+        </waypoint>
+        <waypoint id="12" name="Mysingeholm" radius="0.50">
+            <position lat="59.01686388" lon="18.26738882"/>
+            <leg portsideXTD="0.15" starboardXTD="0.15"/>
+        </waypoint>
+        <waypoint id="13" name="Långgarn" radius="0.50">
+            <position lat="59.06579770" lon="18.29409625"/>
+            <leg portsideXTD="0.15" starboardXTD="0.15"/>
+        </waypoint>
+        <waypoint id="14" name="Gålö" radius="0.50">
+            <position lat="59.09021988" lon="18.34431318"/>
+        </waypoint>
+        <waypoint id="15" name="Ersholmen" radius="0.50">
+            <position lat="59.09709655" lon="18.36328248"/>
+            <leg portsideXTD="0.04" starboardXTD="0.04"/>
+        </waypoint>
+        <waypoint id="16" name="Kycklingarna" radius="0.50">
+            <position lat="59.10998397" lon="18.38639828"/>
+            <leg portsideXTD="0.03" starboardXTD="0.05"/>
+        </waypoint>
+        <waypoint id="17" name="Äpplet" radius="0.50">
+            <position lat="59.11204657" lon="18.39903470"/>
+            <leg portsideXTD="0.03" starboardXTD="0.03"/>
+        </waypoint>
+        <waypoint id="18" name="Allegrogrund" radius="0.50">
+            <position lat="59.11593438" lon="18.41544438"/>
+            <leg portsideXTD="0.02" starboardXTD="0.02"/>
+        </waypoint>
+        <waypoint id="19" name="Riksdalerskäret" radius="0.40">
+            <position lat="59.12303183" lon="18.42830307"/>
+            <leg portsideXTD="0.04" starboardXTD="0.01"/>
+        </waypoint>
+        <waypoint id="20" name="Genböte" radius="0.40">
+            <position lat="59.13288642" lon="18.42653227"/>
+            <leg portsideXTD="0.02" starboardXTD="0.03"/>
+        </waypoint>
+        <waypoint id="21" name="Plinten" radius="0.50">
+            <position lat="59.13859902" lon="18.44137455"/>
+            <leg portsideXTD="0.03" starboardXTD="0.03"/>
+        </waypoint>
+        <waypoint id="22" name="Nålsögat" radius="0.50">
+            <position lat="59.14408660" lon="18.46263967"/>
+            <leg portsideXTD="0.02" starboardXTD="0.03"/>
+        </waypoint>
+        <waypoint id="23" name="SAFETYCORRIDOR" radius="0.50">
+            <position lat="59.15586465" lon="18.53731863"/>
+        </waypoint>
+        <waypoint id="24" name="Fjärdhällan" radius="0.50">
+            <position lat="59.15948373" lon="18.55989147"/>
+            <leg portsideXTD="0.08" starboardXTD="0.08"/>
+        </waypoint>
+        <waypoint id="25" name="SAFETYCORRIDOR" radius="0.50">
+            <position lat="59.21445997" lon="18.60547007"/>
+            <leg portsideXTD="0.08" starboardXTD="0.08"/>
+        </waypoint>
+        <waypoint id="26" name="Kofotsgrund" radius="0.50">
+            <position lat="59.21730023" lon="18.60778745"/>
+            <leg portsideXTD="0.05" starboardXTD="0.05"/>
+        </waypoint>
+        <waypoint id="27" name="SAFETYCORRIDOR" radius="0.50">
+            <position lat="59.22465372" lon="18.62388752"/>
+            <leg portsideXTD="0.03" starboardXTD="0.03"/>
+        </waypoint>
+        <waypoint id="28" name="Furuskär" radius="0.50">
+            <position lat="59.22736397" lon="18.62981790"/>
+            <leg portsideXTD="0.08" starboardXTD="0.08"/>
+        </waypoint>
+        <waypoint id="29" name="Franska Stenarna" radius="0.50">
+            <position lat="59.24883123" lon="18.66183468"/>
+            <leg portsideXTD="0.08" starboardXTD="0.08"/>
+        </waypoint>
+        <waypoint id="31" name="HÖLÖ" radius="0.50">
+            <position lat="59.27370573" lon="18.71483588"/>
+        </waypoint>
+        <waypoint id="32" name="HÖGKOBBEN" radius="0.50">
+            <position lat="59.29234343" lon="18.71497737"/>
+            <leg portsideXTD="0.05" starboardXTD="0.05"/>
+        </waypoint>
+        <waypoint id="33" name="L GÄSSHOLMEN" radius="0.50">
+            <position lat="59.30429835" lon="18.72622067"/>
+            <leg portsideXTD="0.05" starboardXTD="0.05"/>
+        </waypoint>
+        <waypoint id="34" name="TROLLHARAN" radius="0.50">
+            <position lat="59.31956372" lon="18.76886280"/>
+            <leg starboardXTD="0.05"/>
+        </waypoint>
+        <waypoint id="35" name="VITA MÄRREN" radius="1.00">
+            <position lat="59.35423557" lon="18.77480035"/>
+            <leg portsideXTD="0.20" starboardXTD="0.20"/>
+        </waypoint>
+        <waypoint id="37" name="KLÖVHOLMEN" radius="1.00">
+            <position lat="59.36779202" lon="18.76270792"/>
+            <leg portsideXTD="0.07" starboardXTD="0.07"/>
+        </waypoint>
+        <waypoint id="38" name="INRE KANHOLMSGRUND" radius="0.80">
+            <position lat="59.37319233" lon="18.73073227"/>
+            <leg portsideXTD="0.03" starboardXTD="0.03"/>
+        </waypoint>
+        <waypoint id="39" name="BRANTEN" radius="0.80">
+            <position lat="59.37474507" lon="18.71386563"/>
+            <leg portsideXTD="0.04" starboardXTD="0.04"/>
+        </waypoint>
+        <waypoint id="40" name="SOLLENKROKA FYR" radius="0.80">
+            <position lat="59.37838593" lon="18.67653867"/>
+            <leg portsideXTD="0.04" starboardXTD="0.04"/>
+        </waypoint>
+        <waypoint id="41" name="SVARTVIKSKOBB" radius="0.80">
+            <position lat="59.37592198" lon="18.65958177"/>
+            <leg portsideXTD="0.04" starboardXTD="0.04"/>
+        </waypoint>
+        <waypoint id="42" name="ABBORRKROKEN" radius="0.80">
+            <position lat="59.37532720" lon="18.63006332"/>
+            <leg portsideXTD="0.04" starboardXTD="0.04"/>
+        </waypoint>
+        <waypoint id="43" name="KALVÖ" radius="0.60">
+            <position lat="59.37135167" lon="18.60608233"/>
+            <leg portsideXTD="0.04" starboardXTD="0.04"/>
+        </waypoint>
+        <waypoint id="44" name="YXSKÄRET" radius="0.80">
+            <position lat="59.38430532" lon="18.58057063"/>
+        </waypoint>
+        <waypoint id="45" name="RÅGHOLMEN" radius="0.80">
+            <position lat="59.39214702" lon="18.54911433"/>
+            <leg portsideXTD="0.04" starboardXTD="0.04"/>
+        </waypoint>
+        <waypoint id="46" name="NYVARP" radius="0.80">
+            <position lat="59.40845148" lon="18.52376350"/>
+            <leg portsideXTD="0.05" starboardXTD="0.05"/>
+        </waypoint>
+        <waypoint id="47" name="VALÖARNA 1" radius="0.80">
+            <position lat="59.42422400" lon="18.50451382"/>
+        </waypoint>
+        <waypoint id="48" name="VALEN" radius="0.80">
+            <position lat="59.43656885" lon="18.48415123"/>
+        </waypoint>
+        <waypoint id="49" name="Ö ÄLGÖGRUND" radius="0.80">
+            <position lat="59.44410440" lon="18.42076138"/>
+            <leg starboardXTD="0.05"/>
+        </waypoint>
+        <waypoint id="50" name="TISTERÖ" radius="0.50">
+            <position lat="59.43864797" lon="18.36954610"/>
+            <leg portsideXTD="0.05" starboardXTD="0.05"/>
+        </waypoint>
+        <waypoint id="51" name="ELIDAS GRUND" radius="0.80">
+            <position lat="59.42175347" lon="18.39956448"/>
+            <leg portsideXTD="0.05" starboardXTD="0.05"/>
+        </waypoint>
+        <waypoint id="52" name="PUKHOLMEN" radius="0.80">
+            <position lat="59.40816825" lon="18.42193362"/>
+        </waypoint>
+        <waypoint id="53" name="OXDJUPET ENTRANCE (8kn)" radius="0.50">
+            <position lat="59.40226010" lon="18.43315905"/>
+            <leg portsideXTD="0.03" starboardXTD="0.03"/>
+        </waypoint>
+        <waypoint id="54" name="OFB (MELLAN FYRAR)" radius="0.50">
+            <position lat="59.39938495" lon="18.43880735"/>
+            <leg portsideXTD="0.03" starboardXTD="0.03"/>
+        </waypoint>
+        <waypoint id="55" name="OXDJUPET" radius="0.50">
+            <position lat="59.39541938" lon="18.44533265"/>
+            <leg portsideXTD="0.03" starboardXTD="0.03"/>
+        </waypoint>
+        <waypoint id="56" name="OXDJUPET 8KN SLUT" radius="0.50">
+            <position lat="59.38952883" lon="18.44572085"/>
+            <leg portsideXTD="0.05" starboardXTD="0.05"/>
+        </waypoint>
+        <waypoint id="57" name="TYNNINGÖUDD" radius="0.45">
+            <position lat="59.35172890" lon="18.44843410"/>
+            <leg portsideXTD="0.08" starboardXTD="0.08"/>
+        </waypoint>
+        <waypoint id="58" name="LG VTS" radius="0.80">
+            <position lat="59.36015745" lon="18.41786192"/>
+            <leg portsideXTD="0.08" starboardXTD="0.08"/>
+        </waypoint>
+        <waypoint id="59" name="LJUNGBERGSGARDEN" radius="0.80">
+            <position lat="59.36233868" lon="18.40982653"/>
+            <leg portsideXTD="0.05" starboardXTD="0.05"/>
+        </waypoint>
+        <waypoint id="60" name="SE BERGHOLMEN" radius="0.80">
+            <position lat="59.36831393" lon="18.39566673"/>
+            <leg portsideXTD="0.04" starboardXTD="0.04"/>
+        </waypoint>
+        <waypoint id="61" name="NW BERGHOLMEN" radius="0.80">
+            <position lat="59.37165963" lon="18.38203352"/>
+            <leg portsideXTD="0.04" starboardXTD="0.04"/>
+        </waypoint>
+        <waypoint id="62" name="SAFETYCORRIDOR" radius="0.80">
+            <position lat="59.37364573" lon="18.36660968"/>
+            <leg portsideXTD="0.04" starboardXTD="0.04"/>
+        </waypoint>
+        <waypoint id="63" name="TOBAKSGRUND" radius="0.80">
+            <position lat="59.37666423" lon="18.34237913"/>
+            <leg portsideXTD="0.08" starboardXTD="0.08"/>
+        </waypoint>
+        <waypoint id="64" name="SAFETYCORRIDOR" radius="0.80">
+            <position lat="59.37886920" lon="18.30943573"/>
+            <leg portsideXTD="0.08" starboardXTD="0.08"/>
+        </waypoint>
+        <waypoint id="65" name="GRANHOLMEN" radius="0.45">
+            <position lat="59.37985888" lon="18.29396237"/>
+            <leg portsideXTD="0.03" starboardXTD="0.03"/>
+        </waypoint>
+        <waypoint id="66" name="ST HÖGGARNSBANK" radius="0.80">
+            <position lat="59.37346195" lon="18.28221098"/>
+            <leg portsideXTD="0.04" starboardXTD="0.04"/>
+        </waypoint>
+        <waypoint id="67" name="L HÖGGARNSBANK" radius="0.80">
+            <position lat="59.36787117" lon="18.26955973"/>
+            <leg portsideXTD="0.04" starboardXTD="0.04"/>
+        </waypoint>
+        <waypoint id="68" name="ELFVIK" radius="0.80">
+            <position lat="59.36184138" lon="18.26041127"/>
+            <leg portsideXTD="0.04" starboardXTD="0.04"/>
+        </waypoint>
+        <waypoint id="69" name="KLIPPUDDEN" radius="0.80">
+            <position lat="59.34504973" lon="18.22611850"/>
+            <leg portsideXTD="0.05" starboardXTD="0.05"/>
+        </waypoint>
+        <waypoint id="70" name="HÖGUDD" radius="0.80">
+            <position lat="59.33650693" lon="18.20625533"/>
+            <leg portsideXTD="0.05" starboardXTD="0.05"/>
+        </waypoint>
+    </waypoints>
+    <schedules>
+        <schedule id="0" name="8.12">
+            <manual>
+                <scheduleElement waypointId="31" speed="12.00"/>
+                <scheduleElement waypointId="32" speed="12.00"/>
+                <scheduleElement waypointId="33" speed="12.00"/>
+                <scheduleElement waypointId="34" speed="12.00"/>
+                <scheduleElement waypointId="35" speed="12.00"/>
+                <scheduleElement waypointId="40" speed="12.00"/>
+                <scheduleElement waypointId="41" speed="12.00"/>
+                <scheduleElement waypointId="42" speed="12.00"/>
+                <scheduleElement waypointId="43" speed="12.00"/>
+                <scheduleElement waypointId="44" speed="12.00"/>
+                <scheduleElement waypointId="45" speed="12.00"/>
+                <scheduleElement waypointId="46" speed="12.00"/>
+                <scheduleElement waypointId="47" speed="12.00"/>
+                <scheduleElement waypointId="48" speed="12.00"/>
+                <scheduleElement waypointId="49" speed="12.00"/>
+                <scheduleElement waypointId="50" speed="12.00"/>
+                <scheduleElement waypointId="51" speed="12.00"/>
+                <scheduleElement waypointId="52" speed="12.00"/>
+                <scheduleElement waypointId="53" speed="12.00"/>
+                <scheduleElement waypointId="54" speed="8.00"/>
+                <scheduleElement waypointId="55" speed="8.00"/>
+                <scheduleElement waypointId="56" speed="8.00"/>
+                <scheduleElement waypointId="57" speed="12.00"/>
+                <scheduleElement waypointId="58" speed="12.00"/>
+                <scheduleElement waypointId="59" speed="8.00"/>
+                <scheduleElement waypointId="60" speed="8.00"/>
+                <scheduleElement waypointId="61" speed="8.00"/>
+                <scheduleElement waypointId="62" speed="12.00"/>
+                <scheduleElement waypointId="63" speed="12.00"/>
+                <scheduleElement waypointId="64" speed="12.00"/>
+                <scheduleElement waypointId="65" speed="12.00"/>
+                <scheduleElement waypointId="66" speed="12.00"/>
+                <scheduleElement waypointId="67" speed="12.00"/>
+                <scheduleElement waypointId="68" speed="12.00"/>
+                <scheduleElement waypointId="69" speed="12.00"/>
+                <scheduleElement waypointId="70" speed="12.00"/>
+            </manual>
+        </schedule>
+        <schedule id="1" name="8,12,17">
+            <manual>
+                <scheduleElement waypointId="32" speed="12.00"/>
+                <scheduleElement waypointId="33" speed="12.00"/>
+                <scheduleElement waypointId="34" speed="17.00"/>
+                <scheduleElement waypointId="35" speed="17.00"/>
+                <scheduleElement waypointId="37" speed="17.00"/>
+                <scheduleElement waypointId="38" speed="17.00"/>
+                <scheduleElement waypointId="39" speed="17.00"/>
+                <scheduleElement waypointId="40" speed="12.00"/>
+                <scheduleElement waypointId="41" speed="12.00"/>
+                <scheduleElement waypointId="42" speed="12.00"/>
+                <scheduleElement waypointId="43" speed="12.00"/>
+                <scheduleElement waypointId="44" speed="12.00"/>
+                <scheduleElement waypointId="45" speed="12.00"/>
+                <scheduleElement waypointId="46" speed="12.00"/>
+                <scheduleElement waypointId="47" speed="12.00"/>
+                <scheduleElement waypointId="48" speed="12.00"/>
+                <scheduleElement waypointId="49" speed="12.00"/>
+                <scheduleElement waypointId="50" speed="12.00"/>
+                <scheduleElement waypointId="51" speed="12.00"/>
+                <scheduleElement waypointId="52" speed="12.00"/>
+                <scheduleElement waypointId="53" speed="12.00"/>
+                <scheduleElement waypointId="54" speed="8.00"/>
+                <scheduleElement waypointId="55" speed="8.00"/>
+                <scheduleElement waypointId="56" speed="8.00"/>
+                <scheduleElement waypointId="57" speed="12.00"/>
+                <scheduleElement waypointId="58" speed="12.00"/>
+                <scheduleElement waypointId="59" speed="8.00"/>
+                <scheduleElement waypointId="60" speed="8.00"/>
+                <scheduleElement waypointId="61" speed="8.00"/>
+                <scheduleElement waypointId="62" speed="12.00"/>
+                <scheduleElement waypointId="63" speed="12.00"/>
+                <scheduleElement waypointId="64" speed="12.00"/>
+                <scheduleElement waypointId="65" speed="12.00"/>
+                <scheduleElement waypointId="66" speed="12.00"/>
+                <scheduleElement waypointId="67" speed="12.00"/>
+                <scheduleElement waypointId="68" speed="12.00"/>
+                <scheduleElement waypointId="69" speed="12.00"/>
+                <scheduleElement waypointId="70" speed="12.00"/>
+            </manual>
+        </schedule>
+    </schedules>
+</route>

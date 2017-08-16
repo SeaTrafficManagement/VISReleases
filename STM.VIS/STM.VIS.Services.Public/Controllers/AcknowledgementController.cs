@@ -27,18 +27,22 @@ namespace STM.VIS.Services.Public.Controllers
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private INotificationService _notificationService;
+        private IIdentityService _identityService;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="context"></param>
         /// <param name="notificationService"></param>
+        /// <param name="identityService"></param>
         [InjectionConstructor]
         public AcknowledgementController(StmDbContext context,
-            INotificationService notificationService)
+            INotificationService notificationService,
+            IIdentityService identityService)
         {
             _context = context;
             _notificationService = notificationService;
+            _identityService = identityService;
         }
 
         /// <summary>
@@ -62,12 +66,15 @@ namespace STM.VIS.Services.Public.Controllers
         {
             _logEventService.LogInfo(EventNumber.VIS_acknowledgement_request, EventDataType.Other, null, 
                 JsonConvert.SerializeObject(deliveryAck, Formatting.Indented));
+
+            var identity = _identityService.GetCallerIdentity();
+
             try
             {
                 _notificationService.Notify(new Common.Services.Internal.Interfaces.Notification
                 {
-                    FromOrgId = InstanceContext.CallerServiceId,
-                    FromOrgName = deliveryAck.FromName,
+                    FromOrgId = identity.UID,
+                    FromOrgName = identity.Name,
                     FromServiceId = InstanceContext.CallerServiceId,
                     NotificationCreatedAt = DateTime.UtcNow,
                     NotificationType = EnumNotificationType.ACKNOWLEDGEMENT_RECEIVED,

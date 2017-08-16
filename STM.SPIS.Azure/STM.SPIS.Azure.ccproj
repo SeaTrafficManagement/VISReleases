@@ -35,6 +35,7 @@
   <!-- Items for the project -->
   <ItemGroup>
     <ServiceConfiguration Include="ServiceConfiguration.Dev.cscfg" />
+    <ServiceConfiguration Include="ServiceConfiguration.Prod.cscfg" />
     <ServiceDefinition Include="ServiceDefinition.csdef" />
     <ServiceConfiguration Include="ServiceConfiguration.Local.cscfg" />
     <ServiceConfiguration Include="ServiceConfiguration.Test.cscfg" />
@@ -51,10 +52,6 @@
       <RoleName>STM.SPIS.Services</RoleName>
       <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <PublishProfile Include="Profiles\StmSpisTest.azurePubxml" />
-    <PublishProfile Include="Profiles\StmSpisDev.azurePubxml" />
   </ItemGroup>
   <!-- Import the target files for this project template -->
   <PropertyGroup>

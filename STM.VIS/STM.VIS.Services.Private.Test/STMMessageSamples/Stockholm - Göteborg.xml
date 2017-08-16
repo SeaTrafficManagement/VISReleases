@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<route xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://www.cirm.org/RTZ/1/1" version="1.1"
+         xmlns:stm="http://stmvalidation.eu/STM/1/0/0"> 
+    <routeInfo routeStatus="1" vesselVoyage="urn:mrn:stm:voyage:id:test:001" routeName="Stockholm - Göteborg">
+     <extensions>
+      <extension xsi:type="stm:RouteInfoExtension" manufacturer="STM" name="routeInfoEx" version="1.0.0"
+            routeStatusEnum="7" routeVersion="BCF8ABB2-4BE2-4082-8718-E3594734A502">
+      </extension>
+    </extensions>	
+	</routeInfo>
+    <waypoints>
+        <defaultWaypoint radius="0.30">
+            <leg portsideXTD="0.10" starboardXTD="0.10" safetyContour="30.00" safetyDepth="30.00" geometryType="Loxodrome"/>
+        </defaultWaypoint>
+      <waypoint id="1">
+        <position lat="59.32161271152411" lon="18.151062112301588"/>
+      </waypoint>
+      <waypoint id="2">
+        <position lat="59.337024144117514" lon="18.211486916989088"/>
+      </waypoint>
+      <waypoint id="3">
+        <position lat="59.36502702710874" lon="18.266418557614088"/>
+      </waypoint>
+      <waypoint id="4">
+        <position lat="59.36572680328066" lon="18.387268166989088"/>
+      </waypoint>
+      <waypoint id="5">
+        <position lat="59.352428587993316" lon="18.447692971676588"/>
+      </waypoint>
+      <waypoint id="6">
+        <position lat="59.39440520295869" lon="18.449066262692213"/>
+      </waypoint>
+      <waypoint id="7">
+        <position lat="59.42725061430099" lon="18.401001077145338"/>
+      </waypoint>
+      <waypoint id="8">
+        <position lat="59.44470860340255" lon="18.387268166989088"/>
+      </waypoint>
+      <waypoint id="9">
+        <position lat="59.43632989277786" lon="18.503997903317213"/>
+      </waypoint>
+      <waypoint id="10">
+        <position lat="59.39929909155692" lon="18.563049416989088"/>
+      </waypoint>
+      <waypoint id="11">
+        <position lat="59.35802847160991" lon="18.804748635739088"/>
+      </waypoint>
+      <waypoint id="12">
+        <position lat="59.31460520401496" lon="18.782775979489088"/>
+      </waypoint>
+      <waypoint id="13">
+        <position lat="59.28445645846193" lon="18.738830666989088"/>
+      </waypoint>
+      <waypoint id="14">
+        <position lat="59.22899723788362" lon="18.661926370114088"/>
+      </waypoint>
+      <waypoint id="15">
+        <position lat="59.16007422205986" lon="18.596008401364088"/>
+      </waypoint>
+      <waypoint id="16">
+        <position lat="59.11780779568097" lon="18.457306008785963"/>
+      </waypoint>
+      <waypoint id="17">
+        <position lat="59.089601181643985" lon="18.398254495114088"/>
+      </waypoint>
+      <waypoint id="18">
+        <position lat="59.08325149509241" lon="18.359802346676588"/>
+      </waypoint>
+      <waypoint id="19">
+        <position lat="59.01756922635445" lon="18.287017922848463"/>
+      </waypoint>
+      <waypoint id="20">
+        <position lat="58.94821969490431" lon="18.155181985348463"/>
+      </waypoint>
+      <waypoint id="21">
+        <position lat="58.75571918165209" lon="17.964294450357556"/>
+      </waypoint>
+      <waypoint id="22">
+        <position lat="56.2279323510161" lon="17.47045911848545"/>
+      </waypoint>
+      <waypoint id="23">
+        <position lat="54.87960899208586" lon="15.38305677473545"/>
+      </waypoint>
+      <waypoint id="24">
+        <position lat="54.993215588337485" lon="12.95507825911045"/>
+      </waypoint>
+      <waypoint id="25">
+        <position lat="55.44443947152721" lon="12.62548841536045"/>
+      </waypoint>
+      <waypoint id="26">
+        <position lat="55.60612614089675" lon="12.82324232161045"/>
+      </waypoint>
+      <waypoint id="27">
+        <position lat="56.38639069144765" lon="12.40576185286045"/>
+      </waypoint>
+      <waypoint id="28">
+        <position lat="57.492804085073" lon="11.69714368879795"/>
+      </waypoint>
+      <waypoint id="29">
+        <position lat="57.60457089585651" lon="11.674621598795056"/>
+      </waypoint>
+      <waypoint id="30">
+        <position lat="57.66779066158845" lon="11.733673112466931"/>
+      </waypoint>
+      <waypoint id="31">
+        <position lat="57.68835009527827" lon="11.888854997232556"/>
+      </waypoint>
+      <waypoint id="32">
+        <position lat="57.692999591466844" lon="11.906295778462663"/>
+      </waypoint>
+      <waypoint id="33">
+        <position lat="57.700888835707005" lon="11.923290254781023"/>
+      </waypoint>
+      <waypoint id="34">
+        <position lat="57.7040073652672" lon="11.950412752339616"/>
+      </waypoint>
+      <waypoint id="35">
+        <position lat="57.71647879953414" lon="11.970325472066179"/>
+      </waypoint>
+    </waypoints>
+</route>

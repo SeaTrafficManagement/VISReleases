@@ -18,6 +18,7 @@ using System.Configuration;
 using STM.Common.Services;
 using STM.Common.Services.Internal.Interfaces;
 using STM.Common.XmlParsers;
+using Newtonsoft.Json;
 
 namespace STM.VIS.Services.Private.Controllers
 {

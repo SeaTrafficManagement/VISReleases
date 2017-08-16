@@ -15,18 +15,22 @@
     </Sites>
     <ConfigurationSettings>
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
-      <Setting name="APPINSIGHTS_INSTRUMENTATIONKEY" />
+      <Setting name="Environment" />
     </ConfigurationSettings>
     <Endpoints>
-      <InputEndpoint name="Private" protocol="https" port="444" certificate="SmaServerCertificate" />
+      <InputEndpoint name="Private" protocol="https" port="444" certificate="ServiceCertificate" />
       <InputEndpoint name="Public" protocol="https" port="443" certificate="ServiceCertificate" />
     </Endpoints>
     <Certificates>
       <Certificate name="ServiceCertificate" storeLocation="LocalMachine" storeName="My" />
-      <Certificate name="SmaServerCertificate" storeLocation="LocalMachine" storeName="My" />
     </Certificates>
     <Startup>
       <Task commandLine="..\AzureStartup\Startup.cmd" executionContext="elevated" taskType="simple">
+        <Environment>
+          <Variable name="Environment">
+            <RoleInstanceValue xpath="/RoleEnvironment/CurrentInstance/ConfigurationSettings/ConfigurationSetting[@name='Environment']/@value" />
+          </Variable>
+        </Environment>
       </Task>
     </Startup>
     <Imports>

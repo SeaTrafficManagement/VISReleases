@@ -18,6 +18,7 @@ using System.Net;
 using System.Security;
 using System.Configuration;
 using STM.Common.Services.Internal.Interfaces;
+using STM.Common.Certificates;
 
 namespace STM.Common.Services
 {
@@ -68,91 +69,107 @@ namespace STM.Common.Services
 
         public override Task<HttpResponseMessage> ExecuteAsync(HttpControllerContext controllerContext, CancellationToken cancellationToken)
         {
-            string instance = null;
-            var route = (IHttpRouteData[])controllerContext.RouteData.Values["MS_SubRoutes"];
-            if (route != null && route.Count() > 0)
-            {
-                instance = (string)route[0].Values["instance"];
-            }
-
-            log4net.GlobalContext.Properties["Instance"] = instance;
-
             try
             {
-                _context.init(instance);
-                _logContext.init(instance);
+                string instance = null;
+                var route = (IHttpRouteData[])controllerContext.RouteData.Values["MS_SubRoutes"];
+                if (route != null && route.Count() > 0)
+                {
+                    instance = (string)route[0].Values["instance"];
+                }
+
+                log4net.GlobalContext.Properties["Instance"] = instance;
+
+                try
+                {
+                    _context.init(instance);
+                    _logContext.init(instance);
+                }
+                catch (Exception ex)
+                {
+                    throw CreateHttpResponseException(HttpStatusCode.InternalServerError, ex.Message);
+                }
+
+                // Set client settings
+                var serviceType = ConfigurationManager.AppSettings["ServiceType"];
+
+                if (serviceType == "VIS")
+                {
+                    log4net.GlobalContext.Properties["ServiceType"] = "VIS";
+
+                    var settings = _context.VisInstanceSettings.FirstOrDefault();
+                    if (settings == null)
+                    {
+                        log.Error("No instance settings found");
+
+                        string msg = "VIS internal server error. No instance settings found";
+                        throw CreateHttpResponseException(HttpStatusCode.InternalServerError, msg);
+                    }
+
+                    InstanceContext.Password = settings.Password;
+                    InstanceContext.ServiceId = settings.ServiceId;
+                    InstanceContext.ServiceName = settings.ServiceName;
+                    InstanceContext.NotImplementetOperations = settings.NotImplementetOperations;
+                    InstanceContext.StmModuleUrl = settings.StmModuleUrl;
+                    InstanceContext.Instance = instance;
+                    InstanceContext.ApiKey = settings.ApiKey;
+                    InstanceContext.ApplicationId = settings.ApplicationId;
+                    InstanceContext.UseHMACAuthentication = settings.UseHMACAuthentication;
+
+                    var encryptionPassword = ConfigurationManager.AppSettings["EncryptionPassword"];
+
+                    //var cert = CertUtil.LoadCert(settings.ClientCertificate, Encryption.DecryptString(settings.Password, encryptionPassword));
+                    //log.Debug("Client certificate: " + cert.FriendlyName + " " + cert.SubjectName);
+
+                    var cert = new X509Certificate2(settings.ClientCertificate,
+                        Encryption.DecryptString(settings.Password, encryptionPassword),
+                        X509KeyStorageFlags.UserKeySet);
+
+                    InstanceContext.ClientCertificate = cert;
+                }
+                else if (serviceType == "SPIS")
+                {
+                    log4net.GlobalContext.Properties["ServiceType"] = "SPIS";
+
+                    var settings = _context.SpisInstanceSettings.FirstOrDefault();
+                    if (settings == null)
+                    {
+                        log.Error("No instance settings found");
+
+                        string msg = "SPIS internal server error. No instance settings found";
+                        throw CreateHttpResponseException(HttpStatusCode.InternalServerError, msg);
+                    }
+
+                    InstanceContext.Password = settings.Password;
+                    InstanceContext.ServiceId = settings.ServiceId;
+                    InstanceContext.ServiceName = settings.ServiceName;
+                    InstanceContext.StmModuleUrl = settings.StmModuleUrl;
+                    InstanceContext.Instance = instance;
+                    InstanceContext.IMO = settings.IMO;
+                    InstanceContext.MMSI = settings.MMSI;
+                    InstanceContext.ApiKey = settings.ApiKey;
+                    InstanceContext.ApplicationId = settings.ApplicationId;
+                    InstanceContext.UseHMACAuthentication = settings.UseHMACAuthentication;
+
+                    var encryptionPassword = ConfigurationManager.AppSettings["EncryptionPassword"];
+                    var cert = new X509Certificate2(settings.ClientCertificate, Encryption.DecryptString(settings.Password, encryptionPassword));
+                    InstanceContext.ClientCertificate = cert;
+                }
+                else
+                {
+                    log.Error("Service type not configured");
+
+                    string msg = "Internal server error. Service type not configured";
+                    throw CreateHttpResponseException(HttpStatusCode.InternalServerError, msg);
+                }
+
+                return base.ExecuteAsync(controllerContext, cancellationToken);
             }
             catch (Exception ex)
             {
-                throw CreateHttpResponseException(HttpStatusCode.InternalServerError, ex.Message);
+                log.Error(ex);
+                throw;
             }
-
-            // Set client settings
-            var serviceType = ConfigurationManager.AppSettings["ServiceType"];
-
-            if (serviceType == "VIS")
-            {
-                log4net.GlobalContext.Properties["ServiceType"] = "VIS";
-
-                var settings = _context.VisInstanceSettings.FirstOrDefault();
-                if (settings == null)
-                {
-                    log.Error("No instance settings found");
-
-                    string msg = "VIS internal server error. No instance settings found";
-                    throw CreateHttpResponseException(HttpStatusCode.InternalServerError, msg);
-                }
-
-                InstanceContext.Password = settings.Password;
-                InstanceContext.ServiceId = settings.ServiceId;
-                InstanceContext.ServiceName = settings.ServiceName;
-                InstanceContext.StmModuleUrl = settings.StmModuleUrl;
-                InstanceContext.Instance = instance;
-                InstanceContext.ApiKey = settings.ApiKey;
-                InstanceContext.ApplicationId = settings.ApplicationId;
-                InstanceContext.UseHMACAuthentication = settings.UseHMACAuthentication;
-
-                var encryptionPassword = ConfigurationManager.AppSettings["EncryptionPassword"];
-                var cert = new X509Certificate2(settings.ClientCertificate, Encryption.DecryptString(settings.Password, encryptionPassword));
-                InstanceContext.ClientCertificate = cert;
-            }
-            else if (serviceType == "SPIS")
-            {
-                log4net.GlobalContext.Properties["ServiceType"] = "SPIS";
-
-                var settings = _context.SpisInstanceSettings.FirstOrDefault();
-                if (settings == null)
-                {
-                    log.Error("No instance settings found");
-
-                    string msg = "SPIS internal server error. No instance settings found";
-                    throw CreateHttpResponseException(HttpStatusCode.InternalServerError, msg);
-                }
-
-                InstanceContext.Password = settings.Password;
-                InstanceContext.ServiceId = settings.ServiceId;
-                InstanceContext.ServiceName = settings.ServiceName;
-                InstanceContext.StmModuleUrl = settings.StmModuleUrl;
-                InstanceContext.Instance = instance;
-                InstanceContext.IMO = settings.IMO;
-                InstanceContext.MMSI = settings.MMSI;
-                InstanceContext.ApiKey = settings.ApiKey;
-                InstanceContext.ApplicationId = settings.ApplicationId;
-                InstanceContext.UseHMACAuthentication = settings.UseHMACAuthentication;
-
-                var encryptionPassword = ConfigurationManager.AppSettings["EncryptionPassword"];
-                var cert = new X509Certificate2(settings.ClientCertificate, Encryption.DecryptString(settings.Password, encryptionPassword));
-                InstanceContext.ClientCertificate = cert;
-            }
-            else
-            {
-                log.Error("Service type not configured");
-
-                string msg = "Internal server error. Service type not configured";
-                throw CreateHttpResponseException(HttpStatusCode.InternalServerError, msg);
-            }
-
-            return base.ExecuteAsync(controllerContext, cancellationToken);
         }
     }
 }

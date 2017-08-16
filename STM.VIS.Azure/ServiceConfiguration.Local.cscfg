@@ -4,17 +4,16 @@
     <Instances count="1" />
     <ConfigurationSettings>
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
-      <Setting name="APPINSIGHTS_INSTRUMENTATIONKEY" value="4e55e7c1-6933-4de1-911e-ec0f3440b354" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="true" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="admin" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBnQYJKoZIhvcNAQcDoIIBjjCCAYoCAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEBFcnsr7FSKpTX1YUo23xrIwDQYJKoZIhvcNAQEBBQAEggEAzH9LhKX63iYDAUMgPY0S74vo9LN3UozxV5hExwWIdkVpIsBpX6yHsxJ1Xw1nHQyWJv6whusJA7uZqbxKk3DlcX3LwCqot1GQoCxk6sEKzOgPWYuESIRhNEQfu0buNSSlSUqx/RXhkKz20I2G5PXOxHAiH0oh/XwIiBmDsINaTdHIP+NKTacqQf1Wm6PGoGVUqFaq/2R18yom3WyVag2tP6vrXyFDOmUmmGpjP5Fy/hNalWRVIJTCJM4TgpjtBXMS46aUUxFQcLYmM/mtcIuZTTjxXzHDKTMgm+QfL4lIPX9qweLgM2HBBmM6XiC7eWpUSbbYNeyaacWK0dcx9PMAJDAzBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECL//ARK4YX3TgBA7DrRhs1NGK9EXBW9QCVX+" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountExpiration" value="2017-12-22T23:59:59.0000000+01:00" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteForwarder.Enabled" value="true" />
+      <Setting name="Environment" value="DEV" />
     </ConfigurationSettings>
     <Certificates>
-      <Certificate name="ServiceCertificate" thumbprint="07A58BC61087F1BD7548574A144F7BA3B248A505" thumbprintAlgorithm="sha1" />
+      <Certificate name="ServiceCertificate" thumbprint="CE7F9C8FE16F6BCC3DD6C603BAD49805DC1826B2" thumbprintAlgorithm="sha1" />
       <Certificate name="Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption" thumbprint="7A6EC2DD81853650FB67D9D852DB379C8019DE3F" thumbprintAlgorithm="sha1" />
-      <Certificate name="SmaServerCertificate" thumbprint="7FDFD92D937411A72674891BC085B4C01C52BAAB" thumbprintAlgorithm="sha1" />
     </Certificates>
   </Role>
 </ServiceConfiguration>

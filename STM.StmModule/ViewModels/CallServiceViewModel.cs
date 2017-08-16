@@ -39,7 +39,7 @@ namespace STM.StmModule.Simulator.ViewModels
             }
         }
 
-        private string _contentType = "application/json; charset=UTF8;charset=UTF8";
+        private string _contentType = "application/json; charset=utf-8";
         public string ContentType
         {
             get

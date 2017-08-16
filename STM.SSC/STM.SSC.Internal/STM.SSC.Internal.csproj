@@ -164,8 +164,6 @@
   <ItemGroup>
     <Compile Include="IdentityRegistryService.cs" />
     <Compile Include="IIdentityRegistryService.cs" />
-    <Compile Include="InternalWebserver\Controllers\OpenIdController.cs" />
-    <Compile Include="InternalWebserver\Startup.cs" />
     <Compile Include="ISccPrivateService.cs" />
     <Compile Include="IServiceRegistryService.cs" />
     <Compile Include="Models\CallServiceRequestObj.cs" />

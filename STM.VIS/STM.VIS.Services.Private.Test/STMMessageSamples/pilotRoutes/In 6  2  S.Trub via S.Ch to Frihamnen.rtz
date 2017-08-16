@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<route xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://www.cirm.org/RTZ/1/1" version="1.1"
+         xmlns:stm="http://www.cirm.org/STM/1/0/0"> 
+    <routeInfo routeStatus="1" vesselVoyage="urn:mrn:stm:voyage:id:gothenborg:0062" routeName="In 6  2  S.Trub via S.Ch to Frihamnen">
+      <extension xsi:type="stm:RouteInfoExtension" manufacturer="STM" name="routeInfoEx" version="1.0.0"
+            routeStatusEnum="1" routeVersion="BCF8ABB2-4BE2-4082-8718-E3594734A506">
+        <stm:routeChanges>
+          <stm:historyItem dateTime="2016-10-20T11:14:41Z" author="Simon Ross"
+                    reason="initial creation"/>
+          <stm:historyItem dateTime="2016-10-21T09:12:29Z" author="William Brown"
+                    reason="corrections for reference points using"/>
+        </stm:routeChanges>
+      </extension>		
+	</routeInfo>	
+    <waypoints>
+        <defaultWaypoint radius="0.30">
+            <leg portsideXTD="0.10" starboardXTD="0.10" safetyContour="30.00" safetyDepth="30.00" geometryType="Loxodrome"/>
+        </defaultWaypoint>
+        <waypoint id="1" name="Pilot Boarding #2">
+            <position lat="57.61666667" lon="11.53166667"/>
+        </waypoint>
+        <waypoint id="2" name="South Trubaduren" radius="1.00">
+            <position lat="57.57860967" lon="11.63289813"/>
+        </waypoint>
+        <waypoint id="3" name="Uppgrund" radius="1.00">
+            <position lat="57.63064897" lon="11.69343197"/>
+        </waypoint>
+        <waypoint id="4" name="Böttö Västra" radius="0.75">
+            <position lat="57.64846208" lon="11.70552323"/>
+            <leg portsideXTD="0.05" starboardXTD="0.05"/>
+        </waypoint>
+        <waypoint id="5" name="Brandnäs" radius="0.75">
+            <position lat="57.65411460" lon="11.73797093"/>
+            <leg portsideXTD="0.04" starboardXTD="0.04"/>
+        </waypoint>
+        <waypoint id="6" name="Gäveskär" radius="0.75">
+            <position lat="57.65927118" lon="11.77147660"/>
+            <leg portsideXTD="0.04" starboardXTD="0.04"/>
+        </waypoint>
+        <waypoint id="7" name="Knippelholmen" radius="0.75">
+            <position lat="57.67871892" lon="11.81044767"/>
+            <leg portsideXTD="0.05" starboardXTD="0.05"/>
+        </waypoint>
+        <waypoint id="8" name="Älvsborg" radius="0.50">
+            <position lat="57.68231782" lon="11.84212450"/>
+            <leg portsideXTD="0.05" starboardXTD="0.05"/>
+        </waypoint>
+        <waypoint id="9" name="Tångudden" radius="0.50">
+            <position lat="57.68578157" lon="11.86466257"/>
+            <leg portsideXTD="0.05" starboardXTD="0.05"/>
+        </waypoint>
+        <waypoint id="10" name="Rya Nabbe" radius="0.50">
+            <position lat="57.68738535" lon="11.88169400"/>
+            <leg portsideXTD="0.03" starboardXTD="0.03"/>
+        </waypoint>
+        <waypoint id="11" name="Berth 551" radius="0.50">
+            <position lat="57.68793653" lon="11.88653580"/>
+            <leg portsideXTD="0.03" starboardXTD="0.03"/>
+        </waypoint>
+        <waypoint id="12" name="Nya Varvet" radius="0.50">
+            <position lat="57.68908717" lon="11.89356342"/>
+            <leg portsideXTD="0.03" starboardXTD="0.03"/>
+        </waypoint>
+        <waypoint id="13" name="Älvsborgsbron" radius="0.50">
+            <position lat="57.69070557" lon="11.90186660"/>
+            <leg portsideXTD="0.03" starboardXTD="0.03"/>
+        </waypoint>
+        <waypoint id="14" name="Eriksberg" radius="0.50">
+            <position lat="57.69843738" lon="11.91682078"/>
+            <leg portsideXTD="0.03" starboardXTD="0.03"/>
+        </waypoint>
+        <waypoint id="15" name="Fiskhamnskröken" radius="0.50">
+            <position lat="57.70117828" lon="11.92413192"/>
+            <leg portsideXTD="0.02" starboardXTD="0.02"/>
+        </waypoint>
+        <waypoint id="16" name="Lindholmen">
+            <position lat="57.70204982" lon="11.93571522"/>
+            <leg portsideXTD="0.02" starboardXTD="0.02"/>
+        </waypoint>
+        <waypoint id="17" name="Floating Dock 190">
+            <position lat="57.70303502" lon="11.94615192"/>
+            <leg portsideXTD="0.02" starboardXTD="0.02"/>
+        </waypoint>
+        <waypoint id="18" name="P-Arken">
+            <position lat="57.70539105" lon="11.95377472"/>
+            <leg portsideXTD="0.02" starboardXTD="0.02"/>
+        </waypoint>
+        <waypoint id="19" name="Berth 195" radius="0.20">
+            <position lat="57.70806748" lon="11.95559452"/>
+            <leg portsideXTD="0.02" starboardXTD="0.02"/>
+        </waypoint>
+        <waypoint id="20" name="Frihamnen" radius="0.20">
+            <position lat="57.71167705" lon="11.95618450"/>
+            <leg portsideXTD="0.02" starboardXTD="0.02"/>
+        </waypoint>
+    </waypoints>
+    <schedules>
+        <schedule id="0" name="Base Calculation"/>
+    </schedules>
+    <extensions>
+        <extension name="ActivePath" manufacturer="Transas">
+            <path>
+                <wp_ids>
+                    <wp_id value="1"/>
+                    <wp_id value="2"/>
+                    <wp_id value="3"/>
+                    <wp_id value="4"/>
+                    <wp_id value="5"/>
+                    <wp_id value="6"/>
+                    <wp_id value="7"/>
+                    <wp_id value="8"/>
+                    <wp_id value="9"/>
+                    <wp_id value="10"/>
+                    <wp_id value="11"/>
+                    <wp_id value="12"/>
+                    <wp_id value="13"/>
+                    <wp_id value="14"/>
+                    <wp_id value="15"/>
+                    <wp_id value="16"/>
+                    <wp_id value="17"/>
+                    <wp_id value="18"/>
+                    <wp_id value="19"/>
+                    <wp_id value="20"/>
+                </wp_ids>
+            </path>
+        </extension>
+    </extensions>
+</route>

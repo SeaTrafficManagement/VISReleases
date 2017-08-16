@@ -288,6 +288,7 @@
     <Compile Include="Controllers\FindIdentitiesController.cs" />
     <Compile Include="Controllers\FindServicesController.cs" />
     <Compile Include="Controllers\GetMessageController.cs" />
+    <Compile Include="Controllers\PingController.cs" />
     <Compile Include="Controllers\PublishMessageController.cs" />
     <Compile Include="Controllers\SubscriptionController.cs" />
     <Compile Include="Global.asax.cs">
@@ -311,17 +312,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AzureStartup\MaritimeCloudCaCertificate.cer" />
-    <Content Include="AzureStartup\MaritimeCloudRootCertificate.cer" />
     <Content Include="packages.config" />
-    <Content Include="AzureStartup\SmaStmRootCertificate.cer" />
-    <Content Include="AzureStartup\BIMCO_ExtraNet.cer" />
-    <Content Include="AzureStartup\IALA_Members.cer" />
-    <Content Include="AzureStartup\MaritimeCloud_Test_Identity_Registry.cer" />
-    <Content Include="AzureStartup\MaritimeCloud_Test_Root_Certificate.cer" />
-    <None Include="Properties\PublishProfiles\Dev.pubxml" />
-    <None Include="Properties\PublishProfiles\Test.pubxml" />
     <Content Include="AzureStartup\Startup.cmd" />
+    <Content Include="AzureStartup\staging\mc-bimco-cert.cer" />
+    <Content Include="AzureStartup\staging\mc-iala-cert.cer" />
+    <Content Include="AzureStartup\staging\mc-idreg-cert.cer" />
+    <Content Include="AzureStartup\staging\mc-root-cert.cer" />
+    <Content Include="AzureStartup\Production\mc-bimco-cert.cer" />
+    <Content Include="AzureStartup\Production\mc-iala-cert.cer" />
+    <Content Include="AzureStartup\Production\mc-idreg-cert.cer" />
+    <Content Include="AzureStartup\Production\mc-root-cert.cer" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -331,6 +331,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

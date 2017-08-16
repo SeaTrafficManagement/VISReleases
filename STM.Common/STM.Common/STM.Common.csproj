@@ -118,6 +118,8 @@
       <HintPath>..\..\packages\System.Diagnostics.TraceSource.4.3.0\lib\net46\System.Diagnostics.TraceSource.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IdentityModel.Selectors" />
     <Reference Include="System.IO.FileSystem, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.IO.FileSystem.4.3.0\lib\net46\System.IO.FileSystem.dll</HintPath>
       <Private>True</Private>
@@ -134,6 +136,7 @@
       <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Net.NameResolution, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Net.NameResolution.4.3.0\lib\net46\System.Net.NameResolution.dll</HintPath>
       <Private>True</Private>
@@ -191,7 +194,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CacheUtils.cs" />
-    <Compile Include="CertificateValidator.cs" />
+    <Compile Include="Certificates\CertificateValidator.cs" />
     <Compile Include="Encryption.cs" />
     <Compile Include="Exceptions\StmSchemaValidationException.cs" />
     <Compile Include="Format.cs" />

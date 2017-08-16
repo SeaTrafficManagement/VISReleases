@@ -7,7 +7,6 @@ namespace STM.SSC.Internal
     public interface IIdentityRegistryService
     {
         bool IsCertificateValid(X509Certificate2 cert);
-        string GetAccessToken();
         WebRequestHelper.WebResponse MakeGenericCall(string url, string method, string body = null, WebHeaderCollection headers = null);
     }
 }

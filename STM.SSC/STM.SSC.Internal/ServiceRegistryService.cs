@@ -38,12 +38,6 @@ namespace STM.SSC.Internal
 
             WebRequestHelper.WebResponse response = null;
 
-            var token = IdentityRegistryService.GetAccessToken();
-            if (headers == null)
-                headers = new WebHeaderCollection();
-
-            headers.Add("Authorization", "Bearer " + token);
-
             url = serviceRegistryBasePath + url;
             if (method == "GET")
                 response = WebRequestHelper.Get(url, headers, false);

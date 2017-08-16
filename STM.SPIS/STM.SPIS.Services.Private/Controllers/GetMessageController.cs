@@ -122,5 +122,71 @@ namespace STM.SPIS.Services.Private.Controllers
                 throw CreateHttpResponseException(HttpStatusCode.InternalServerError, msg);
             }
         }
+
+        /// <summary>
+        /// Retrieve messages received in date intervall
+        /// </summary>
+        /// <param name="fromDate">Retreive message received after this date</param>
+        /// <param name="toDate">Retreive message received before this date. If null all messages up to current date will be fetched</param>
+        /// <response code="200">Success</response>
+        /// <response code="default">Unexpected error</response>
+        [HttpGet]
+        [Route("getMessageInTimeIntervall")]
+        [SwaggerResponseContentType(responseType: "application/json", Exclusive = true)]
+        public MessageEnvelope GetMessageInTimeIntervall(DateTime fromDate, DateTime? toDate = null)
+        {
+            log.Info("Incoming request to " + GetCurrentMethod());
+
+            try
+            {
+                if (toDate == null)
+                    toDate = DateTime.MaxValue;
+
+                var result = new MessageEnvelope();
+                result.Messages = new List<Message>();
+                var uploadedMessages = new List<UploadedMessage>();
+                var mTypes = _messageTypeService.Get(m => m.Name == "PCM").ToList();
+
+                uploadedMessages = _uploadedMessageService.GetMessagesInTimeIntervall(fromDate, toDate.Value, mTypes);
+
+                foreach (var uploadedMessage in uploadedMessages)
+                {
+                    var messageToAdd = new Message();
+                    messageToAdd.Id = uploadedMessage.MessageID;
+                    messageToAdd.FromOrgId = uploadedMessage.FromOrg.UID;
+                    messageToAdd.FromOrgName = uploadedMessage.FromOrg.Name;
+                    messageToAdd.FromServiceId = uploadedMessage.FromServiceId;
+                    messageToAdd.MessageType = uploadedMessage.MessageType.Name;
+                    messageToAdd.ReceivedAt = uploadedMessage.ReceiveTime;
+
+                    if (messageToAdd.ReceivedAt.HasValue)
+                        messageToAdd.ReceivedAt = DateTime.SpecifyKind(messageToAdd.ReceivedAt.Value, DateTimeKind.Utc);
+
+                    var messageBody = Serialization.ByteArrayToString(uploadedMessage.Message);
+                    messageToAdd.StmMessage = new StmMessage(messageBody);
+                    messageToAdd.CallbackEndpoint = uploadedMessage.CallbackEndpoint;
+
+                    result.Messages.Add(messageToAdd);
+                }
+
+                result.NumberOfMessages = uploadedMessages.Count;
+                result.RemainingNumberOfMessages = _uploadedMessageService.GetNumberOfRemainingMessages(mTypes);
+
+                return result;
+            }
+            catch (HttpResponseException ex)
+            {
+                log.Error(ex.Message, ex);
+                throw;
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex.Message, ex);
+
+                string msg = "VIS internal server error. " + ex.Message;
+                throw CreateHttpResponseException(HttpStatusCode.InternalServerError, msg);
+            }
+        }
+
     }
 }

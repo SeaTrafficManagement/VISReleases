@@ -18,6 +18,7 @@ using System.IO.Compression;
 using System.Diagnostics;
 using STM.Tools.InstanceConfigurator.Views;
 using System.Security.Cryptography;
+using STM.Common.Certificates;
 
 namespace STM.Tools.InstanceConfigurator.ViewModels
 {

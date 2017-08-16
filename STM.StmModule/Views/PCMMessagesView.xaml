@@ -51,7 +51,7 @@
         <StackPanel Grid.Column="1"
                   Grid.Row="5" Orientation="Vertical">
             <Label Content="Message content" Margin="0,0,0,5" />
-            <TextBox Name="SelectedMessageContent" Height="350" AcceptsReturn="True"
+            <TextBox Name="SelectedMessageContent" VerticalScrollBarVisibility="Auto" Height="350" AcceptsReturn="True"
                  Text="{Binding Path=SelectedMessage.Message}" TextChanged="TextBox_TextChanged">
             </TextBox>
         </StackPanel>
